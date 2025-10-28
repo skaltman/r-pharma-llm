@@ -1,0 +1,132 @@
+---
+title: Welcome!
+subtitle: Getting Started with LLM APIs in R
+author: R/Pharma 2025
+date: 2025-11-03
+
+footer: skaltman.github.io/r-pharma-llm
+
+editor:
+  render-on-save: true
+---
+
+## Welcome to [Getting Started with LLM APIs in R]{.dark-blue}! {.fs-step-2 background-image="assets/retro-mac.jpg" background-size="cover" background-position="bottom left"}
+
+* Update your local copy of the workshop: \
+  [skaltman.github.io/r-pharma-llm/setup.html]{.code .b .orange}
+
+```{=html}
+<style>
+.reveal .footer {
+  font-size: 0.5em !important;
+}
+</style>
+```
+
+# 👋 {.middle}
+
+# About this workshop
+
+## 🏡 [skaltman.github.io/r-pharma-llm]{.code} {.center .text-center}
+
+All materials live here!
+
+## Schedule
+
+{{< partial ../partials/schedule.qmd >}}
+
+
+## Asking questions {.center .text-center}
+
+<!-- TODO --> 
+
+
+# Setup {.middle .text-center}
+
+1. Head to [skaltman.github.io/r-pharma-llm/setup.html](https://skaltman.github.io/r-pharma-llm/setup.html)
+
+2. Clone our workshop repo `posit-conf-2025/llm`
+
+3. Open the project in **Positron**
+
+4. Install all the packages: 
+
+    * From R: `renv::restore()`
+
+## We're using Positron
+
+::: text-center
+![](../assets/positron-astropy.png){style="max-height: min(650px, 80vh)"}
+:::
+
+::: footer
+RStudio and VS Code are great, too!
+:::
+
+
+<!-- TODO: Cloud project instructions here -->
+
+## File organization
+
+::: {.table-no-border style="--row-padding: 0.5em;"}
+|  |  |
+|:---|:------------|
+| `_exercises/` | Files for **Your Turn** exercises |
+| `_solutions/` | Solutions to those exercises |
+| `_demos/` | Files for stuff we demo |
+| `website/` | The website and slides |
+| `./*` | Lots of project related files you can ignore |
+:::
+
+## Exercise Solutions
+
+::: {.flex .flex-column .justify-center-ns .items-center-ns style="min-height: 20vh"}
+👨‍💻 👩‍💻 `_exercises/01_hello-llm/01_hello-llm.R` \
+[&nbsp;&nbsp;&nbsp;🫣&nbsp;&nbsp;&nbsp; `_solutions/01_hello-llm/01_hello-llm.R`]{.fragment}
+:::
+
+# Let's Dive In!
+
+::: fragment
+..to our first activity!
+:::
+
+## To use an AI API... {.center}
+
+::: {.fragment style="font-size: 2em;"}
+...you need an API key!
+:::
+
+## How to get an API key, beyond this workshop {.center}
+
+::: {.incremental .mt4}
+1. 🆙 Sign up for an account with [OpenAI](https://platform.openai.com/), [Anthropic](https://www.anthropic.com/), etc.
+
+2. 💳 Add a payment method
+
+3. 🔑 Get an API key
+
+4. 💾 Store it in `.Renviron` file<br>as `OPENAI_API_KEY`,  `ANTHROPIC_API_KEY`, etc. 
+:::
+
+## But we'll give you API keys to use today! {.center}
+
+::: incremental
+1. Use these keys for all of our activities today
+
+2. Play and explore! But please be considerate :)
+
+3. We'll turn them off at the end of the workshop
+:::
+
+## Your Turn `01_hello-llm` {background-image="assets/your-turn.png" background-size="30%" background-position="bottom right"}
+
+::: {style="--li-margin: 0.66em;"}
+1. 🔓 Decrypt the `.env.secret` &rarr; `.env`:
+    * Run [secret.R]{class="b--light-red red ph2 pv1 ba br2 code"}
+
+2. 🤫 The special phrase is: \
+   [r-pharma-llm-5]{class="b--purple purple ph2 pv1 ba br2 code" contenteditable="true" style="font-size: 1.25em"}
+
+3. 🤖 Run the code in [_exercises/01_hello-llm]{.b}
+:::

@@ -1,0 +1,225 @@
+---
+title: Programming with LLMs
+subtitle: posit::conf(2025)
+
+image: assets/erik-skof-Xn8ilXVKntg-unsplash.png
+
+twitter-card:
+  image: assets/open-graph-card.png
+
+open-graph:
+  image: assets/open-graph-card.png
+
+title-block-banner: true
+title-block-style: default
+
+sidebar: false
+page-navigation: false
+toc: false
+
+editor: { render-on-save: true }
+engine: markdown
+
+resources:
+  - assets/replicate-prediction-ajsyfca4q9rme0cryvv8509r2w.mp4
+---
+
+```{=html}
+<style>
+.quarto-title-banner {
+    color: var(--bs-body-bg);
+    background-image: url({{< meta image >}});
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    transition: filter 15s;
+}
+.quarto-title {
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    grid-column: unset !important;
+}
+.quarto-title > * {
+    z-index: 1;
+    position: relative;
+}
+.quarto-title-banner .quarto-title::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    z-index: 0;
+}
+.quarto-title-banner h1 {
+    color: var(--bs-body-bg);
+    font-weight: 300 !important;
+    font-size: max(min(4vw, 2.5em), 1.5em);
+    text-wrap: pretty;
+}
+@media (max-width: 575.98px) {
+    .quarto-title-banner {
+        height: 300px;
+    }
+}
+header#title-block-header::before {
+    content: "";
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    background-color: black;
+    top: -80px;
+}
+.video-background {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+.slow-fade {
+  animation: fadeIn 5s ease-in forwards;
+  animation-delay: 3s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
+<script>
+function setHue() {
+    const randomHue = Math.random() * 360
+    document.querySelector('.quarto-title-banner').style.filter = `hue-rotate(${randomHue}deg)`
+    setTimeout(setHue, 18000)
+}
+setHue()
+
+function createVideoBackground(options = {}) {
+  const config = {
+    container: '#title-block-header',
+    poster: null,
+    className: 'video-background',
+    ...options
+  };
+
+  const supportsVideo = () => {
+    const video = document.createElement('video');
+    return !!(video.canPlayType && video.canPlayType('video/mp4').replace(/no/, ''));
+  };
+
+  const prefersReducedMotion = () => {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  };
+
+  const container = document.querySelector(config.container);
+
+  if (!container) {
+    console.error(`Container for video '${config.container}' not found`);
+    return null;
+  }
+
+  if (!supportsVideo() || prefersReducedMotion()) {
+    console.log('Video background not supported or user prefers reduced motion');
+    return null;
+  }
+
+  const video = document.createElement('video');
+  video.autoplay = true;
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.controls = false;
+  video.playbackRate = 0.5;
+
+  if (config.className) {
+    video.className = config.className;
+  }
+
+  if (config.poster) {
+    video.poster = config.poster;
+  }
+
+  video.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    object-fit: cover;
+    grid-column: unset;
+    opacity: 0;
+  `;
+
+  // Add video sources
+  if (config.videoSrc.mp4) {
+    const mp4Source = document.createElement('source');
+    mp4Source.src = config.videoSrc.mp4;
+    mp4Source.type = 'video/mp4';
+    video.appendChild(mp4Source);
+  }
+
+  if (config.videoSrc.webm) {
+    const webmSource = document.createElement('source');
+    webmSource.src = config.videoSrc.webm;
+    webmSource.type = 'video/webm';
+    video.appendChild(webmSource);
+  }
+
+  if (getComputedStyle(container).position === 'static') {
+    container.style.position = 'relative';
+  }
+  container.style.overflow = 'hidden';
+
+  container.insertBefore(video, container.firstChild);
+
+  video.play().catch(console.warn);
+
+  return video;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  createVideoBackground({
+    container: '#title-block-header .quarto-title-banner',
+    videoSrc: {
+      mp4: 'assets/replicate-prediction-ajsyfca4q9rme0cryvv8509r2w.mp4'
+    },
+    poster: 'assets/erik-skof-Xn8ilXVKntg-unsplash.png',
+    className: 'video-background slow-fade'
+  });
+});
+</script>
+```
+
+::: {.lead .mb-4}
+**Workshop at [{{< meta workshop.conference.name >}}]({{< meta workshop.conference.link >}})**  in {{< meta workshop.conference.location >}}<br>{{< meta workshop.date >}} :: {{< meta workshop.time >}}<br>{{< meta workshop.location >}}
+:::
+
+## Introduction
+
+Large Language Models (LLMs) offer developers unprecedented programmatic capabilities. This workshop introduces ellmer (R) and chatlas (Python), Posit packages that simplify LLM API integration, handling conversation complexities and enabling seamless interactions with AI models.
+
+Participants will explore system prompt design, token management, and tool calling while building familiarity with current AI technologies. The workshop demonstrates that:
+
+- Coding with LLMs unlocks possibilities beyond standard tools
+- No advanced AI background is required
+- Implementing AI can be both accessible and exciting
+
+Designed for AI newcomers and experienced developers, the session covers LLM integration, Shiny web app development, and touches on advanced topics like Retrieval-Augmented Generation (RAG) and tool calling. Attendees will gain hands-on experience through guided exercises, providing the confidence to start their LLM journey.
+
+## Links
+
+::: {.lead .fs-3}
+📘 [Workshop Materials](workshop.qmd)
+
+🔧 [Getting Setup](setup.qmd)
+
+<!-- 🧑‍💻 [Join Posit Cloud Space](setup.qmd#using-posit-cloud) -->
+
+👾 [Discord]({{< meta workshop.links.discord >}}) ([signup instructions](setup.qmd#create-accounts))
+
+📦 [Repository]({{< meta workshop.links.repo >}})
+
+🍑 [{{< meta workshop.links.conf.name >}}]({{< meta workshop.links.conf.href >}})
+:::

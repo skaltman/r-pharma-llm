@@ -1,0 +1,52 @@
+---
+title: Welcome!
+subtitle: Getting Started with LLM APIs in R
+author: R/Pharma 2025
+date: 2025-11-03
+
+format:
+  revealjs:
+    auto-slide: 15000
+    loop: true
+
+footer: skaltman.github.io/r-pharma-llm
+
+title-slide-attributes:
+    class: no-invert-dark-mode title-slide-white
+    data-background-image: assets/space-window.png
+    data-background-size: cover
+    # data-background-opacity: "0.5"
+
+editor:
+  render-on-save: true
+---
+
+## {background-video="assets/robot-logs-in.mp4" background-video-loop="true" background-video-muted="true"}
+
+```{=html}
+<style>
+.title-slide-white * {
+  color: white !important;
+  font-weight: bold !important;
+}
+.title-slide-white .quarto-title-authors *,
+.title-slide-white .date {
+  color: black !important;
+}
+</style>
+```
+
+## Welcome to [Getting Started with LLM APIs in R]{.dark-blue}! {.fs-step-2 background-image="assets/retro-mac.jpg" background-size="cover" background-position="bottom left" autoslide=20000}
+
+Update your local copy of the workshop: \
+  [skaltman.github.io/r-pharma-llm/setup.html]{.code .b .orange}
+
+```{=html}
+<style>
+.reveal .footer {
+  font-size: 0.5em !important;
+  color: white !important;
+}
+</style>
+```
+

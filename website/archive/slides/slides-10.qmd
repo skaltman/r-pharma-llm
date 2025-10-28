@@ -1,0 +1,204 @@
+---
+title: Beyond Tools
+subtitle: Getting Started with LLM APIs in R
+author: <code>posit::conf(2025)</code>
+date: 2025-09-16
+
+editor:
+  render-on-save: true
+---
+
+# [querychat]{.hidden} {.no-invert-dark-mode .center background-image="assets/robot-querychat.jpg" background-size="cover" background-position="center"}
+
+## {.center .tc transition="fade"}
+
+![](assets/querychat-standard-shiny.excalidraw.svg)
+
+## {.center .tc transition="fade"}
+
+![](assets/querychat.excalidraw.svg)
+
+## {.center .tc transition="fade"}
+
+![](assets/querychat-parts.excalidraw.svg)
+
+## querychat in R
+
+```{.r .scrollable code-line-numbers="|3|5|8|13|8,13|15-17"}
+library(shiny)
+library(bslib)
+library(querychat)
+
+mtcars_qc_config <- querychat_init(mtcars)
+
+ui <- page_sidebar(
+  sidebar = querychat_sidebar("mtcars"),
+  # plots, tables, etc.
+)
+
+server <- function(input, output, session) {
+  mtcars_qc <- querychat_server("mtcars", mtcars_qc_config)
+
+  output$table <- renderTable({
+    mtcars_qc$df()
+  })
+}
+
+shinyApp(ui, server)
+```
+
+## querychat in Python
+
+```{.python .scrollable code-line-numbers="|2|5-7|10|15|10,15|17-19"}
+import polars as pl
+import querychat
+from shiny import App, render, ui
+
+mtcars = pl.read_csv("data/mtcars.csv")
+
+mtcars_qc_config = querychat.init(mtcars, "mtcars")
+
+app_ui = ui.page_sidebar(
+    querychat.sidebar("mtcars"),
+    # plots, tables, etc.
+)
+
+def server(input, output, session):
+    mtcars_qc = querychat.server("mtcars", mtcars_qc_config)
+
+    @render.data_frame
+    def data_table():
+        return qc.df()
+
+app = App(app_ui, server)
+```
+
+# Your Turn `25_querychat` {.slide-your-turn}
+
+1. I've made a Shiny dashboard to explore Airbnb listings in Asheville, NC.
+   * Spend 1-2 min: which Neighborhood has most private rooms?
+
+1. Work through the steps in the comments to use `querychat`.
+
+1. Spend a few minutes exploring the data and chatting with the app. \
+   Which area has the most private rooms?
+
+{{< countdown 8:00 left=0 bottom="-1.5em" >}}
+
+# [MCP]{.hidden} {.no-invert-dark-mode .center background-image="assets/robot-mcp.jpg" background-size="cover" background-position="center"}
+
+::: {.tc .white .pa1 .br3 .w-50 .absolute bottom="-2em" left=0 style="font-size: 3em; background-color: rgba(0, 0, 0, 0.8);"}
+MCP
+:::
+
+## Recall: Tools {.center}
+
+a.k.a. _functions_, _tool calling_ or _function calling_
+
+* Bring real-time or up-to-date information to the model
+
+* Let the model interact with the world
+
+## 🤔 What other tools could be useful?
+
+```{=html}
+<ul contenteditable="true">
+<li>Get the weather</li>
+<li>Search the <code>posit::conf()</code> schedule</li>
+<li>...</li>
+</ul>
+```
+
+::: notes
+Some ideas:
+
+* web search
+* search a ticket system (zendesk)
+* search a website or knowledge base
+* Create tickets
+* Send emails
+* Read your calendar
+* Summarize your email
+:::
+
+## 🤔 What GitHub-related tools would be useful?
+
+```{=html}
+<ul contenteditable="true">
+<li>List issues</li>
+<li>...</li>
+</ul>
+```
+
+::: notes
+Some ideas:
+
+* web search
+* search a ticket system (zendesk)
+* search a website or knowledge base
+* Create tickets
+* Send emails
+* Read your calendar
+* Summarize your email
+:::
+
+## Who should write tools for GitHub? {.center}
+
+::: fragment
+MCP solves this problem! GitHub writes tools...
+:::
+
+::: fragment
+and lets ~~you~~ your models use them.
+
+[GitHub MCP Server](https://github.com/github/github-mcp-server#tools){preview-link=true}
+:::
+
+<!-- TODO: Adding MCP tools to ellmer, chatlas -->
+
+# Your Turn `26_mcp` {.slide-your-turn}
+
+Follow the instructions in `README.R.md` or `README.py.md` for this task.
+
+1. What MCP servers are out there?
+
+1. Set up [context7](https://context7.com/) as an MCP server in Positron.
+
+1. Use [context7](https://context7.com/) tools to answer a coding translation question.
+
+{{< countdown 6:00 left=0 bottom="-1.5em" >}}
+
+# [Agents]{.hidden} {.no-invert-dark-mode .center background-image="assets/robot-agent.jpg" background-size="cover" background-position="center"}
+
+::: {.tc .white .pa1 .br3 .w-50 .absolute bottom="-5em" left=0 style="font-size: 3em; background-color: rgba(0, 0, 0, 0.8);"}
+Agents
+:::
+
+## What's an agent?
+
+- Hadley/Willison definition: Agents are LLMs with a read tool and a write tool
+
+- The "you know it when you see it" definition: autonomous LLMs, long context, minimal intervention
+
+## Demo: Databot {.slide-demo}
+
+👨‍💻 [_demos/27_demo_databot/README.md]{.code .b .purple}
+
+> Let's look at `data/airbnb-asheville.csv`, do some basic work to familiarize ourselves with the data, and then find interesting patterns that would be relevant to someone looking to open an Airbnb in Asheville, NC.
+
+# [The Future of AI]{.white style="text-shadow: 5px 5px 15px black;"} {.no-invert-dark-mode background-image="assets/robot-hologram.jpg" background-size="cover" background-position="center"}
+
+# [Wrap-up]{.hidden} {.no-invert-dark-mode .center background-image="assets/robot-survey.jpg" background-size="cover" background-position="center"}
+
+::: {.fragment .f1 .tc .white .pa4 .br3 style="background-color: rgba(0, 0, 0, 0.8);"}
+Please take 5-10 minutes to fill out the workshop survey.\
+Your feedback is important to us!
+
+[[pos.it/conf-workshop-survey]{.yellow .code}](https://pos.it/conf-workshop-survey)
+:::
+
+## {background-image="assets/thank-you.png" background-size="cover" background-position="center"}
+
+::: {.f1 .code .tc .white .absolute bottom=0 left=0 right=0}
+Enjoy posit::conf(2025)!
+:::

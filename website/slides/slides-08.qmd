@@ -1,0 +1,236 @@
+---
+title: Tool Calling
+subtitle: Getting Started with LLM APIs in R
+author: R/Pharma 2025
+date: 2025-11-03
+
+editor:
+  render-on-save: true
+---
+
+
+## Recall: How do LLMs work? {.center}
+
+::: incremental
+1. You write some words
+
+2. The LLM writes some more words
+
+3. You _use those words_
+:::
+
+::: fragment
+_On their own, can LLMs... access the internet? run code? send an email? interact with the world?_
+:::
+
+## Let's try it
+
+```{.r}
+library(ellmer)
+
+chat <- chat("openai/gpt-4.1-nano")
+
+chat$chat("What's the weather like in Utqiagvik, Alaska?")
+chat$chat("Who are the keynote speakers at R/Pharma 2025?")
+chat$chat("What day is it?")
+```
+
+::: notes
+Run these in the terminal.
+
+Ask: how could we get the model to know these answers? Let's start with the easiest one: what day is it?
+
+Answer: we could just tell it in the system prompt.
+
+What about keynote speakers? We could include that in the system prompt too. But what if the schedule changes?
+
+What about the weather? The model can't know that because it's not connected to the internet.
+:::
+
+## Tools {.center}
+
+a.k.a. _functions_, _tool calling_ or _function calling_
+
+::: incremental
+* Bring real-time or up-to-date information to the model
+
+* Let the model interact with the world
+:::
+
+::: notes
+Tools are extra capabilities that you give to the LLM, like the ability to search the R/Pharma 2025 schedule.
+These capabilities are things that the model can't do on its own.
+The goal is let the model pull in real-time, or up-to-date, or high-quality information as needed, depending on the conversation.
+
+They can also give the model new abilities to take action on behalf of the user.
+:::
+
+# How does tool calling work?
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-01.excalidraw.svg)
+
+::: notes
+Zooming out again, the conversation starts with a user sending a message to the chatbot.
+
+In this case, the user asks the model whether they can go to the pool today.
+(I live in Atlanta, GA.)
+
+How much does the model know about the weather in Atlanta, GA?
+
+**What's the weather like today in Atlanta, GA?**
+
+> I'm unable to provide real-time weather updates. For the latest weather forecast in Atlanta, GA, please check a trusted weather service such as
+the National Weather Service, Weather.com, or a weather app on your device.
+
+**Go ahead and guess**
+
+> Sure! Since it's July in Atlanta, GA, you can generally expect hot and humid weather. Temperatures might range from the mid-80s to mid-90s
+Fahrenheit (around 29-35°C). There could also be some afternoon thunderstorms or showers, which are common during summer months in Georgia. Keep a
+fan or air conditioning handy if you're indoors, and stay hydrated!
+:::
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-02.excalidraw.svg)
+
+::: notes
+Now imagine we've told the LLM that it has access to a tool called `get_weather()`.
+Knowing that it 1) needs to know the weather in Atlanta and 2) it doesn't know the weather in Atlanta, GA; the model decides to use the weather tool.
+
+It sends back a message that includes a tool call, basically instructions to call the `get_weather()` function with the argument `30303`.
+Notice that the model _does know_ that Atlanta, GA is in the 30303 ZIP code.
+:::
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-03.excalidraw.svg)
+
+::: notes
+The programmer can then take that message from the LLM with the instructions to call the tool and they go off and run the code that that satisfies the tool request, in this case querying the weather API for the weather in 30303 because that has been a stable fact for a long time.
+:::
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-04.excalidraw.svg)
+
+::: notes
+The weather API sends back some data:
+
+* The forecast is mostly sunny
+* High of 98ºF
+* Low of 78ºF
+:::
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-05.excalidraw.svg)
+
+::: notes
+The programmer sends that data back to the LLM.
+Note that it's often in a pretty raw format, like JSON.
+Not the kind of thing you'd want to read directly unless you're the kind of person who likes reading computer data formats.
+:::
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-06.excalidraw.svg)
+
+::: notes
+The LLM doesn't mind JSON though, so it reads the data and generates a response that _incorporates_ the data from the tool call.
+:::
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-07.excalidraw.svg)
+
+
+## The LLM can't run code by itself!
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-tool-call.excalidraw.svg)
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-arg-choice-01.excalidraw.svg)
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-arg-choice-02.excalidraw.svg)
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-arg-choice-03.excalidraw.svg)
+
+## {.center style="text-align: center" transition="fade"}
+
+![](assets/tools-diagram-args-multi.excalidraw.svg)
+
+
+## Human in the loop {.center}
+
+👩‍💻 [_demos/18_manual-tools/app.R]{.code .b .purple}
+
+## Wait... I can write code! {.center}
+
+👩‍💻 [_demos/19_tools/19_weather-tool.R]{.code .b .purple}
+
+## Tool definitions in R
+
+```{.r code-line-numbers="|1|2|3|4-11"}
+tool_get_weather <- tool(
+  tool_fn,
+  description = "How and when to use the tool",
+  arguments = list(
+    .... = type_string(),
+    .... = type_integer(),
+    .... = type_enum(
+      c("choice1", "choice2"),
+      required = FALSE
+    )
+  )
+)
+```
+
+# Your Turn `20_quiz-game-2` {.slide-your-turn}
+
+1. I've given you a function that plays a sound when called.
+
+1. Your job: teach the model to play sounds in the Quiz Show game we made earlier today.
+
+1. _You can use your prompt or switch `_exercises` &rarr; `_solutions` to use ours._
+
+{{< countdown 6:00 left=0 bottom="-2em" >}}
+
+::: notes
+Follow up question: why send a string back to the LLM that says the sound was played?
+:::
+
+## Tools in Shiny
+
+::: incremental
+* Define the tool function **inside the server**
+
+* You can **update reactive values** in the tool function!
+
+* You can **read reactive values**, _if you `isolate()` reads_. (Be careful!)
+:::
+
+<!-- TODO: Demo app with a tool that updates a reactive value -->
+
+## Your Turn `23_quiz-game-5` {.slide-your-turn}
+
+_I've updated the app to show the score in value boxes.\
+(And turned off the sounds.)_
+
+1. In the **system prompt**, tell the model when to use `update_score`.
+
+1. Read `update_score()`. It should update a reactive value in the app when called. Finish implementing it.
+
+1. Complete the tool definition.
+
+1. Add tool annotations (optional, but fun!)
+
+{{< countdown 8:00 left=0 bottom=0 >}}

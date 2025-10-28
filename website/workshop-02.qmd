@@ -1,0 +1,35 @@
+---
+title: Anatomy of a conversation
+description: Programmatically conversing with LLMs
+description-short: Programmatically conversing with LLMs
+duration: 40min
+
+editor: { render-on-save: true }
+---
+
+## Slides
+
+{{< revealjs "slides/slides-02.html" class="ratio ratio-16x9" >}}
+
+## Outline
+
+- (10m) Think empirically, be pragmatic
+  - Getting into the right mindset for working with LLMs
+  - How to approach this workshop
+  - Extra time to work with participants on setup if needed
+
+- (20m) Anatomy of a conversation
+  - To get a get a response, you send a message via HTTP
+  - Message roles: system, user, assistant
+  - Activity (`02_word-game`): Word guessing game
+  - How does the LLM remember the conversation? `demos/03_clearbot`
+
+- (20m) How do LLMs work?
+  - _How to Talk to Robots_ slides
+  - Tokens as the fundamental unit
+  - Example: `_demos/04_token-possibilities`
+
+- (20m) Shinychat basics
+  - Activity (`05_live`): `live_console()` and `live_browser()` (or `chat.console()` and `chat.app()`)
+  - Making your own shinychat app with `chat.ui()` and `chat.append()`. R users can use the chat module with `chat_mod_server()`.
+  - Activity (`06_word-games`): Reverse the word-guessing game with the word to guess in the system prompt. User has to guess, LLM gives hints.
