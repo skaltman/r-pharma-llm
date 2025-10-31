@@ -243,6 +243,8 @@ Chirality's twist.
 
 5. How do the answers to 3 and 4 differ? Why?
 
+{{< countdown 5:00 left=0 bottom="-2em" >}}
+
 # Demo: `clearbot` {.slide-demo style="--code-font-size: 0.66em"}
 
 👩‍💻 [_demos/03_clearbot/app.py]{.code .b .purple}

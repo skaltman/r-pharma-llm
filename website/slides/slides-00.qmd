@@ -21,25 +21,12 @@ editor:
   render-on-save: true
 ---
 
-## {background-video="assets/robot-logs-in.mp4" background-video-loop="true" background-video-muted="true"}
-
-```{=html}
-<style>
-.title-slide-white * {
-  color: white !important;
-  font-weight: bold !important;
-}
-.title-slide-white .quarto-title-authors *,
-.title-slide-white .date {
-  color: black !important;
-}
-</style>
-```
-
 ## Welcome to [Getting Started with LLM APIs in R]{.dark-blue}! {.fs-step-2 background-image="assets/retro-mac.jpg" background-size="cover" background-position="bottom left" autoslide=20000}
 
-Update your local copy of the workshop: \
-  [skaltman.github.io/r-pharma-llm/setup.html]{.code .b .orange}
+We'll be using Posit Cloud. To get set up:
+
+1. If you don't already have a Posit Cloud account, sign up here: <https://posit.cloud/>.
+2. Navigate to our project here: <https://posit.cloud/spaces/717315/>
 
 ```{=html}
 <style>
