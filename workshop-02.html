@@ -8,7 +8,7 @@
 
 <meta name="description" content="Programmatically conversing with LLMs">
 
-<title>Anatomy of a conversation – Programming with LLMs</title>
+<title>Anatomy of a conversation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,9 +31,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workshop-03-break.html" rel="next">
+<link href="./workshop-04.html" rel="next">
 <link href="./workshop-01.html" rel="prev">
-<link href="./assets/posit-conf-favicon.svg" rel="icon" type="image/svg+xml">
+<link href="./assets/logo-rinpharma.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-c2b8127be6a994787a9e8cac26dcef8b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6448fde214487a67aa47dd6e1fa48527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9e93f2a3316b58b95be1d8f480ba3d32.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/quarto-auto-dark-mode-1.0.0/auto-dark-mode.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -84,20 +84,6 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-<meta property="og:title" content="Anatomy of a conversation – Programming with LLMs">
-<meta property="og:description" content="Programmatically conversing with LLMs">
-<meta property="og:image" content="https://skaltman.github.io/r-pharma-llm/assets/open-graph-card.png">
-<meta property="og:site_name" content="Programming with LLMs">
-<meta property="og:image:height" content="400">
-<meta property="og:image:width" content="765">
-<meta name="twitter:title" content="Anatomy of a conversation – Programming with LLMs">
-<meta name="twitter:description" content="Programmatically conversing with LLMs">
-<meta name="twitter:image" content="https://skaltman.github.io/r-pharma-llm/assets/open-graph-card.png">
-<meta name="twitter:creator" content="@grrrck">
-<meta name="twitter:site" content="@posit-dev">
-<meta name="twitter:image-height" content="400">
-<meta name="twitter:image-width" content="765">
-<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -108,9 +94,6 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Programming with LLMs</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -131,15 +114,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./setup.html"> 
 <span class="menu-text">Setup</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about/index.html"> 
-<span class="menu-text">Team</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/posit-conf-2025/llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
-    <a href="https://discord.com/channels/1381993558437007490/1402378610861408266" title="" class="quarto-navigation-tool px-1" aria-label="Discord channel"><i class="bi bi-discord"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -171,9 +149,6 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
         <li class="sidebar-item">
- <span class="menu-text"><div class="sidebar-divider font-monospace">Morning 1</div></span>
-  </li>
-        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workshop-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome and getting started</span></a>
@@ -185,15 +160,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Anatomy of a conversation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./workshop-03-break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">☕ Break</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
- <span class="menu-text"><div class="sidebar-divider font-monospace">Morning 2</div></span>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workshop-04.html" class="sidebar-item-text sidebar-link">
@@ -208,34 +174,10 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-06-break.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🍱 Lunch</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
- <span class="menu-text"><div class="sidebar-divider font-monospace">Afternoon 1</div></span>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./workshop-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Augmented Generation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./workshop-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tool Calling</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
- <span class="menu-text">workshop-09-break.qmd</span>
-  </li>
-        <li class="sidebar-item">
- <span class="menu-text"><div class="sidebar-divider font-monospace">Afternoon 2</div></span>
-  </li>
-        <li class="sidebar-item">
- <span class="menu-text">workshop-10.qmd</span>
-  </li>
     </ul>
     </div>
 </nav>
@@ -249,7 +191,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
   <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/posit-conf-2025/llm/edit/main/website/workshop-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/posit-conf-2025/llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/skaltman/r-pharma-llm/edit/main/website/workshop-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skaltman/r-pharma-llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -737,27 +679,14 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workshop-03-break.html" class="pagination-link" aria-label="☕ Break">
-        <span class="nav-page-text">☕ Break</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./workshop-04.html" class="pagination-link" aria-label="Programming with LLMs">
+        <span class="nav-page-text">Programming with LLMs</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p><a href="https:://posi.it/conf-event-portal">posit::conf(2025)</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/posit-conf-2025/llm/edit/main/website/workshop-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/posit-conf-2025/llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/skaltman/r-pharma-llm/edit/main/website/workshop-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skaltman/r-pharma-llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

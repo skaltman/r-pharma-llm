@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Getting Setup – Programming with LLMs</title>
+<title>Set up Posit Cloud</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,7 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./assets/posit-conf-favicon.svg" rel="icon" type="image/svg+xml">
+<link href="./assets/logo-rinpharma.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -76,11 +41,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-c2b8127be6a994787a9e8cac26dcef8b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6448fde214487a67aa47dd6e1fa48527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9e93f2a3316b58b95be1d8f480ba3d32.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/quarto-auto-dark-mode-1.0.0/auto-dark-mode.css" rel="stylesheet">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,20 +73,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="theme-color" content="black">
 
 
-<meta property="og:title" content="Getting Setup – Programming with LLMs">
-<meta property="og:description" content="A beginner’s guide to programming with large language models in R and Python">
-<meta property="og:image" content="https://skaltman.github.io/r-pharma-llm/assets/open-graph-card.png">
-<meta property="og:site_name" content="Programming with LLMs">
-<meta property="og:image:height" content="400">
-<meta property="og:image:width" content="765">
-<meta name="twitter:title" content="Getting Setup – Programming with LLMs">
-<meta name="twitter:description" content="A beginner’s guide to programming with large language models in R and Python">
-<meta name="twitter:image" content="https://skaltman.github.io/r-pharma-llm/assets/open-graph-card.png">
-<meta name="twitter:creator" content="@grrrck">
-<meta name="twitter:site" content="@posit-dev">
-<meta name="twitter:image-height" content="400">
-<meta name="twitter:image-width" content="765">
-<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -135,9 +83,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Programming with LLMs</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -158,15 +103,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="./setup.html" aria-current="page"> 
 <span class="menu-text">Setup</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about/index.html"> 
-<span class="menu-text">Team</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/posit-conf-2025/llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
-    <a href="https://discord.com/channels/1381993558437007490/1402378610861408266" title="" class="quarto-navigation-tool px-1" aria-label="Discord channel"><i class="bi bi-discord"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -175,23 +115,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-to-bring" id="toc-what-to-bring" class="nav-link active" data-scroll-target="#what-to-bring">What to bring</a></li>
-  <li><a href="#create-accounts" id="toc-create-accounts" class="nav-link" data-scroll-target="#create-accounts">Create Accounts</a></li>
-  <li><a href="#choose-your-ide" id="toc-choose-your-ide" class="nav-link" data-scroll-target="#choose-your-ide">Choose your IDE</a></li>
-  <li><a href="#prepping-for-the-workshop" id="toc-prepping-for-the-workshop" class="nav-link" data-scroll-target="#prepping-for-the-workshop">Prepping for the workshop</a>
-  <ul class="collapse">
-  <li><a href="#clone-the-repository" id="toc-clone-the-repository" class="nav-link" data-scroll-target="#clone-the-repository">Clone the repository</a></li>
-  <li><a href="#set-up-your-environment" id="toc-set-up-your-environment" class="nav-link" data-scroll-target="#set-up-your-environment">Set up your environment</a></li>
-  </ul></li>
-  <li><a href="#local-models" id="toc-local-models" class="nav-link" data-scroll-target="#local-models">Local models with ollama</a></li>
-  <li><a href="#the-night-before-the-workshop" id="toc-the-night-before-the-workshop" class="nav-link" data-scroll-target="#the-night-before-the-workshop">The night before the workshop</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/posit-conf-2025/llm/edit/main/website/setup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/posit-conf-2025/llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -208,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Getting Setup</h1>
+<h1 class="title">Set up Posit Cloud</h1>
 </div>
 
 
@@ -225,398 +150,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-to-bring" class="level3">
-<h3 class="anchored" data-anchor-id="what-to-bring">What to bring</h3>
-<p><strong>Bring your <span class="text-danger">personal laptop</span> and a power cord.</strong> This is going to be a hands-on workshop, meaning that you’ll be writing code and collaborating with new friends you’ll make at the workshop.</p>
-<div class="callout callout-style-default callout-important callout-titled" title="You need an API key!">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="lead">
+<p>Join the Posit Cloud workspace at <a href="https://bit.ly/llm-cloud">https://bit.ly/llm-cloud</a>.</p>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>You need an API key!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We’ll be using APIs from <a href="https://platform.openai.com/docs/overview">OpenAI</a> and <a href="https://www.anthropic.com/api">Anthropic</a>, so you will need to create an account with each service and get an API key.</p>
-<p>Head to <a href="https://platform.openai.com/docs/overview">OpenAI</a> and <a href="https://www.anthropic.com/api">Anthropic</a> to create your accounts and get your API keys. Once you have your API keys, store them in <a href="#clone-the-repository">the project folder</a> in a file named <code>.env</code>:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>.env</strong></pre>
-</div>
-<pre class="env" data-filename=".env"><code>OPENAI_API_KEY=sk-proj-...
-ANTHROPIC_API_KEY=sk-ant-...</code></pre>
-</div>
-<p>If you’re using the exercises in this workshop, it’s unlikely that your API usage will exceed a few dollars. Alternatively, if you want to use or try local models (which are free) during the workshop, you should <a href="#local-models">install ollama and download a model</a>.</p>
-</div>
-</div>
-<!--
-:::::: {.callout-caution title="Bring your own laptop"}
-You'll need a computer with internet access and the ability to install R or Python packages.
-
-::::: {.grid .gap-2}
-::: {.g-col-12 .g-col-sm-6 .g-col-lg-8}
-We **strongly recommend** using a *personal laptop* rather than a work laptop.
-Many work laptops have restrictions that may prevent you from installing necessary software or accessing certain websites.
-
-You'll also want to bring a power cord to keep your laptop charged throughout the workshop.
-And a bottle of water to stay hydrated (for you, not your laptop)!
-:::
-
-::: {.g-col-12 .g-col-sm-6 .g-col-lg-4 .text-end .align-self-center}
-![Frustrated man holding his head in his hands and looking confused at his laptop.](assets/frustrated-man.png)
-:::
-:::::
-::::::
-
-::: {.callout-tip title="We'll give you an API key"}
-We'll be using APIs from [OpenAI][openai-api] and [Anthropic][anthropic-api], but don't worry, you don't need to bring an API key.
-We'll provide an API key for you to use during the workshop and we'll walk you through set up in-person.
-
-If you'd like to also use or try local models during the workshop, you should [install ollama and download a model](#local-models).
-:::
--->
-</section>
-<section id="create-accounts" class="level2">
-<h2 class="anchored" data-anchor-id="create-accounts">Create Accounts</h2>
-<p>In this workshop, we’ll be using a few different online services. If you don’t already have accounts with these services, you’ll need to create them before we get started.</p>
-<ul>
-<li><a href="https://discord.com/register">Discord</a>
-<ul>
-<li>Used to communicate during the workshop and ask questions via text. Also used for general online participation during the conference.</li>
-<li>Make sure your <a href="https://support.discord.com/hc/en-us/articles/12620128861463-New-Usernames-Display-Names#h_01GXPQABMYGEHGPRJJXJMPHF5C">display name</a> is the one you used to register for the conference.</li>
-<li>Join the <code>posit::conf(2025)</code> Discord server via <a href="http://pos.it/conf-event-portal">the posit::conf event portal</a>.</li>
-<li>Our workshop channel is <a href="https://discord.com/channels/1381993558437007490/1402378610861408266"><code>#workshop-llm</code></a>.</li>
-</ul></li>
-<li><a href="https://github.com/join">GitHub</a>
-<ul>
-<li>The workshop materials are hosted on GitHub and we may use GitHub in an activity during the workshop.</li>
-</ul></li>
-</ul>
-<!--
-* [Posit Cloud](#using-posit-cloud)
--->
-<!--
-## Using Posit Cloud
-
-::: {.callout-note title="Back-up Plan"}
-We're providing a Posit Cloud workspace with all of the packages and files ready-to-go for the workshop.
-
-::: lead
-Join the Posit Cloud workspace at [TODO](https://posit.cloud/).
-:::
-:::
-
-
-::: {.callout-warning title="Posit Cloud Space Not Yet Available"}
-The link to join the space is not yet available.
-This page will be updated on the day of the workshop.
-
-You will need a Posit Cloud account and you can create one for free at [posit.cloud/plans](https://posit.cloud/plans).
-Click "Learn more" under the Free plan to sign up.
-:::
-
-
-I've prepared a Posit Cloud workspace for workshop participants with a project for you to use during our time together.
-The project contains all of the files and packages pre-installed and ready to go.
-All you need to do is log in and start coding!
-
-If you already have a Posit Cloud account, first [join the TODO space on Posit Cloud](https://posit.cloud/).
-Otherwise [sign up for a free account](https://posit.cloud/plans) and then join the space.
-You can create an account with your email or login with Google, GitHub or Clever.
-
-Once you're part of the [TODO space](https://posit.cloud/), select the `TODO` assignment to create and launch a new project just for you.
-
-::: {.shadow-lg .p-2 .border .border-1 .rounded-2 .text-center}
-TODO: Update posit cloud workspace screenshot
-![](assets/posit-cloud-project.png){.img-fluid alt=""}
-:::
--->
-</section>
-<section id="choose-your-ide" class="level2">
-<h2 class="anchored" data-anchor-id="choose-your-ide">Choose your IDE</h2>
-<p>You can use any IDE you like to follow along with the workshop. We’ll be using <a href="https://positron.posit.co">Positron</a>, the free, next-generation data science IDE from Posit.</p>
-<div class="text-center">
-<p><a href="https://positron.posit.co"><img src="assets/positron-astropy.png" class="img-fluid" style="max-width:600px" alt="Positron IDE screenshot"></a></p>
-<p><a href="https://positron.posit.co/download.html" class="btn btn-primary"><i class="bi bi-display-fill"></i> Download Positron</a></p>
-</div>
-<p>Of course, you’re welcome to use <a href="https://posit.co/download/rstudio-desktop/">RStudio</a>, <a href="https://code.visualstudio.com/">VS Code</a> or any other IDE you prefer.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Why use Positron?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Why use Positron?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Using Positron offers you the opportunity to try out two new AI-powered features in Positron:</p>
-<ul>
-<li><p><a href="https://positron.posit.co/assistant">Positron Assistant</a>, a general purpose AI assistant integrated directly into your development environment.</p></li>
-<li><p><a href="https://positron.posit.co/databot.html">Databot</a>, an AI assistant specifically designed to accelerate exploratory data analysis.</p></li>
-</ul>
-</div>
-</div>
-</section>
-<section id="prepping-for-the-workshop" class="level2">
-<h2 class="anchored" data-anchor-id="prepping-for-the-workshop">Prepping for the workshop</h2>
-<p>To prepare for the workshop, you need to <a href="https://github.com/posit-conf-2025/llm">clone the repository</a> and install the necessary packages.</p>
-<section id="clone-the-repository" class="level3">
-<h3 class="anchored" data-anchor-id="clone-the-repository">Clone the repository</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><img src="assets/icons/positron.svg" class="img-fluid" width="32"> Positron</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><img src="assets/icons/rstudio.svg" class="img-fluid" width="32"> RStudio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href=""><img src="assets/icons/vscode.png" class="img-fluid" width="32"> VS Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href=""><img src="assets/icons/r-color.svg" class="img-fluid" width="36"> usethis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href=""><img src="assets/icons/github.svg" class="img-fluid" width="32"> GitHub</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false" href=""><img src="assets/icons/git-icon.svg" class="img-fluid" width="32"> git</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>In Positron, use <strong>File</strong> &gt; <strong>New Folder from Git…</strong>. Enter the repository link—<code>https://github.com/posit-conf-2025/llm.git</code>—and choose a location on your computer to save the project.</p>
-<div class="text-center">
-<p><a href="assets/positron-new-folder-from-git.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="assets/positron-new-folder-from-git.png" class="img-fluid"></a></p>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>In RStudio, use the project dropdown menu (top right) or <strong>File</strong> &gt; <strong>New Project…</strong>. Choose <strong>Version Control</strong> and then pick <strong>Git</strong>.</p>
-<div class="text-center">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="assets/rstudio-new-project-wizard.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Step 1: Choose “Version Control” and “Git”."><img src="assets/rstudio-new-project-wizard.png" class="img-fluid figure-img" style="max-width:400px" alt="Step 1: Choose “Version Control” and “Git”."></a></p>
-<figcaption>Step 1: Choose “Version Control” and “Git”.</figcaption>
-</figure>
-</div>
-</div>
-<p>Enter the repository link—<code>https://github.com/posit-conf-2025/llm.git</code>—and choose a location on your computer to save the project.</p>
-<div class="text-center">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="assets/rstudio-new-project-clone.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Step 2: Enter the repo URL and choose a location for the project."><img src="assets/rstudio-new-project-clone.png" class="img-fluid figure-img" style="max-width:400px" alt="Step 2: Enter the repo URL and choose a location for the project."></a></p>
-<figcaption>Step 2: Enter the repo URL and choose a location for the project.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>In VS Code,</p>
+<p>I’ve prepared a Posit Cloud workspace for workshop participants with a project for you to use during our time together. <strong>The project contains all of the files, API keys, and packages pre-installed and ready to go.</strong> All you need to do is log in and start coding!</p>
 <ol type="1">
-<li>open the command palette with <code>Ctrl+Shift+P</code> (Windows/Linux) or <code>Cmd+Shift+P</code> (Mac).</li>
-<li>Type <code>Git: Clone</code> and select it.</li>
-<li>Enter the repository link: <code>https://github.com/posit-conf-2025/llm.git</code></li>
-<li>Choose a location on your computer to save the project.</li>
+<li><p>If you don’t already have a Posit Cloud account, first <a href="https://posit.cloud/plans">sign up for a free account</a>. You can create an account with your email or login with Google, GitHub or Clever.</p></li>
+<li><p>Then, join the workspace on Posit Cloud: <a href="https://bit.ly/llm-cloud">https://bit.ly/llm-cloud</a></p></li>
+<li><p>Once you’re part of the workspace, navigate to <em>Content</em>, then select the <code>r-pharma-llm</code> project to create and launch a new project just for you.</p></li>
 </ol>
-<div class="text-center">
-<p><a href="assets/vscode-git-clone.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="assets/vscode-git-clone.png" class="img-fluid" style="max-width:400px"></a></p>
-</div>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<p>You can use the <a href="https://usethis.r-lib.org">usethis</a> package to quickly clone the repository:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_from_github</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"posit-conf-2025/llm"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Decide where to put the project here:</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">destdir =</span> <span class="st">"~/Desktop/llm"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This will download the repository and open the project in RStudio.</p>
-</div>
-<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop <span class="co"># or somewhere you can find easily</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo clone posit-conf-2025/llm</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> llm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop <span class="co"># or somewhere you can find easily</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/posit-conf-2025/llm.git</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> llm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-</section>
-<section id="set-up-your-environment" class="level3">
-<h3 class="anchored" data-anchor-id="set-up-your-environment">Set up your environment</h3>
-<p>This workshop is designed so that you can use either R or Python. You can choose to use only one language throughout, or you can even switch between R and Python during the workshop!</p>
-<p>Even if you’re only planning to use R, consider installing <a href="https://docs.astral.sh/uv/"><code>uv</code>, a package and environment manager for Python</a> (see the Python instructions below). That way, could easily try out the Python examples during the workshop if you want to.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href=""><img src="assets/icons/r-color.svg" alt="R" height="36"></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href=""><img src="assets/icons/python-icon-color.svg" alt="Python" height="36"></a></li></ul>
-<div class="tab-content" data-group="lang">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p>First, make sure you’re using <a href="https://r-project.org">a recent version of R</a>. I used <a href="https://r-project.org">R 4.5</a> but any recent version of R (&gt;= 4.1) should work. I also use <a href="https://github.com/r-lib/rig">rig</a> to manage my R installations, since it makes it easy to install new versions of R and switch between them.</p>
-<p>Then, open the project in your IDE and run the following commands in the R console:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install pak if you don't have it already</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("pak")</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the Posit and RStudio R-Universe repos for easy dev package installation</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">repo_add</span>(<span class="st">"https://posit-dev.r-universe.dev"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">repo_add</span>(<span class="st">"https://rstudio.r-universe.dev"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">local_install_deps</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<details>
-<summary>
-Alternative: Direct package installation
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install {pak} (it's fast and smart at installing packages)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"pak"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fmt: skip</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"pak"</span>, <span class="at">repos =</span> <span class="fu">sprintf</span>(<span class="st">"https://r-lib.github.io/p/pak/stable/%s/%s/%s"</span>, .Platform<span class="sc">$</span>pkgType, <span class="fu">R.Version</span>()<span class="sc">$</span>os, <span class="fu">R.Version</span>()<span class="sc">$</span>arch))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Now install the packages we need for the workshop</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="fu">c</span>(</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"askpass"</span>,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"base64enc"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"beepr"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"brio"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bsicons"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rstudio/bslib"</span>, <span class="co"># remove "rstudio/" to use bslib from CRAN</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"digest"</span>,</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dotenv"</span>,</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dplyr"</span>,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ellmer"</span>,</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"forcats"</span>,</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"fs"</span>,</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot2"</span>,</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"here"</span>,</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"leaflet"</span>,</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"magick"</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"mcptools"</span>,</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"purrr"</span>,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"posit-dev/querychat/pkg-r"</span>,</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ragnar"</span>,</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">"reactable"</span>,</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">"readr"</span>,</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scales"</span>,</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rstudio/shiny"</span>, <span class="co"># remove "rstudio/" to use shiny from CRAN</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">"posit-dev/shinychat/pkg-r"</span>,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyr"</span>,</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"vitals"</span>,</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"watcher"</span>,</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="st">"weathR"</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p>We’re using <a href="https://docs.astral.sh/uv/">uv</a> by Astral to manage our Python environment and dependencies. If you don’t have <code>uv</code> installed, you can install it by following <a href="https://docs.astral.sh/uv/getting-started/installation/">uv’s installation instructions</a>.</p>
-<p>Once you’re set up with <code>uv</code>, open the project in your IDE and run the following command in the terminal to create the Python environment and install the necessary packages:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That command will create a virtual environment in the project directory and install all the required packages listed in the <code>pyproject.toml</code> file.</p>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="local-models" class="level2">
-<h2 class="anchored" data-anchor-id="local-models">Local models with ollama</h2>
-<p><a href="https://ollama.com">ollama is an open-source tool</a> for running LLMs locally on your computer. Local models do not provide the same quality of responses as flagship models from AI providers like OpenAI or Anthropic, but you can run models on your own computer without having to pay for API access or sending your data to a third party.</p>
-<p><strong>You do not need to install ollama or use local models to participate in the workshop.</strong> That said, they’re a fun way to experiment with LLMs without incurring API costs.</p>
-<p>To use ollama, first <a href="https://ollama.com/download">download and install it on your computer</a>. Then, you can browse <a href="https://ollama.com/search">the list of models on the ollama website</a> to find a model that you want to use. Here are a few that we like for local testing. For the workshop, I’d recommend installing <code>gemma3:4b</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">ID</th>
-<th style="text-align: right;">Size</th>
-<th style="text-align: left;">Capabilities</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">[gemma3:4b][ollama-gemma3-4b]</td>
-<td style="text-align: right;">3.3GB</td>
-<td style="text-align: left;"><span class="badge text-bg-danger">vision</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">[qwen3:8b][ollama-qwen3-8b]</td>
-<td style="text-align: right;">5.2GB</td>
-<td style="text-align: left;"><span class="badge text-bg-primary">tools</span> <span class="badge text-bg-info">thinking</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">[gpt-oss:20b][ollama-gpt-oss]</td>
-<td style="text-align: right;">14GB</td>
-<td style="text-align: left;"><span class="badge text-bg-primary">tools</span> <span class="badge text-bg-info">thinking</span></td>
-</tr>
-</tbody>
-</table>
-<p>To use a model, you first need to download it. For example, to download [gemma3:4b][ollama-gemma3-4b], run the following command in your terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull gemma3:4b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That command downloads the model to your computer. Once the model is downloaded, you can use it on your own computer without needing to be connected to the internet.</p>
-<p>You can use <code>ollama</code> to chat with the model directly in your terminal</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> run gemma3:4b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>or you can use ellmer or chatlas to interact with the model from R or Python.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lang">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href=""><img src="assets/icons/r-color.svg" alt="R" height="36"></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href=""><img src="assets/icons/python-icon-color.svg" alt="Python" height="36"></a></li></ul>
-<div class="tab-content" data-group="lang">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_ollama</span>(<span class="at">model =</span> <span class="st">"gemma3:4b"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"What is the capital of France?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<blockquote class="blockquote">
-<p>The capital of France is <strong>Paris</strong>.</p>
-<p>It’s a global center for art, fashion, gastronomy, and culture. 🌍🇫🇷</p>
-</blockquote>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> chatlas <span class="im">import</span> ChatOllama</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> ChatOllama(model<span class="op">=</span><span class="st">"gemma3:4b"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>chat.chat(<span class="st">"What is the capital of France?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<blockquote class="blockquote">
-<p>The capital of France is Paris.</p>
-<p>It’s a global center for art, fashion, gastronomy, and culture. 😊</p>
-<p>Do you want to know anything more about Paris?</p>
-</blockquote>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Why use a local model?">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why use a local model?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Local models are just like the famous ChatGPT or Claude models, but they run entirely on your own computer. You can use them for all of the same tasks: conversational AI, code generation, text processing, vision and more. There are a wide range of models available at many different sizes and capabilities, so you can choose one that fits your hardware and performance needs.</p>
-<p><strong>Local models are no where near as capable as the flagship models from OpenAI or Anthropic.</strong> Still, there are a few reasons you might want to use a local model:</p>
-<ol type="1">
-<li>Your conversation never leaves your computer, ensuring complete data privacy.</li>
-<li>No API costs, making local models very low-cost (other than the cost of your laptop or the hardware to run the model).</li>
-<li>They work offline, so you can use them without an internet connection.</li>
-</ol>
-<p>Local models are a great option for prototyping, experimentation, and personal use. They’re also useful to companies that want to use LLMs but have strict data privacy requirements and need to ensure that their data never leaves their network.</p>
-<p>On the other hand, because you’re running the model on your own hardware, local models are slower and less powerful than cloud-based models, especially if you’re using a laptop or desktop computer. Personally, I use local models for experiments and testing to avoid API charges and switch to cloud-based models when I’m putting an LLM-powered application into production.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="the-night-before-the-workshop" class="level2">
-<h2 class="anchored" data-anchor-id="the-night-before-the-workshop">The night before the workshop</h2>
-<p>If you’ve followed the instructions above, you should be all set for the workshop! But we’ll likely be making some last-minute changes to the workshop materials as we get closer to the event.</p>
-<p>To be completely ready-to-go on the day of the workshop, make sure that you get the latest version of the materials the night before the workshop.</p>
-<ul>
-<li><p><strong>Update your local copy of the repository:</strong></p>
-<p>Use <code>git pull</code> in the terminal, or the <strong>Git: Pull</strong> command in your IDE.</p></li>
-<li><p><strong>Update your R packages:</strong></p>
-<p>If you’re using R, run <code>renv::restore()</code> again to make sure you have the latest package versions.</p></li>
-<li><p><strong>Update your Python packages:</strong></p>
-<p>If you’re using Python, run <code>uv sync</code> again to make sure you have the latest package versions.</p></li>
-</ul>
 
 
-</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>The best open-weights model you can run on a typical laptop (with 16GB of RAM and a decent processor, like an M1 Mac) is [gpt-oss:20b][ollama-gpt-oss]. For something a little bit smaller, try [qwen3:8b][ollama-qwen3-8b].<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1018,53 +564,8 @@ Alternative: Direct package installation
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p><a href="https:://posi.it/conf-event-portal">posit::conf(2025)</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/posit-conf-2025/llm/edit/main/website/setup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/posit-conf-2025/llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/skaltman/r-pharma-llm/edit/main/website/setup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skaltman/r-pharma-llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

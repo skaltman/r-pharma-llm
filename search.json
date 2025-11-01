@@ -1,59 +1,673 @@
 [
   {
-    "objectID": "about/index.html",
-    "href": "about/index.html",
-    "title": "Our Team",
+    "objectID": "slides/slides-08.html#recall-how-do-llms-work",
+    "href": "slides/slides-08.html#recall-how-do-llms-work",
+    "title": "Tool Calling",
+    "section": "Recall: How do LLMs work?",
+    "text": "Recall: How do LLMs work?\n\nYou write some words\nThe LLM writes some more words\nYou use those words\n\n\nOn their own, can LLMs… access the internet? run code? send an email? interact with the world?"
+  },
+  {
+    "objectID": "slides/slides-08.html#lets-try-it",
+    "href": "slides/slides-08.html#lets-try-it",
+    "title": "Tool Calling",
+    "section": "Let’s try it",
+    "text": "Let’s try it\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\n\nchat$chat(\"What's the weather like in Utqiagvik, Alaska?\")\nchat$chat(\"Who are the keynote speakers at R/Pharma 2025?\")\nchat$chat(\"What day is it?\")\n\nRun these in the terminal.\nAsk: how could we get the model to know these answers? Let’s start with the easiest one: what day is it?\nAnswer: we could just tell it in the system prompt.\nWhat about keynote speakers? We could include that in the system prompt too. But what if the schedule changes?\nWhat about the weather? The model can’t know that because it’s not connected to the internet."
+  },
+  {
+    "objectID": "slides/slides-08.html#tools",
+    "href": "slides/slides-08.html#tools",
+    "title": "Tool Calling",
+    "section": "Tools",
+    "text": "Tools\na.k.a. functions, tool calling or function calling\n\nBring real-time or up-to-date information to the model\nLet the model interact with the world\n\n\nTools are extra capabilities that you give to the LLM, like the ability to search the R/Pharma 2025 schedule. These capabilities are things that the model can’t do on its own. The goal is let the model pull in real-time, or up-to-date, or high-quality information as needed, depending on the conversation.\nThey can also give the model new abilities to take action on behalf of the user."
+  },
+  {
+    "objectID": "slides/slides-08.html#section",
+    "href": "slides/slides-08.html#section",
+    "title": "Tool Calling",
     "section": "",
-    "text": "Joe Cheng\n        CTO, Posit\n        \n            Instructor\n        \n        \n            \n            \n                 GitHub\n            \n            \n        \n    \n\n    \n        \n        Garrick Aden-Buie\n        Software Engineer, Shiny\n        \n            Instructor\n        \n        \n            \n            \n                 GitHub\n            \n                 Bluesky\n            \n                 LinkedIn\n            \n            \n        \n    \n\n    \n        \n        Karan Gathani\n        Software QA Engineer, Shiny\n        \n            Assistant\n        \n        \n    \n\n    \n        \n        Julia Silge\n        Engineering Manager, Positron\n        \n            Assistant\n        \n        \n    \n\n    \n        \n        Sam Clark\n        Software Engineer, Positron\n        \n            Assistant\n        \n        \n    \n\n    \n        \n        James Blair\n        Senior Product Manager, Posit Cloud\n        \n            Assistant\n        \n        \n    \n\n\nNo matching items"
+    "text": "Zooming out again, the conversation starts with a user sending a message to the chatbot.\nIn this case, the user asks the model whether they can go to the pool today. (I live in Atlanta, GA.)\nHow much does the model know about the weather in Atlanta, GA?\nWhat’s the weather like today in Atlanta, GA?\n\nI’m unable to provide real-time weather updates. For the latest weather forecast in Atlanta, GA, please check a trusted weather service such as the National Weather Service, Weather.com, or a weather app on your device.\n\nGo ahead and guess\n\nSure! Since it’s July in Atlanta, GA, you can generally expect hot and humid weather. Temperatures might range from the mid-80s to mid-90s Fahrenheit (around 29-35°C). There could also be some afternoon thunderstorms or showers, which are common during summer months in Georgia. Keep a fan or air conditioning handy if you’re indoors, and stay hydrated!"
   },
   {
-    "objectID": "slides/slides-05.html#three-questions-to-ask-yourself",
-    "href": "slides/slides-05.html#three-questions-to-ask-yourself",
-    "title": "Prompt Engineering",
-    "section": "Three questions to ask yourself",
-    "text": "Three questions to ask yourself\n\nDid you use the best models?\nDid you clearly explain what you want the model to do in the system prompt?\nDid you provide examples of what you want?\n\n\n\nThere’s going to be 3 questions we’re usually going to ask you in this order? Number one, did you try the best models? Did you try this with at least like Claude? Sonnet 4, or GPT 4.1\nso number one like, did you use the best models number 2 is, did you ask for what you wanted in the system prompt like. Did you describe the behavior that you were looking for from the model in the system prompt?\nAnd then number 3, if you did do that. Did you provide an example of what you wanted? And usually that, that, you know, takes care of a lot of the the kind of misbehaving that people see."
+    "objectID": "slides/slides-08.html#section-1",
+    "href": "slides/slides-08.html#section-1",
+    "title": "Tool Calling",
+    "section": "",
+    "text": "Now imagine we’ve told the LLM that it has access to a tool called get_weather(). Knowing that it 1) needs to know the weather in Atlanta and 2) it doesn’t know the weather in Atlanta, GA; the model decides to use the weather tool.\nIt sends back a message that includes a tool call, basically instructions to call the get_weather() function with the argument 30303. Notice that the model does know that Atlanta, GA is in the 30303 ZIP code."
   },
   {
-    "objectID": "slides/slides-05.html#system-prompt-vs.-user-prompt",
-    "href": "slides/slides-05.html#system-prompt-vs.-user-prompt",
-    "title": "Prompt Engineering",
-    "section": "System prompt vs. user prompt",
-    "text": "System prompt vs. user prompt\nShort answer: put instructions and background knowledge in the system prompt."
+    "objectID": "slides/slides-08.html#section-2",
+    "href": "slides/slides-08.html#section-2",
+    "title": "Tool Calling",
+    "section": "",
+    "text": "The programmer can then take that message from the LLM with the instructions to call the tool and they go off and run the code that that satisfies the tool request, in this case querying the weather API for the weather in 30303 because that has been a stable fact for a long time."
   },
   {
-    "objectID": "slides/slides-05.html#more-tips",
-    "href": "slides/slides-05.html#more-tips",
-    "title": "Prompt Engineering",
-    "section": "More tips",
-    "text": "More tips\nUse LLMs to help draft or improve your prompts.\nE.g., this input to Claude’s prompt generator:\n\nMake a data science agent that can run Python data analysis code via a tool. Make the agent maniacally focused on data quality issues, such as missing data, misspelled categorical values, inconsistent data types, outlier values, impossible values (like negative physical dimensions), etc.\n\nGenerates this prompt:\nYou are a data science agent with an obsessive focus on data quality. You have been given access to a dataset and a Python code execution tool. Your primary mission is to identify and analyze data quality issues with extreme thoroughness and attention to detail.\n\nHere is the dataset description:\n&lt;dataset_description&gt;\n{{DATASET_DESCRIPTION}}\n&lt;/dataset_description&gt;\n\nYou have access to the following Python code execution tool:\n&lt;python_tool&gt;\n{{PYTHON_CODE_TOOL}}\n&lt;/python_tool&gt;\n\nYour role is to act as a maniacally thorough data quality inspector. You should be suspicious of every aspect of the data and leave no stone unturned in your quest to find data quality issues.\n\nFocus intensively on these categories of data quality problems:\n- Missing data (nulls, empty strings, placeholder values like \"N/A\", \"Unknown\", etc.)\n- Inconsistent data types (mixed types in columns, incorrect data types)\n- Misspelled or inconsistent categorical values (typos, case inconsistencies, extra spaces)\n- Outlier values (statistical outliers, values that seem unreasonable)\n- Impossible or illogical values (negative ages, future birth dates, negative physical dimensions)\n- Duplicate records or near-duplicates\n- Inconsistent formatting (date formats, phone numbers, addresses)\n- Data entry errors (obvious typos, transposed digits)\n- Referential integrity issues (if applicable)\n- Range violations (values outside expected bounds)\n\nYour analysis process should be systematic and comprehensive:\n\n1. Start by loading and examining the basic structure of the dataset\n2. Check data types and identify any type inconsistencies\n3. Examine missing data patterns thoroughly\n4. Analyze each column individually for quality issues specific to its data type\n5. Look for statistical outliers and impossible values\n6. Check for duplicates and near-duplicates\n7. Examine categorical variables for inconsistencies\n8. Validate logical relationships between columns\n9. Look for formatting inconsistencies\n\nUse the Python tool to write and execute code that will help you uncover these issues. Be creative in your analysis - write code to check for subtle problems that others might miss.\n\nBefore providing your final analysis, use the scratchpad to plan your investigation strategy:\n\n&lt;scratchpad&gt;\n[Plan your systematic approach to analyzing the data quality, thinking through what specific checks you want to perform and in what order]\n&lt;/scratchpad&gt;\n\nThen execute your analysis using the Python tool. After completing your investigation, provide your findings in this format:\n\n&lt;data_quality_report&gt;\n**CRITICAL ISSUES FOUND:**\n[List the most severe data quality problems]\n\n**MODERATE ISSUES FOUND:**\n[List issues that should be addressed but aren't critical]\n\n**MINOR ISSUES FOUND:**\n[List smaller issues that could be improved]\n\n**DETAILED ANALYSIS:**\n[Provide detailed explanations of each issue found, including specific examples and the potential impact]\n\n**RECOMMENDATIONS:**\n[Provide specific, actionable recommendations for fixing each category of issues]\n\n**DATA QUALITY SCORE:**\n[Provide an overall data quality score from 1-10, where 10 is perfect quality]\n&lt;/data_quality_report&gt;\n\nRemember: Be obsessively thorough. Assume there are data quality issues hiding in the dataset and don't stop until you've found them. Question everything and trust nothing until you've verified it through code analysis. Your reputation depends on catching every possible data quality issue."
+    "objectID": "slides/slides-08.html#section-3",
+    "href": "slides/slides-08.html#section-3",
+    "title": "Tool Calling",
+    "section": "",
+    "text": "The weather API sends back some data:\n\nThe forecast is mostly sunny\nHigh of 98ºF\nLow of 78ºF"
   },
   {
-    "objectID": "slides/slides-05.html#more-tips-1",
-    "href": "slides/slides-05.html#more-tips-1",
-    "title": "Prompt Engineering",
-    "section": "More tips",
-    "text": "More tips\n\nUse Markdown headings and XML tags to give structure to your prompts.\nUse variables to insert dynamic content into your prompts–BUT be aware of prompt injection!\n\nYour task is to provide feedback on a research paper summary.\nHere is a summary of a medical research paper:\n&lt;summary&gt;\n{{SUMMARY}}\n&lt;/summary&gt;\n\nHere is the research paper:\n&lt;paper&gt;\n{{RESEARCH_PAPER}}\n&lt;/paper&gt;\n\nReview this summary for accuracy, clarity, and completeness on\na graded A-F scale."
+    "objectID": "slides/slides-08.html#section-4",
+    "href": "slides/slides-08.html#section-4",
+    "title": "Tool Calling",
+    "section": "",
+    "text": "The programmer sends that data back to the LLM. Note that it’s often in a pretty raw format, like JSON. Not the kind of thing you’d want to read directly unless you’re the kind of person who likes reading computer data formats."
   },
   {
-    "objectID": "slides/slides-05.html#more-tips-2",
-    "href": "slides/slides-05.html#more-tips-2",
-    "title": "Prompt Engineering",
-    "section": "More tips",
-    "text": "More tips\nGet large prompts out of the code and into separate files.\n\nEasier to read (both locally and on GitHub)\nEasier to read diffs in version control\nWe will do this in one of our exercises later"
+    "objectID": "slides/slides-08.html#section-5",
+    "href": "slides/slides-08.html#section-5",
+    "title": "Tool Calling",
+    "section": "",
+    "text": "The LLM doesn’t mind JSON though, so it reads the data and generates a response that incorporates the data from the tool call."
   },
   {
-    "objectID": "slides/slides-05.html#more-tips-3",
-    "href": "slides/slides-05.html#more-tips-3",
-    "title": "Prompt Engineering",
-    "section": "More tips",
-    "text": "More tips\n(Advanced) Force the model to say things out loud.\nE.g., “Use no more than three rounds of tool calls” =&gt; “Before answering, note how many tool calls you have made inside  tags. If you have made three, stop and answer.”"
+    "objectID": "slides/slides-08.html#the-llm-cant-run-code-by-itself",
+    "href": "slides/slides-08.html#the-llm-cant-run-code-by-itself",
+    "title": "Tool Calling",
+    "section": "The LLM can’t run code by itself!",
+    "text": "The LLM can’t run code by itself!"
   },
   {
-    "objectID": "slides/slides-05.html#more-tips-4",
-    "href": "slides/slides-05.html#more-tips-4",
+    "objectID": "slides/slides-08.html#human-in-the-loop",
+    "href": "slides/slides-08.html#human-in-the-loop",
+    "title": "Tool Calling",
+    "section": "Human in the loop",
+    "text": "Human in the loop\n👩‍💻 _demos/18_manual-tools/app.R"
+  },
+  {
+    "objectID": "slides/slides-08.html#wait-i-can-write-code",
+    "href": "slides/slides-08.html#wait-i-can-write-code",
+    "title": "Tool Calling",
+    "section": "Wait… I can write code!",
+    "text": "Wait… I can write code!\n👩‍💻 _demos/19_tools/19_weather-tool.R"
+  },
+  {
+    "objectID": "slides/slides-08.html#tool-definitions-in-r",
+    "href": "slides/slides-08.html#tool-definitions-in-r",
+    "title": "Tool Calling",
+    "section": "Tool definitions in R",
+    "text": "Tool definitions in R\ntool_get_weather &lt;- tool(\n  tool_fn,\n  description = \"How and when to use the tool\",\n  arguments = list(\n    .... = type_string(),\n    .... = type_integer(),\n    .... = type_enum(\n      c(\"choice1\", \"choice2\"),\n      required = FALSE\n    )\n  )\n)"
+  },
+  {
+    "objectID": "slides/slides-08.html#tools-in-shiny",
+    "href": "slides/slides-08.html#tools-in-shiny",
+    "title": "Tool Calling",
+    "section": "Tools in Shiny",
+    "text": "Tools in Shiny\n\nDefine the tool function inside the server\nYou can update reactive values in the tool function!\nYou can read reactive values, if you isolate() reads. (Be careful!)"
+  },
+  {
+    "objectID": "slides/slides-08.html#your-turn-23_quiz-game-5",
+    "href": "slides/slides-08.html#your-turn-23_quiz-game-5",
+    "title": "Tool Calling",
+    "section": "Your Turn 23_quiz-game-5",
+    "text": "Your Turn 23_quiz-game-5\nI’ve updated the app to show the score in value boxes.\n(And turned off the sounds.)\n\nIn the system prompt, tell the model when to use update_score.\nRead update_score(). It should update a reactive value in the app when called. Finish implementing it.\nComplete the tool definition.\nAdd tool annotations (optional, but fun!)\n\n\n  \n    −\n    +\n \n 08:00"
+  },
+  {
+    "objectID": "slides/slides-04.html#section",
+    "href": "slides/slides-04.html#section",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "Provider\n\ncompany that hosts and serves models\n\nModel\n\na specific LLM with particular capabilities"
+  },
+  {
+    "objectID": "slides/slides-04.html#how-are-models-different",
+    "href": "slides/slides-04.html#how-are-models-different",
+    "title": "Programming with LLMs",
+    "section": "How are models different?",
+    "text": "How are models different?\n\nContent: How many tokens can you give the model?\nSpeed: How many tokens per second?\nCost: How much does it cost to use the model?\nIntelligence: How smart is the model?\nCapabilities: Vision, reasoning, tools, etc.\n\n\n\nContent: 200k tokens is normal, 1M tokens in some newer models\nSpeed: Gemini Flash hits ~350 tokens/sec, 100-200 is very fast, 50-100 normal. Speed is often a trade-off with intelligence.\nCost: $1-5 per million tokens is normal for big frontier models, &lt; $1 for smaller, faster models\nIntelligence is a stand-in for lots of concepts"
+  },
+  {
+    "objectID": "slides/slides-04.html#how-are-models-different-1",
+    "href": "slides/slides-04.html#how-are-models-different-1",
+    "title": "Programming with LLMs",
+    "section": "How are models different?",
+    "text": "How are models different?\n\nContent: How many tokens can you give the model?\nSpeed: How many tokens per second?\nCost: How much does it cost to use the model?\nIntelligence: How smart is the model?\nCapabilities: Vision, reasoning, tools, etc."
+  },
+  {
+    "objectID": "slides/slides-04.html#how-are-models-different-2",
+    "href": "slides/slides-04.html#how-are-models-different-2",
+    "title": "Programming with LLMs",
+    "section": "How are models different?",
+    "text": "How are models different?\n\nContent: How many tokens can you give the model?\nSpeed: How many tokens per second?\nCost: How much does it cost to use the model?\nIntelligence: How smart is the model?\nCapabilities: Vision, reasoning, tools, etc."
+  },
+  {
+    "objectID": "slides/slides-04.html#section-1",
+    "href": "slides/slides-04.html#section-1",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "We’ll start with Anthropic, a company that builds LLMs, in particular a family of models they call Claude."
+  },
+  {
+    "objectID": "slides/slides-04.html#section-2",
+    "href": "slides/slides-04.html#section-2",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "Claude comes in different sizes, with different levels of intelligence.\nThey have a small model that’s fast and cheap, a large model that’s intelligent but expensive, and a just-right sized model that balances speed, cost, and intelligence."
+  },
+  {
+    "objectID": "slides/slides-04.html#section-3",
+    "href": "slides/slides-04.html#section-3",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "In line with Anthropic’s branding, these models are named after different types of poetry.\n\nHaiku is small, fast, and cheap\nSonnet is larger, more expensive, and more intelligent\nOpus is the largest, most expensive, and most intelligent\n\nAnthropic’s poetry naming offsets the fact that Anthropic has one of the most consistent naming schemes in the industry. (Yes, that’s says a lot.)"
+  },
+  {
+    "objectID": "slides/slides-04.html#section-4",
+    "href": "slides/slides-04.html#section-4",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "But there isn’t just one Claude model at different sizes. Anthropic keeps training new models which they generally release with a new version number.\n\nClaude 3.5 was released a year ago (in June 2024)\nClaude 3.7 was released earlier this year (Feb. 2025)\nClaude 4 was just released in May 2025\n\nAll four of these models are still active and available."
+  },
+  {
+    "objectID": "slides/slides-04.html#section-5",
+    "href": "slides/slides-04.html#section-5",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "When you’re choosing a model, you can get higher quality responses by moving up a size tier."
+  },
+  {
+    "objectID": "slides/slides-04.html#section-6",
+    "href": "slides/slides-04.html#section-6",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "And when new releases come out, you can often get similar quality improvements by moving up a version number. (This move tends to be cheaper than moving up a size tier.)"
+  },
+  {
+    "objectID": "slides/slides-04.html#section-7",
+    "href": "slides/slides-04.html#section-7",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "Oh, wait, sorry, to be very technically accurate, it turns out that the Opus models are only available for Claude 3 and Claude 4, but not for the intermediate versions 3.5 and 3.7.\nIt remains to be seen if this will be an enduring pattern, or just they way things happened for 3.5 and 3.7."
+  },
+  {
+    "objectID": "slides/slides-04.html#choose-a-model",
+    "href": "slides/slides-04.html#choose-a-model",
+    "title": "Programming with LLMs",
+    "section": "Choose a model",
+    "text": "Choose a model\n\n\n\nTask\nOpenAI\nAnthropic\nGemini\n\n\n\n\nCoding\nGPT-5\nClaude 4 Sonnet\nGemini 2.5 Pro\n\n\nFast/General\nGPT-5 mini\nClaude 3.5 Sonnet\nGemini 2.0 Flash\n\n\nComplex Tasks\no3\nClaude 4 Opus\nGemini 2.5 Pro\n\n\nCost-Effective\nMini\nHaiku\nFlash"
+  },
+  {
+    "objectID": "slides/slides-04.html#learn-more",
+    "href": "slides/slides-04.html#learn-more",
+    "title": "Programming with LLMs",
+    "section": "Learn more",
+    "text": "Learn more\n\nRanking of models: Artificial Analysis\nOpenAI models\nAnthropic models\nGoogle Gemini models"
+  },
+  {
+    "objectID": "slides/slides-04.html#ellmer",
+    "href": "slides/slides-04.html#ellmer",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "Providers\n\nchat_openai()\nchat_anthropic()\nchat_google_gemini()\n\n\n\nLocal models\n\nchat_ollama()\n\n\n\nEnterprise\n\nchat_aws_bedrock()\n\n\n\n\nhttps://ellmer.tidyverse.org/"
+  },
+  {
+    "objectID": "slides/slides-04.html#chat-in-easy-mode",
+    "href": "slides/slides-04.html#chat-in-easy-mode",
+    "title": "Programming with LLMs",
+    "section": "Chat in Easy Mode",
+    "text": "Chat in Easy Mode\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"anthropic\")"
+  },
+  {
+    "objectID": "slides/slides-04.html#chat-in-easy-mode-1",
+    "href": "slides/slides-04.html#chat-in-easy-mode-1",
+    "title": "Programming with LLMs",
+    "section": "Chat in Easy Mode",
+    "text": "Chat in Easy Mode\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"anthropic\")\n#&gt; Using model = \"claude-sonnet-4-20250514\"."
+  },
+  {
+    "objectID": "slides/slides-04.html#chat-in-easy-mode-2",
+    "href": "slides/slides-04.html#chat-in-easy-mode-2",
+    "title": "Programming with LLMs",
+    "section": "Chat in Easy Mode",
+    "text": "Chat in Easy Mode\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai\")\n#&gt; Using model = \"gpt-4.1\"."
+  },
+  {
+    "objectID": "slides/slides-04.html#chat-in-easy-mode-3",
+    "href": "slides/slides-04.html#chat-in-easy-mode-3",
+    "title": "Programming with LLMs",
+    "section": "Chat in Easy Mode",
+    "text": "Chat in Easy Mode\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")"
+  },
+  {
+    "objectID": "slides/slides-04.html#favorite-models-for-today",
+    "href": "slides/slides-04.html#favorite-models-for-today",
+    "title": "Programming with LLMs",
+    "section": "Favorite models for today",
+    "text": "Favorite models for today\n\nOpenAI\n\ngpt-4.1-nano\ngpt-5\n\nAnthropic\n\nclaude-sonnet-4-20250514\nclaude-3-5-haiku-20241022"
+  },
+  {
+    "objectID": "slides/slides-04.html#a-picture-is-worth-a-thousand-words",
+    "href": "slides/slides-04.html#a-picture-is-worth-a-thousand-words",
+    "title": "Programming with LLMs",
+    "section": "A picture is worth a thousand words",
+    "text": "A picture is worth a thousand words\n\nOr for an LLM, a picture is roughly 227 words, or 170 tokens.\n\n\n🖼️ 🔍 Open Images Dataset"
+  },
+  {
+    "objectID": "slides/slides-04.html#content_image_file",
+    "href": "slides/slides-04.html#content_image_file",
+    "title": "Programming with LLMs",
+    "section": "🌆 content_image_file",
+    "text": "🌆 content_image_file\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\nchat$chat(\n  content_image_file(\"cute-cats.jpg\"),\n  \"What do you see in this image?\"\n)"
+  },
+  {
+    "objectID": "slides/slides-04.html#content_image_url",
+    "href": "slides/slides-04.html#content_image_url",
+    "title": "Programming with LLMs",
+    "section": "🐈 content_image_url",
+    "text": "🐈 content_image_url\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\nchat$chat(\n  content_image_url(\"https://placecats.com/bella/400/400\"),\n  \"What do you see in this image?\"\n)"
+  },
+  {
+    "objectID": "slides/slides-04.html#your-turn-08_vision",
+    "href": "slides/slides-04.html#your-turn-08_vision",
+    "title": "Programming with LLMs",
+    "section": "Your Turn 08_vision",
+    "text": "Your Turn 08_vision\n\nI’ve put some images of food in the data/recipes/images folder.\nYour job: show the food to the LLM and see if it gets hungry.\n\n\n  \n    −\n    +\n \n 05:00"
+  },
+  {
+    "objectID": "slides/slides-04.html#content_pdf_file",
+    "href": "slides/slides-04.html#content_pdf_file",
+    "title": "Programming with LLMs",
+    "section": "📑 content_pdf_file",
+    "text": "📑 content_pdf_file\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\nchat$chat(\n  content_pdf_file(\"financial-report.pdf\"),\n  \"What's my tax liability for 2024?\"\n)"
+  },
+  {
+    "objectID": "slides/slides-04.html#content_pdf_url",
+    "href": "slides/slides-04.html#content_pdf_url",
+    "title": "Programming with LLMs",
+    "section": "📑 content_pdf_url",
+    "text": "📑 content_pdf_url\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\nchat$chat(\n  content_pdf_url(\"http://pdf.secdatabase.com/1757/0001104659-25-042659.pdf\"),\n  \"Describe Tesla's executive compensation and stock award programs.\"\n)"
+  },
+  {
+    "objectID": "slides/slides-04.html#your-turn-09_pdf",
+    "href": "slides/slides-04.html#your-turn-09_pdf",
+    "title": "Programming with LLMs",
+    "section": "Your Turn 09_pdf",
+    "text": "Your Turn 09_pdf\n\nWe have the actual recipes as PDFs in the data/recipes/pdf folder.\nYour job: ask the LLM to convert the recipes to markdown.\n\n\n  \n    −\n    +\n \n 05:00"
+  },
+  {
+    "objectID": "slides/slides-04.html#how-would-you-extract-name-and-age",
+    "href": "slides/slides-04.html#how-would-you-extract-name-and-age",
+    "title": "Programming with LLMs",
+    "section": "How would you extract name and age?",
+    "text": "How would you extract name and age?\n\nage_free_text &lt;- list(\n    \"I go by Alex. 42 years on this planet and counting.\",\n    \"Pleased to meet you! I'm Jamal, age 27.\",\n    \"They call me Li Wei. Nineteen years young.\",\n    \"Fatima here. Just celebrated my 35th birthday last week.\",\n    \"The name's Robert - 51 years old and proud of it.\",\n    \"Kwame here - just hit the big 5-0 this year.\"\n)"
+  },
+  {
+    "objectID": "slides/slides-04.html#if-you-wrote-r-code-it-might-look-like-this",
+    "href": "slides/slides-04.html#if-you-wrote-r-code-it-might-look-like-this",
+    "title": "Programming with LLMs",
+    "section": "If you wrote R code, it might look like this…",
+    "text": "If you wrote R code, it might look like this…\n\nword_to_num &lt;- function(x) {\n    # normalize\n    x &lt;- tolower(x)\n    # direct numbers\n    if (grepl(\"\\\\b\\\\d+\\\\b\", x)) return(as.integer(regmatches(x, regexpr(\"\\\\b\\\\d+\\\\b\", x))))\n    # hyphenated like \"5-0\"\n    if (grepl(\"\\\\b\\\\d+\\\\s*-\\\\s*\\\\d+\\\\b\", x)) {\n        parts &lt;- as.integer(unlist(strsplit(regmatches(x, regexpr(\"\\\\b\\\\d+\\\\s*-\\\\s*\\\\d+\\\\b\", x)), \"\\\\s*-\\\\s*\")))\n        return(10 * parts[1] + parts[2])\n    }\n    # simple word numbers\n    ones &lt;- c(\n        zero=0, one=1, two=2, three=3, four=4, five=5, six=6, seven=7, eight=8, nine=9,\n        ten=10, eleven=11, twelve=12, thirteen=13, fourteen=14, fifteen=15, sixteen=16,\n        seventeen=17, eighteen=18, nineteen=19\n    )\n    tens &lt;- c(twenty=20, thirty=30, forty=40, fifty=50, sixty=60, seventy=70, eighty=80, ninety=90)\n    # e.g., \"nineteen\"\n    if (x %in% names(ones)) return(ones[[x]])\n    # e.g., \"thirty five\" or \"thirty-five\"\n    x2 &lt;- gsub(\"-\", \" \", x)\n    parts &lt;- strsplit(x2, \"\\\\s+\")[[1]]\n    if (length(parts) == 2 && parts[1] %in% names(tens) && parts[2] %in% names(ones)) {\n        return(tens[[parts[1]]] + ones[[parts[2]]])\n    }\n    if (length(parts) == 1 && parts[1] %in% names(tens)) return(tens[[parts[1]]])\n    return(NA_integer_)\n}\n\n# Extract name candidates\nextract_name &lt;- function(s) {\n    # patterns that introduce a name\n    pats &lt;- c(\n        \"I go by\\\\s+([A-Z][a-z]+)\",\n        \"I'm\\\\s+([A-Z][a-z]+(?:\\\\s+[A-Z][a-z]+)?)\",\n        \"They call me\\\\s+([A-Z][a-z]+(?:\\\\s+[A-Z][a-z]+)?)\",\n        \"^([A-Z][a-z]+) here\",\n        \"The name's\\\\s+([A-Z][a-z]+)\",\n        \"^([A-Z][a-z]+)\\\\s\" # fallback: leading capital word\n    )\n    for (p in pats) {\n        m &lt;- regexpr(p, s, perl = TRUE)\n        if (m[1] != -1) {\n            return(sub(p, \"\\\\1\", regmatches(s, m)))\n        }\n    }\n    NA_character_\n}\n\n# Extract age phrases and convert to number\nextract_age &lt;- function(s) {\n    # capture common age phrases around a number\n    m &lt;- regexpr(\"(\\\\b\\\\d+\\\\b|\\\\b\\\\d+\\\\s*-\\\\s*\\\\d+\\\\b|\\\\b[Nn][a-z-]+\\\\b)\\\\s*(years|year|birthday|young|this)\", s, perl = TRUE)\n    if (m[1] != -1) {\n        token &lt;- sub(\"(years|year|birthday|young|this)$\", \"\", trimws(substring(s, m, m + attr(m, \"match.length\") - 1)))\n        return(word_to_num(token))\n    }\n    # handle pure word-number without trailing keyword (e.g., \"Nineteen years young.\" handled above)\n    m2 &lt;- regexpr(\"\\\\b([A-Z][a-z]+)\\\\b\\\\s+years\", s, perl = TRUE)\n    if (m2[1] != -1) {\n        token &lt;- tolower(sub(\"\\\\s+years.*\", \"\", regmatches(s, m2)))\n        return(word_to_num(token))\n    }\n    # handle hyphenated \"big 5-0\"\n    m3 &lt;- regexpr(\"big\\\\s+(\\\\d+\\\\s*-\\\\s*\\\\d+)\", s, perl = TRUE)\n    if (m3[1] != -1) {\n        token &lt;- sub(\"big\\\\s+\", \"\", regmatches(s, m3))\n        return(word_to_num(token))\n    }\n    NA_integer_\n}"
+  },
+  {
+    "objectID": "slides/slides-04.html#if-you-wrote-r-code-it-might-look-like-this-1",
+    "href": "slides/slides-04.html#if-you-wrote-r-code-it-might-look-like-this-1",
+    "title": "Programming with LLMs",
+    "section": "If you wrote R code, it might look like this…",
+    "text": "If you wrote R code, it might look like this…\n\n\ndplyr::tibble(\n  name = purrr::map_chr(age_free_text, extract_name),\n  age = purrr::map_int(age_free_text, extract_age)\n)\n\n# A tibble: 6 × 2\n  name     age\n  &lt;chr&gt;  &lt;int&gt;\n1 Alex      42\n2 Jamal     NA\n3 Li Wei    NA\n4 Fatima    NA\n5 Robert    51\n6 Kwame      5\n\n\n\nage_free_text\n\n[[1]]\n[1] \"I go by Alex. 42 years on this planet and counting.\"\n\n[[2]]\n[1] \"Pleased to meet you! I'm Jamal, age 27.\"\n\n[[3]]\n[1] \"They call me Li Wei. Nineteen years young.\"\n\n[[4]]\n[1] \"Fatima here. Just celebrated my 35th birthday last week.\"\n\n[[5]]\n[1] \"The name's Robert - 51 years old and proud of it.\"\n\n[[6]]\n[1] \"Kwame here - just hit the big 5-0 this year.\""
+  },
+  {
+    "objectID": "slides/slides-04.html#but-if-you-ask-an-llm",
+    "href": "slides/slides-04.html#but-if-you-ask-an-llm",
+    "title": "Programming with LLMs",
+    "section": "But if you ask an LLM…",
+    "text": "But if you ask an LLM…\nlibrary(ellmer)\n\nchat &lt;- chat(\n  \"openai/gpt-5-nano\",\n  system_prompt = \"Extract the name and age.\"\n)\n\nchat$chat(age_free_text[[1]])\n#&gt;\n\nchat$chat(age_free_text[[2]])\n#&gt;"
+  },
+  {
+    "objectID": "slides/slides-04.html#but-if-you-ask-an-llm-1",
+    "href": "slides/slides-04.html#but-if-you-ask-an-llm-1",
+    "title": "Programming with LLMs",
+    "section": "But if you ask an LLM…",
+    "text": "But if you ask an LLM…\nlibrary(ellmer)\n\nchat &lt;- chat(\n  \"openai/gpt-5-nano\",\n  system_prompt = \"Extract the name and age.\"\n)\n\nchat$chat(age_free_text[[1]])\n#&gt; Name: Alex; Age: 42\n\nchat$chat(age_free_text[[2]])\n#&gt; Name: Jamal; Age: 27"
+  },
+  {
+    "objectID": "slides/slides-04.html#wouldnt-this-be-nice",
+    "href": "slides/slides-04.html#wouldnt-this-be-nice",
+    "title": "Programming with LLMs",
+    "section": "Wouldn’t this be nice?",
+    "text": "Wouldn’t this be nice?\nchat$chat(age_free_text[[1]])\n#&gt; list(\n#&gt;   name = \"Alex\",\n#&gt;   age = 42\n#&gt; )"
+  },
+  {
+    "objectID": "slides/slides-04.html#structured-chat-output",
+    "href": "slides/slides-04.html#structured-chat-output",
+    "title": "Programming with LLMs",
+    "section": "Structured chat output",
+    "text": "Structured chat output\nchat$chat_structured(age_free_text[[1]])\n#&gt; list(\n#&gt;   name = \"Alex\",\n#&gt;   age = 42\n#&gt; )"
+  },
+  {
+    "objectID": "slides/slides-04.html#structured-chat-output-1",
+    "href": "slides/slides-04.html#structured-chat-output-1",
+    "title": "Programming with LLMs",
+    "section": "Structured chat output",
+    "text": "Structured chat output\ntype_person &lt;- type_object(\n  name = type_string(),\n  age = type_integer()\n)\n\nchat$chat_structured(age_free_text[[1]], type = type_person)\n#&gt; list(\n#&gt;   name = \"Alex\",\n#&gt;   age = 42\n#&gt; )"
+  },
+  {
+    "objectID": "slides/slides-04.html#structured-chat-output-2",
+    "href": "slides/slides-04.html#structured-chat-output-2",
+    "title": "Programming with LLMs",
+    "section": "Structured chat output",
+    "text": "Structured chat output\ntype_person &lt;- type_object(\n  name = type_string(),\n  age = type_integer()\n)\n\nchat$chat_structured(age_free_text[[1]], type = type_person)\n#&gt; $name\n#&gt; [1] \"Alex\"\n#&gt;\n#&gt; $age\n#&gt; [1] 42"
+  },
+  {
+    "objectID": "slides/slides-04.html#ellmers-type-functions",
+    "href": "slides/slides-04.html#ellmers-type-functions",
+    "title": "Programming with LLMs",
+    "section": "ellmer’s type functions",
+    "text": "ellmer’s type functions\n\n\ntype_person &lt;- type_object(\n  name = type_string(\"The person's name\"),\n  age = type_integer(\"The person's age in years\")\n)"
+  },
+  {
+    "objectID": "slides/slides-01.html#welcome-to-getting-started-with-llm-apis-in-r",
+    "href": "slides/slides-01.html#welcome-to-getting-started-with-llm-apis-in-r",
+    "title": "Welcome!",
+    "section": "Welcome to Getting Started with LLM APIs in R!",
+    "text": "Welcome to Getting Started with LLM APIs in R!\n Workshop repo: https://bit.ly/r-pharma-llm\n\n☁️ Set up Posit Cloud:\n\nCreate a free account: https://posit.cloud/.\nOpen the Posit Cloud space: https://posit.cloud/spaces/717315/.\nClick “Yes” to join the space.\nClick Content and select the RStudio project or go to https://posit.cloud/spaces/717315/content/11313957.\nTo save a copy of the project to your workspace at any point, click “Save a permanent copy”."
+  },
+  {
+    "objectID": "slides/slides-01.html#skaltman.github.ior-pharma-llm",
+    "href": "slides/slides-01.html#skaltman.github.ior-pharma-llm",
+    "title": "Welcome!",
+    "section": "🏡 skaltman.github.io/r-pharma-llm",
+    "text": "🏡 skaltman.github.io/r-pharma-llm\nAll materials live here!"
+  },
+  {
+    "objectID": "slides/slides-01.html#schedule",
+    "href": "slides/slides-01.html#schedule",
+    "title": "Welcome!",
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\nTime\n\nActivity\n\n\n\n\n01:00 - 01:15\n👋\nIntro\n\n\n01:15 - 01:55\n💬\nAnatomy of a conversation\n\n\n01:55 - 02:25\n💻\nProgramming with LLMs\n\n\n02:25 - 02:40\n✍️\nPrompt engineering\n\n\n02:40 - 03:00\n🛠️\nTool calling"
+  },
+  {
+    "objectID": "slides/slides-01.html#asking-questions",
+    "href": "slides/slides-01.html#asking-questions",
+    "title": "Welcome!",
+    "section": "Asking questions",
+    "text": "Asking questions"
+  },
+  {
+    "objectID": "slides/slides-01.html#were-using-positron",
+    "href": "slides/slides-01.html#were-using-positron",
+    "title": "Welcome!",
+    "section": "We’re using Positron",
+    "text": "We’re using Positron\n\n\n\n\nRStudio and VS Code are great, too!"
+  },
+  {
+    "objectID": "slides/slides-01.html#file-organization",
+    "href": "slides/slides-01.html#file-organization",
+    "title": "Welcome!",
+    "section": "File organization",
+    "text": "File organization\n\n\n\n\n_exercises/\nFiles for Your Turn exercises\n\n\n_solutions/\nSolutions to those exercises\n\n\n_demos/\nFiles for stuff we demo\n\n\nwebsite/\nThe website and slides\n\n\n./*\nLots of project related files you can ignore"
+  },
+  {
+    "objectID": "slides/slides-01.html#exercise-solutions",
+    "href": "slides/slides-01.html#exercise-solutions",
+    "title": "Welcome!",
+    "section": "Exercise Solutions",
+    "text": "Exercise Solutions\n\n👨‍💻 👩‍💻 _exercises/01_hello-llm/01_hello-llm.R\n   🫣    _solutions/01_hello-llm/01_hello-llm.R"
+  },
+  {
+    "objectID": "slides/slides-01.html#to-use-an-ai-api",
+    "href": "slides/slides-01.html#to-use-an-ai-api",
+    "title": "Welcome!",
+    "section": "To use an AI API…",
+    "text": "To use an AI API…\n\n…you need an API key!"
+  },
+  {
+    "objectID": "slides/slides-01.html#how-to-get-an-api-key-beyond-this-workshop",
+    "href": "slides/slides-01.html#how-to-get-an-api-key-beyond-this-workshop",
+    "title": "Welcome!",
+    "section": "How to get an API key, beyond this workshop",
+    "text": "How to get an API key, beyond this workshop\n\n\n🆙 Sign up for an account with OpenAI, Anthropic, etc.\n💳 Add a payment method\n🔑 Get an API key\n💾 Store it in .Renviron fileas OPENAI_API_KEY, ANTHROPIC_API_KEY, etc."
+  },
+  {
+    "objectID": "slides/slides-01.html#but-well-give-you-api-keys-to-use-today",
+    "href": "slides/slides-01.html#but-well-give-you-api-keys-to-use-today",
+    "title": "Welcome!",
+    "section": "But we’ll give you API keys to use today!",
+    "text": "But we’ll give you API keys to use today!\n\nUse these keys for all of our activities today\nPlay and explore! But please be considerate :)\nWe’ll turn them off at the end of the workshop"
+  },
+  {
+    "objectID": "slides/slides-01.html#your-turn-01_hello-llm",
+    "href": "slides/slides-01.html#your-turn-01_hello-llm",
+    "title": "Welcome!",
+    "section": "Your Turn 01_hello-llm",
+    "text": "Your Turn 01_hello-llm\n\n\n🔓 Decrypt the .env.secret → .env:\n\nRun secret.R\n\n🤫 The special phrase is:\nr-pharma-llm-5\n🤖 Run the code in _exercises/01_hello-llm"
+  },
+  {
+    "objectID": "workshop-08.html",
+    "href": "workshop-08.html",
+    "title": "Tool Calling",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Tool Calling"
+    ]
+  },
+  {
+    "objectID": "workshop-08.html#slides",
+    "href": "workshop-08.html#slides",
+    "title": "Tool Calling",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Tool Calling"
+    ]
+  },
+  {
+    "objectID": "workshop-08.html#outline",
+    "href": "workshop-08.html#outline",
+    "title": "Tool Calling",
+    "section": "Outline",
+    "text": "Outline\n\n(20m) Tool calling\n\nExplain how tool calling pattern, mostly following https://pkg.garrickadenbuie.com/genAI-2025-llms-meet-shiny\nActivity: quiz show\n\nWe’ve provided an R/Python function that plays a sound\n\nR: beepr, Python: playsound\n\nDocument the function and register it as a tool in the Quiz Show app\n\n\n(30m) Tool calling UI\n\nPrimarily a series of activities that progressively enhance the quiz show app\nActivity: Add tool annotations to give the tool an icon and title\nActivity: Use ContentToolResult to return custom title and icon\nActivity: Track answers and score in the app (add/update value boxes)",
+    "crumbs": [
+      "Workshop",
+      "Tool Calling"
+    ]
+  },
+  {
+    "objectID": "workshop-05.html",
+    "href": "workshop-05.html",
     "title": "Prompt Engineering",
-    "section": "More tips",
-    "text": "More tips\nSee Anthropic’s Prompt Engineering Overview and OpenAI’s OpenAI Cookbook are excellent, and contain lots of tips and examples.\nGoogle’s Prompt Design Strategies may also be useful."
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Prompt Engineering"
+    ]
+  },
+  {
+    "objectID": "workshop-05.html#slides",
+    "href": "workshop-05.html#slides",
+    "title": "Prompt Engineering",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Prompt Engineering"
+    ]
+  },
+  {
+    "objectID": "workshop-05.html#outline",
+    "href": "workshop-05.html#outline",
+    "title": "Prompt Engineering",
+    "section": "Outline",
+    "text": "Outline\n\n(35m) Prompting engineering and hallucinations\n\nActivity: images of mpg vs weight and ask for interpretation\nActivity (part 1): same question, but we’ve replaced the image with random noise\nActivity (part 2): work with partner to try to get the model to give you a decent interpretation of the random noise image\nPrompt engineering best practices, in particular the system prompt\nActivity: create the prompt for the quiz game show",
+    "crumbs": [
+      "Workshop",
+      "Prompt Engineering"
+    ]
+  },
+  {
+    "objectID": "workshop-02.html",
+    "href": "workshop-02.html",
+    "title": "Anatomy of a conversation",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Anatomy of a conversation"
+    ]
+  },
+  {
+    "objectID": "workshop-02.html#slides",
+    "href": "workshop-02.html#slides",
+    "title": "Anatomy of a conversation",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Anatomy of a conversation"
+    ]
+  },
+  {
+    "objectID": "workshop-02.html#outline",
+    "href": "workshop-02.html#outline",
+    "title": "Anatomy of a conversation",
+    "section": "Outline",
+    "text": "Outline\n\n(10m) Think empirically, be pragmatic\n\nGetting into the right mindset for working with LLMs\nHow to approach this workshop\nExtra time to work with participants on setup if needed\n\n(20m) Anatomy of a conversation\n\nTo get a get a response, you send a message via HTTP\nMessage roles: system, user, assistant\nActivity (02_word-game): Word guessing game\nHow does the LLM remember the conversation? demos/03_clearbot\n\n(20m) How do LLMs work?\n\nHow to Talk to Robots slides\nTokens as the fundamental unit\nExample: _demos/04_token-possibilities\n\n(20m) Shinychat basics\n\nActivity (05_live): live_console() and live_browser() (or chat.console() and chat.app())\nMaking your own shinychat app with chat.ui() and chat.append(). R users can use the chat module with chat_mod_server().\nActivity (06_word-games): Reverse the word-guessing game with the word to guess in the system prompt. User has to guess, LLM gives hints.",
+    "crumbs": [
+      "Workshop",
+      "Anatomy of a conversation"
+    ]
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Set up Posit Cloud",
+    "section": "",
+    "text": "Join the Posit Cloud workspace at https://bit.ly/llm-cloud.\n\nI’ve prepared a Posit Cloud workspace for workshop participants with a project for you to use during our time together. The project contains all of the files, API keys, and packages pre-installed and ready to go. All you need to do is log in and start coding!\n\nIf you don’t already have a Posit Cloud account, first sign up for a free account. You can create an account with your email or login with Google, GitHub or Clever.\nThen, join the workspace on Posit Cloud: https://bit.ly/llm-cloud\nOnce you’re part of the workspace, navigate to Content, then select the r-pharma-llm project to create and launch a new project just for you."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Getting Started with LLM APIs in R",
+    "section": "",
+    "text": "Large Language Models (LLMs) offer developers unprecedented programmatic capabilities. This workshop introduces ellmer (R) and chatlas (Python), Posit packages that simplify LLM API integration, handling conversation complexities and enabling seamless interactions with AI models.\nParticipants will explore system prompt design, token management, and tool calling while building familiarity with current AI technologies. The workshop demonstrates that:\n\nCoding with LLMs unlocks possibilities beyond standard tools\nNo advanced AI background is required\nImplementing AI can be both accessible and exciting\n\nDesigned for AI newcomers and experienced developers, the session covers LLM integration, Shiny web app development, and touches on advanced topics like Retrieval-Augmented Generation (RAG) and tool calling. Attendees will gain hands-on experience through guided exercises, providing the confidence to start their LLM journey."
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Getting Started with LLM APIs in R",
+    "section": "",
+    "text": "Large Language Models (LLMs) offer developers unprecedented programmatic capabilities. This workshop introduces ellmer (R) and chatlas (Python), Posit packages that simplify LLM API integration, handling conversation complexities and enabling seamless interactions with AI models.\nParticipants will explore system prompt design, token management, and tool calling while building familiarity with current AI technologies. The workshop demonstrates that:\n\nCoding with LLMs unlocks possibilities beyond standard tools\nNo advanced AI background is required\nImplementing AI can be both accessible and exciting\n\nDesigned for AI newcomers and experienced developers, the session covers LLM integration, Shiny web app development, and touches on advanced topics like Retrieval-Augmented Generation (RAG) and tool calling. Attendees will gain hands-on experience through guided exercises, providing the confidence to start their LLM journey."
+  },
+  {
+    "objectID": "index.html#links",
+    "href": "index.html#links",
+    "title": "Getting Started with LLM APIs in R",
+    "section": "Links",
+    "text": "Links\n\n📘 Workshop Materials\n☁️ Getting Setup\n📦 Repository\n💻 R/Pharma 2025"
+  },
+  {
+    "objectID": "workshop-01.html",
+    "href": "workshop-01.html",
+    "title": "Welcome and getting started",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Welcome and getting started"
+    ]
+  },
+  {
+    "objectID": "workshop-01.html#slides",
+    "href": "workshop-01.html#slides",
+    "title": "Welcome and getting started",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Welcome and getting started"
+    ]
+  },
+  {
+    "objectID": "workshop-01.html#outline",
+    "href": "workshop-01.html#outline",
+    "title": "Welcome and getting started",
+    "section": "Outline",
+    "text": "Outline\n\nWelcome, introductions, workshop expectations\n\nActivity: introduce yourself to your neighbors\n\nSet-up and verify API access\n\nActivity: Set up our API keys and make our first API calls!",
+    "crumbs": [
+      "Workshop",
+      "Welcome and getting started"
+    ]
+  },
+  {
+    "objectID": "workshop-04.html",
+    "href": "workshop-04.html",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Programming with LLMs"
+    ]
+  },
+  {
+    "objectID": "workshop-04.html#slides",
+    "href": "workshop-04.html#slides",
+    "title": "Programming with LLMs",
+    "section": "",
+    "text": "View slides in full screen",
+    "crumbs": [
+      "Workshop",
+      "Programming with LLMs"
+    ]
+  },
+  {
+    "objectID": "workshop-04.html#resources",
+    "href": "workshop-04.html#resources",
+    "title": "Programming with LLMs",
+    "section": "Resources",
+    "text": "Resources\n\n(15m) Choosing a model\n\nOverview of major providers: OpenAI, Anthropic, Google, ollama\nTradeoffs: capability, context length, speed, cost, intelligence\nActivity: same question, change one string to switch models, e.g. chat(\"openai\"), chat(\"anthropic\").\n\n(15m) Multi-modal input (vision, PDF)\n\nActivity: images of food and ask for recipes\nActivity: take a PDF of a recipe, turn it into markdown\n\n(15m) Structured output\n\nExplain ellmer::type_*() or pydantic model in chatlas\nActivity: Extract rich data from the recipe PDF\nNote use_attribute_docstrings\n\n(10m) Parallel/batch calls\n\nActivity: Extract recipe data in parallel or batch",
+    "crumbs": [
+      "Workshop",
+      "Programming with LLMs"
+    ]
+  },
+  {
+    "objectID": "workshop-07.html",
+    "href": "workshop-07.html",
+    "title": "Augmented Generation",
+    "section": "",
+    "text": "View slides in full screen"
+  },
+  {
+    "objectID": "workshop-07.html#slides",
+    "href": "workshop-07.html#slides",
+    "title": "Augmented Generation",
+    "section": "",
+    "text": "View slides in full screen"
+  },
+  {
+    "objectID": "workshop-07.html#outline",
+    "href": "workshop-07.html#outline",
+    "title": "Augmented Generation",
+    "section": "Outline",
+    "text": "Outline\n\n(10m) Manual RAG\n\nActivity 15_coding-assistant: Use an LLM as a coding assistant\n\nWrite a function that uses {weathR} (R) or NWS (Python) to get the weather for a location.\nThen, give the LLM the {weathR} (R) or NWS (Python) README and see how much better the response is.\n\n\n(30m) RAG\n\nHigh-level overview of how RAG works\nActivity 16_rag: Build a dynamic RAG system\n\nMake a chatbot that can draw from the knowledge of:\n\nThe R for Data Science book\nThe Polars Cookbook\n\nPreprocess and compute embeddings for each chunk using ragnar or llama-index\n\nhttps://posit-dev.github.io/chatlas/misc/RAG.html#dynamic-retrieval\nhttps://ragnar.tidyverse.org/articles/ragnar.html#setting-up-rag\n\nAdd a tool that searches the embeddings and returns the top few chunks\n\nchatlas: this means writing a function\nellmer: Use ragnar"
+  },
+  {
+    "objectID": "workshop.html",
+    "href": "workshop.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Title\n\n\n\nDescription\n\n\n\n\n\n\n\n\nWelcome and getting started\n\n\nHello and welcome to the workshop!\n\n\n\n\n\n\nAnatomy of a conversation\n\n\nProgrammatically conversing with LLMs\n\n\n\n\n\n\nProgramming with LLMs\n\n\nAdvanced LLM programming techniques\n\n\n\n\n\n\nPrompt Engineering\n\n\nGetting LLMs to do what you want\n\n\n\n\n\n\nAugmented Generation\n\n\nAdding knowledge to LLMs\n\n\n\n\n\n\nTool Calling\n\n\nHelp LLMs interact with the world\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Workshop",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "workshop.html#schedule",
+    "href": "workshop.html#schedule",
+    "title": "Overview",
+    "section": "",
+    "text": "Title\n\n\n\nDescription\n\n\n\n\n\n\n\n\nWelcome and getting started\n\n\nHello and welcome to the workshop!\n\n\n\n\n\n\nAnatomy of a conversation\n\n\nProgrammatically conversing with LLMs\n\n\n\n\n\n\nProgramming with LLMs\n\n\nAdvanced LLM programming techniques\n\n\n\n\n\n\nPrompt Engineering\n\n\nGetting LLMs to do what you want\n\n\n\n\n\n\nAugmented Generation\n\n\nAdding knowledge to LLMs\n\n\n\n\n\n\nTool Calling\n\n\nHelp LLMs interact with the world\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Workshop",
+      "Overview"
+    ]
   },
   {
     "objectID": "slides/slides-02.html#section",
@@ -329,727 +943,52 @@
     "text": "shinychat in R\nCreate and hook up a chat client to use in the app\nlibrary(shiny)\nlibrary(bslib)\nlibrary(shinychat)\nlibrary(ellmer)\n\n\nui &lt;- page_fillable(\n  chat_mod_ui(\"chat\")\n)\n\nserver &lt;- function(input, output, session) {\n  client &lt;- chat_openai()\n  chat_mod_server(\"chat\", client)\n}\n\nshinyApp(ui, server)"
   },
   {
-    "objectID": "workshop.html",
-    "href": "workshop.html",
-    "title": "Overview",
-    "section": "",
-    "text": "Title\n\n\n\ntime\n\n\n\nDescription\n\n\n\n\n\n\n\n\nWelcome and getting started\n\n\n9:00\n\n\nHello and welcome to the workshop!\n\n\n\n\n\n\nAnatomy of a conversation\n\n\n \n\n\nProgrammatically conversing with LLMs\n\n\n\n\n\n\n☕ Break\n\n\n10:30 - 11:00\n\n\n \n\n\n\n\n\n\nProgramming with LLMs\n\n\n \n\n\nAdvanced LLM programming techniques\n\n\n\n\n\n\nPrompt Engineering\n\n\n \n\n\nGetting LLMs to do what you want\n\n\n\n\n\n\n🍱 Lunch\n\n\n12:30 - 13:30\n\n\n \n\n\n\n\n\n\nAugmented Generation\n\n\n \n\n\nAdding knowledge to LLMs\n\n\n\n\n\n\nTool Calling\n\n\n \n\n\nHelp LLMs interact with the world\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Workshop",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "workshop.html#schedule",
-    "href": "workshop.html#schedule",
-    "title": "Overview",
-    "section": "",
-    "text": "Title\n\n\n\ntime\n\n\n\nDescription\n\n\n\n\n\n\n\n\nWelcome and getting started\n\n\n9:00\n\n\nHello and welcome to the workshop!\n\n\n\n\n\n\nAnatomy of a conversation\n\n\n \n\n\nProgrammatically conversing with LLMs\n\n\n\n\n\n\n☕ Break\n\n\n10:30 - 11:00\n\n\n \n\n\n\n\n\n\nProgramming with LLMs\n\n\n \n\n\nAdvanced LLM programming techniques\n\n\n\n\n\n\nPrompt Engineering\n\n\n \n\n\nGetting LLMs to do what you want\n\n\n\n\n\n\n🍱 Lunch\n\n\n12:30 - 13:30\n\n\n \n\n\n\n\n\n\nAugmented Generation\n\n\n \n\n\nAdding knowledge to LLMs\n\n\n\n\n\n\nTool Calling\n\n\n \n\n\nHelp LLMs interact with the world\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Workshop",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "workshop-07.html",
-    "href": "workshop-07.html",
-    "title": "Augmented Generation",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Augmented Generation"
-    ]
-  },
-  {
-    "objectID": "workshop-07.html#slides",
-    "href": "workshop-07.html#slides",
-    "title": "Augmented Generation",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Augmented Generation"
-    ]
-  },
-  {
-    "objectID": "workshop-07.html#outline",
-    "href": "workshop-07.html#outline",
-    "title": "Augmented Generation",
-    "section": "Outline",
-    "text": "Outline\n\n(10m) Manual RAG\n\nActivity 15_coding-assistant: Use an LLM as a coding assistant\n\nWrite a function that uses {weathR} (R) or NWS (Python) to get the weather for a location.\nThen, give the LLM the {weathR} (R) or NWS (Python) README and see how much better the response is.\n\n\n(30m) RAG\n\nHigh-level overview of how RAG works\nActivity 16_rag: Build a dynamic RAG system\n\nMake a chatbot that can draw from the knowledge of:\n\nThe R for Data Science book\nThe Polars Cookbook\n\nPreprocess and compute embeddings for each chunk using ragnar or llama-index\n\nhttps://posit-dev.github.io/chatlas/misc/RAG.html#dynamic-retrieval\nhttps://ragnar.tidyverse.org/articles/ragnar.html#setting-up-rag\n\nAdd a tool that searches the embeddings and returns the top few chunks\n\nchatlas: this means writing a function\nellmer: Use ragnar",
-    "crumbs": [
-      "Workshop",
-      "Augmented Generation"
-    ]
-  },
-  {
-    "objectID": "workshop-05.html",
-    "href": "workshop-05.html",
+    "objectID": "slides/slides-05.html#three-questions-to-ask-yourself",
+    "href": "slides/slides-05.html#three-questions-to-ask-yourself",
     "title": "Prompt Engineering",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Prompt Engineering"
-    ]
+    "section": "Three questions to ask yourself",
+    "text": "Three questions to ask yourself\n\nDid you use the best models?\nDid you clearly explain what you want the model to do in the system prompt?\nDid you provide examples of what you want?\n\n\n\nThere’s going to be 3 questions we’re usually going to ask you in this order? Number one, did you try the best models? Did you try this with at least like Claude? Sonnet 4, or GPT 4.1\nso number one like, did you use the best models number 2 is, did you ask for what you wanted in the system prompt like. Did you describe the behavior that you were looking for from the model in the system prompt?\nAnd then number 3, if you did do that. Did you provide an example of what you wanted? And usually that, that, you know, takes care of a lot of the the kind of misbehaving that people see."
   },
   {
-    "objectID": "workshop-05.html#slides",
-    "href": "workshop-05.html#slides",
+    "objectID": "slides/slides-05.html#system-prompt-vs.-user-prompt",
+    "href": "slides/slides-05.html#system-prompt-vs.-user-prompt",
     "title": "Prompt Engineering",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Prompt Engineering"
-    ]
+    "section": "System prompt vs. user prompt",
+    "text": "System prompt vs. user prompt\nShort answer: put instructions and background knowledge in the system prompt."
   },
   {
-    "objectID": "workshop-05.html#outline",
-    "href": "workshop-05.html#outline",
+    "objectID": "slides/slides-05.html#more-tips",
+    "href": "slides/slides-05.html#more-tips",
     "title": "Prompt Engineering",
-    "section": "Outline",
-    "text": "Outline\n\n(35m) Prompting engineering and hallucinations\n\nActivity: images of mpg vs weight and ask for interpretation\nActivity (part 1): same question, but we’ve replaced the image with random noise\nActivity (part 2): work with partner to try to get the model to give you a decent interpretation of the random noise image\nPrompt engineering best practices, in particular the system prompt\nActivity: create the prompt for the quiz game show",
-    "crumbs": [
-      "Workshop",
-      "Prompt Engineering"
-    ]
+    "section": "More tips",
+    "text": "More tips\nUse LLMs to help draft or improve your prompts.\nE.g., this input to Claude’s prompt generator:\n\nMake a data science agent that can run Python data analysis code via a tool. Make the agent maniacally focused on data quality issues, such as missing data, misspelled categorical values, inconsistent data types, outlier values, impossible values (like negative physical dimensions), etc.\n\nGenerates this prompt:\nYou are a data science agent with an obsessive focus on data quality. You have been given access to a dataset and a Python code execution tool. Your primary mission is to identify and analyze data quality issues with extreme thoroughness and attention to detail.\n\nHere is the dataset description:\n&lt;dataset_description&gt;\n{{DATASET_DESCRIPTION}}\n&lt;/dataset_description&gt;\n\nYou have access to the following Python code execution tool:\n&lt;python_tool&gt;\n{{PYTHON_CODE_TOOL}}\n&lt;/python_tool&gt;\n\nYour role is to act as a maniacally thorough data quality inspector. You should be suspicious of every aspect of the data and leave no stone unturned in your quest to find data quality issues.\n\nFocus intensively on these categories of data quality problems:\n- Missing data (nulls, empty strings, placeholder values like \"N/A\", \"Unknown\", etc.)\n- Inconsistent data types (mixed types in columns, incorrect data types)\n- Misspelled or inconsistent categorical values (typos, case inconsistencies, extra spaces)\n- Outlier values (statistical outliers, values that seem unreasonable)\n- Impossible or illogical values (negative ages, future birth dates, negative physical dimensions)\n- Duplicate records or near-duplicates\n- Inconsistent formatting (date formats, phone numbers, addresses)\n- Data entry errors (obvious typos, transposed digits)\n- Referential integrity issues (if applicable)\n- Range violations (values outside expected bounds)\n\nYour analysis process should be systematic and comprehensive:\n\n1. Start by loading and examining the basic structure of the dataset\n2. Check data types and identify any type inconsistencies\n3. Examine missing data patterns thoroughly\n4. Analyze each column individually for quality issues specific to its data type\n5. Look for statistical outliers and impossible values\n6. Check for duplicates and near-duplicates\n7. Examine categorical variables for inconsistencies\n8. Validate logical relationships between columns\n9. Look for formatting inconsistencies\n\nUse the Python tool to write and execute code that will help you uncover these issues. Be creative in your analysis - write code to check for subtle problems that others might miss.\n\nBefore providing your final analysis, use the scratchpad to plan your investigation strategy:\n\n&lt;scratchpad&gt;\n[Plan your systematic approach to analyzing the data quality, thinking through what specific checks you want to perform and in what order]\n&lt;/scratchpad&gt;\n\nThen execute your analysis using the Python tool. After completing your investigation, provide your findings in this format:\n\n&lt;data_quality_report&gt;\n**CRITICAL ISSUES FOUND:**\n[List the most severe data quality problems]\n\n**MODERATE ISSUES FOUND:**\n[List issues that should be addressed but aren't critical]\n\n**MINOR ISSUES FOUND:**\n[List smaller issues that could be improved]\n\n**DETAILED ANALYSIS:**\n[Provide detailed explanations of each issue found, including specific examples and the potential impact]\n\n**RECOMMENDATIONS:**\n[Provide specific, actionable recommendations for fixing each category of issues]\n\n**DATA QUALITY SCORE:**\n[Provide an overall data quality score from 1-10, where 10 is perfect quality]\n&lt;/data_quality_report&gt;\n\nRemember: Be obsessively thorough. Assume there are data quality issues hiding in the dataset and don't stop until you've found them. Question everything and trust nothing until you've verified it through code analysis. Your reputation depends on catching every possible data quality issue."
   },
   {
-    "objectID": "workshop-01.html",
-    "href": "workshop-01.html",
-    "title": "Welcome and getting started",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Welcome and getting started"
-    ]
+    "objectID": "slides/slides-05.html#more-tips-1",
+    "href": "slides/slides-05.html#more-tips-1",
+    "title": "Prompt Engineering",
+    "section": "More tips",
+    "text": "More tips\n\nUse Markdown headings and XML tags to give structure to your prompts.\nUse variables to insert dynamic content into your prompts–BUT be aware of prompt injection!\n\nYour task is to provide feedback on a research paper summary.\nHere is a summary of a medical research paper:\n&lt;summary&gt;\n{{SUMMARY}}\n&lt;/summary&gt;\n\nHere is the research paper:\n&lt;paper&gt;\n{{RESEARCH_PAPER}}\n&lt;/paper&gt;\n\nReview this summary for accuracy, clarity, and completeness on\na graded A-F scale."
   },
   {
-    "objectID": "workshop-01.html#slides",
-    "href": "workshop-01.html#slides",
-    "title": "Welcome and getting started",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Welcome and getting started"
-    ]
+    "objectID": "slides/slides-05.html#more-tips-2",
+    "href": "slides/slides-05.html#more-tips-2",
+    "title": "Prompt Engineering",
+    "section": "More tips",
+    "text": "More tips\nGet large prompts out of the code and into separate files.\n\nEasier to read (both locally and on GitHub)\nEasier to read diffs in version control\nWe will do this in one of our exercises later"
   },
   {
-    "objectID": "workshop-01.html#outline",
-    "href": "workshop-01.html#outline",
-    "title": "Welcome and getting started",
-    "section": "Outline",
-    "text": "Outline\n\nWelcome, introductions, workshop expectations\n\nActivity: introduce yourself to your neighbors\n\nSet-up and verify API access\n\nActivity: Set up our API keys and make our first API calls!",
-    "crumbs": [
-      "Workshop",
-      "Welcome and getting started"
-    ]
+    "objectID": "slides/slides-05.html#more-tips-3",
+    "href": "slides/slides-05.html#more-tips-3",
+    "title": "Prompt Engineering",
+    "section": "More tips",
+    "text": "More tips\n(Advanced) Force the model to say things out loud.\nE.g., “Use no more than three rounds of tool calls” =&gt; “Before answering, note how many tool calls you have made inside  tags. If you have made three, stop and answer.”"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "Workshop at posit::conf(2025) in Atlanta, GASeptember 16, 2025 :: 09:00 - 17:00Room: Regency VII"
-  },
-  {
-    "objectID": "index.html#introduction",
-    "href": "index.html#introduction",
-    "title": "Programming with LLMs",
-    "section": "Introduction",
-    "text": "Introduction\nLarge Language Models (LLMs) offer developers unprecedented programmatic capabilities. This workshop introduces ellmer (R) and chatlas (Python), Posit packages that simplify LLM API integration, handling conversation complexities and enabling seamless interactions with AI models.\nParticipants will explore system prompt design, token management, and tool calling while building familiarity with current AI technologies. The workshop demonstrates that:\n\nCoding with LLMs unlocks possibilities beyond standard tools\nNo advanced AI background is required\nImplementing AI can be both accessible and exciting\n\nDesigned for AI newcomers and experienced developers, the session covers LLM integration, Shiny web app development, and touches on advanced topics like Retrieval-Augmented Generation (RAG) and tool calling. Attendees will gain hands-on experience through guided exercises, providing the confidence to start their LLM journey."
-  },
-  {
-    "objectID": "index.html#links",
-    "href": "index.html#links",
-    "title": "Programming with LLMs",
-    "section": "Links",
-    "text": "Links\n\n📘 Workshop Materials\n🔧 Getting Setup\n\n👾 Discord (signup instructions)\n📦 Repository\n🍑 posit::conf(2025)"
-  },
-  {
-    "objectID": "setup.html",
-    "href": "setup.html",
-    "title": "Getting Setup",
-    "section": "",
-    "text": "Bring your personal laptop and a power cord. This is going to be a hands-on workshop, meaning that you’ll be writing code and collaborating with new friends you’ll make at the workshop.\n\n\n\n\n\n\nImportantYou need an API key!\n\n\n\nWe’ll be using APIs from OpenAI and Anthropic, so you will need to create an account with each service and get an API key.\nHead to OpenAI and Anthropic to create your accounts and get your API keys. Once you have your API keys, store them in the project folder in a file named .env:\n\n\n.env\n\nOPENAI_API_KEY=sk-proj-...\nANTHROPIC_API_KEY=sk-ant-...\n\nIf you’re using the exercises in this workshop, it’s unlikely that your API usage will exceed a few dollars. Alternatively, if you want to use or try local models (which are free) during the workshop, you should install ollama and download a model."
-  },
-  {
-    "objectID": "setup.html#create-accounts",
-    "href": "setup.html#create-accounts",
-    "title": "Getting Setup",
-    "section": "Create Accounts",
-    "text": "Create Accounts\nIn this workshop, we’ll be using a few different online services. If you don’t already have accounts with these services, you’ll need to create them before we get started.\n\nDiscord\n\nUsed to communicate during the workshop and ask questions via text. Also used for general online participation during the conference.\nMake sure your display name is the one you used to register for the conference.\nJoin the posit::conf(2025) Discord server via the posit::conf event portal.\nOur workshop channel is #workshop-llm.\n\nGitHub\n\nThe workshop materials are hosted on GitHub and we may use GitHub in an activity during the workshop."
-  },
-  {
-    "objectID": "setup.html#choose-your-ide",
-    "href": "setup.html#choose-your-ide",
-    "title": "Getting Setup",
-    "section": "Choose your IDE",
-    "text": "Choose your IDE\nYou can use any IDE you like to follow along with the workshop. We’ll be using Positron, the free, next-generation data science IDE from Posit.\n\n\n Download Positron\n\nOf course, you’re welcome to use RStudio, VS Code or any other IDE you prefer.\n\n\n\n\n\n\nTipWhy use Positron?\n\n\n\nUsing Positron offers you the opportunity to try out two new AI-powered features in Positron:\n\nPositron Assistant, a general purpose AI assistant integrated directly into your development environment.\nDatabot, an AI assistant specifically designed to accelerate exploratory data analysis."
-  },
-  {
-    "objectID": "setup.html#prepping-for-the-workshop",
-    "href": "setup.html#prepping-for-the-workshop",
-    "title": "Getting Setup",
-    "section": "Prepping for the workshop",
-    "text": "Prepping for the workshop\nTo prepare for the workshop, you need to clone the repository and install the necessary packages.\n\nClone the repository\n\n Positron RStudio VS Code usethis GitHub git\n\n\nIn Positron, use File &gt; New Folder from Git…. Enter the repository link—https://github.com/posit-conf-2025/llm.git—and choose a location on your computer to save the project.\n\n\n\n\n\nIn RStudio, use the project dropdown menu (top right) or File &gt; New Project…. Choose Version Control and then pick Git.\n\n\n\n\nStep 1: Choose “Version Control” and “Git”.\n\n\n\nEnter the repository link—https://github.com/posit-conf-2025/llm.git—and choose a location on your computer to save the project.\n\n\n\n\nStep 2: Enter the repo URL and choose a location for the project.\n\n\n\n\n\nIn VS Code,\n\nopen the command palette with Ctrl+Shift+P (Windows/Linux) or Cmd+Shift+P (Mac).\nType Git: Clone and select it.\nEnter the repository link: https://github.com/posit-conf-2025/llm.git\nChoose a location on your computer to save the project.\n\n\n\n\n\n\nYou can use the usethis package to quickly clone the repository:\nusethis::create_from_github(\n  \"posit-conf-2025/llm\",\n  # Decide where to put the project here:\n  destdir = \"~/Desktop/llm\"\n)\nThis will download the repository and open the project in RStudio.\n\n\ncd ~/Desktop # or somewhere you can find easily\n\ngh repo clone posit-conf-2025/llm\ncd llm\n\n\ncd ~/Desktop # or somewhere you can find easily\n\ngit clone https://github.com/posit-conf-2025/llm.git\ncd llm\n\n\n\n\n\nSet up your environment\nThis workshop is designed so that you can use either R or Python. You can choose to use only one language throughout, or you can even switch between R and Python during the workshop!\nEven if you’re only planning to use R, consider installing uv, a package and environment manager for Python (see the Python instructions below). That way, could easily try out the Python examples during the workshop if you want to.\n\n\n\n\nFirst, make sure you’re using a recent version of R. I used R 4.5 but any recent version of R (&gt;= 4.1) should work. I also use rig to manage my R installations, since it makes it easy to install new versions of R and switch between them.\nThen, open the project in your IDE and run the following commands in the R console:\n# Install pak if you don't have it already\n# install.packages(\"pak\")\n\n# Add the Posit and RStudio R-Universe repos for easy dev package installation\npak::repo_add(\"https://posit-dev.r-universe.dev\")\npak::repo_add(\"https://rstudio.r-universe.dev\")\n\npak::local_install_deps()\n\n\nAlternative: Direct package installation\n\n# Install {pak} (it's fast and smart at installing packages)\nif (!requireNamespace(\"pak\", quietly = TRUE)) {\n  # fmt: skip\n  install.packages(\"pak\", repos = sprintf(\"https://r-lib.github.io/p/pak/stable/%s/%s/%s\", .Platform$pkgType, R.Version()$os, R.Version()$arch))\n}\n\n# Now install the packages we need for the workshop\npak::pak(c(\n  \"askpass\",\n  \"base64enc\",\n  \"beepr\",\n  \"brio\",\n  \"bsicons\",\n  \"rstudio/bslib\", # remove \"rstudio/\" to use bslib from CRAN\n  \"digest\",\n  \"dotenv\",\n  \"dplyr\",\n  \"ellmer\",\n  \"forcats\",\n  \"fs\",\n  \"ggplot2\",\n  \"here\",\n  \"leaflet\",\n  \"magick\",\n  \"mcptools\",\n  \"purrr\",\n  \"posit-dev/querychat/pkg-r\",\n  \"ragnar\",\n  \"reactable\",\n  \"readr\",\n  \"scales\",\n  \"rstudio/shiny\", # remove \"rstudio/\" to use shiny from CRAN\n  \"posit-dev/shinychat/pkg-r\",\n  \"tidyr\",\n  \"vitals\",\n  \"watcher\",\n  \"weathR\"\n))\n\n\n\nWe’re using uv by Astral to manage our Python environment and dependencies. If you don’t have uv installed, you can install it by following uv’s installation instructions.\nOnce you’re set up with uv, open the project in your IDE and run the following command in the terminal to create the Python environment and install the necessary packages:\nuv sync\nThat command will create a virtual environment in the project directory and install all the required packages listed in the pyproject.toml file."
-  },
-  {
-    "objectID": "setup.html#local-models",
-    "href": "setup.html#local-models",
-    "title": "Getting Setup",
-    "section": "Local models with ollama",
-    "text": "Local models with ollama\nollama is an open-source tool for running LLMs locally on your computer. Local models do not provide the same quality of responses as flagship models from AI providers like OpenAI or Anthropic, but you can run models on your own computer without having to pay for API access or sending your data to a third party.\nYou do not need to install ollama or use local models to participate in the workshop. That said, they’re a fun way to experiment with LLMs without incurring API costs.\nTo use ollama, first download and install it on your computer. Then, you can browse the list of models on the ollama website to find a model that you want to use. Here are a few that we like for local testing. For the workshop, I’d recommend installing gemma3:4b1.\n\n\n\n\n\n\n\n\nID\nSize\nCapabilities\n\n\n\n\n[gemma3:4b][ollama-gemma3-4b]\n3.3GB\nvision\n\n\n[qwen3:8b][ollama-qwen3-8b]\n5.2GB\ntools thinking\n\n\n[gpt-oss:20b][ollama-gpt-oss]\n14GB\ntools thinking\n\n\n\nTo use a model, you first need to download it. For example, to download [gemma3:4b][ollama-gemma3-4b], run the following command in your terminal:\nollama pull gemma3:4b\nThat command downloads the model to your computer. Once the model is downloaded, you can use it on your own computer without needing to be connected to the internet.\nYou can use ollama to chat with the model directly in your terminal\nollama run gemma3:4b\nor you can use ellmer or chatlas to interact with the model from R or Python.\n\n\n\n\nlibrary(ellmer)\n\nchat &lt;- chat_ollama(model = \"gemma3:4b\")\nchat$chat(\"What is the capital of France?\")\n\nThe capital of France is Paris.\nIt’s a global center for art, fashion, gastronomy, and culture. 🌍🇫🇷\n\n\n\nfrom chatlas import ChatOllama\n\nchat = ChatOllama(model=\"gemma3:4b\")\nchat.chat(\"What is the capital of France?\")\n\nThe capital of France is Paris.\nIt’s a global center for art, fashion, gastronomy, and culture. 😊\nDo you want to know anything more about Paris?\n\n\n\n\n\n\n\n\n\n\nNoteWhy use a local model?\n\n\n\n\n\nLocal models are just like the famous ChatGPT or Claude models, but they run entirely on your own computer. You can use them for all of the same tasks: conversational AI, code generation, text processing, vision and more. There are a wide range of models available at many different sizes and capabilities, so you can choose one that fits your hardware and performance needs.\nLocal models are no where near as capable as the flagship models from OpenAI or Anthropic. Still, there are a few reasons you might want to use a local model:\n\nYour conversation never leaves your computer, ensuring complete data privacy.\nNo API costs, making local models very low-cost (other than the cost of your laptop or the hardware to run the model).\nThey work offline, so you can use them without an internet connection.\n\nLocal models are a great option for prototyping, experimentation, and personal use. They’re also useful to companies that want to use LLMs but have strict data privacy requirements and need to ensure that their data never leaves their network.\nOn the other hand, because you’re running the model on your own hardware, local models are slower and less powerful than cloud-based models, especially if you’re using a laptop or desktop computer. Personally, I use local models for experiments and testing to avoid API charges and switch to cloud-based models when I’m putting an LLM-powered application into production."
-  },
-  {
-    "objectID": "setup.html#the-night-before-the-workshop",
-    "href": "setup.html#the-night-before-the-workshop",
-    "title": "Getting Setup",
-    "section": "The night before the workshop",
-    "text": "The night before the workshop\nIf you’ve followed the instructions above, you should be all set for the workshop! But we’ll likely be making some last-minute changes to the workshop materials as we get closer to the event.\nTo be completely ready-to-go on the day of the workshop, make sure that you get the latest version of the materials the night before the workshop.\n\nUpdate your local copy of the repository:\nUse git pull in the terminal, or the Git: Pull command in your IDE.\nUpdate your R packages:\nIf you’re using R, run renv::restore() again to make sure you have the latest package versions.\nUpdate your Python packages:\nIf you’re using Python, run uv sync again to make sure you have the latest package versions."
-  },
-  {
-    "objectID": "setup.html#footnotes",
-    "href": "setup.html#footnotes",
-    "title": "Getting Setup",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nThe best open-weights model you can run on a typical laptop (with 16GB of RAM and a decent processor, like an M1 Mac) is [gpt-oss:20b][ollama-gpt-oss]. For something a little bit smaller, try [qwen3:8b][ollama-qwen3-8b].↩︎"
-  },
-  {
-    "objectID": "workshop-02.html",
-    "href": "workshop-02.html",
-    "title": "Anatomy of a conversation",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Anatomy of a conversation"
-    ]
-  },
-  {
-    "objectID": "workshop-02.html#slides",
-    "href": "workshop-02.html#slides",
-    "title": "Anatomy of a conversation",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Anatomy of a conversation"
-    ]
-  },
-  {
-    "objectID": "workshop-02.html#outline",
-    "href": "workshop-02.html#outline",
-    "title": "Anatomy of a conversation",
-    "section": "Outline",
-    "text": "Outline\n\n(10m) Think empirically, be pragmatic\n\nGetting into the right mindset for working with LLMs\nHow to approach this workshop\nExtra time to work with participants on setup if needed\n\n(20m) Anatomy of a conversation\n\nTo get a get a response, you send a message via HTTP\nMessage roles: system, user, assistant\nActivity (02_word-game): Word guessing game\nHow does the LLM remember the conversation? demos/03_clearbot\n\n(20m) How do LLMs work?\n\nHow to Talk to Robots slides\nTokens as the fundamental unit\nExample: _demos/04_token-possibilities\n\n(20m) Shinychat basics\n\nActivity (05_live): live_console() and live_browser() (or chat.console() and chat.app())\nMaking your own shinychat app with chat.ui() and chat.append(). R users can use the chat module with chat_mod_server().\nActivity (06_word-games): Reverse the word-guessing game with the word to guess in the system prompt. User has to guess, LLM gives hints.",
-    "crumbs": [
-      "Workshop",
-      "Anatomy of a conversation"
-    ]
-  },
-  {
-    "objectID": "workshop-04.html",
-    "href": "workshop-04.html",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Programming with LLMs"
-    ]
-  },
-  {
-    "objectID": "workshop-04.html#slides",
-    "href": "workshop-04.html#slides",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Programming with LLMs"
-    ]
-  },
-  {
-    "objectID": "workshop-04.html#resources",
-    "href": "workshop-04.html#resources",
-    "title": "Programming with LLMs",
-    "section": "Resources",
-    "text": "Resources\n\n(15m) Choosing a model\n\nOverview of major providers: OpenAI, Anthropic, Google, ollama\nTradeoffs: capability, context length, speed, cost, intelligence\nActivity: same question, change one string to switch models, e.g. chat(\"openai\"), chat(\"anthropic\").\n\n(15m) Multi-modal input (vision, PDF)\n\nActivity: images of food and ask for recipes\nActivity: take a PDF of a recipe, turn it into markdown\n\n(15m) Structured output\n\nExplain ellmer::type_*() or pydantic model in chatlas\nActivity: Extract rich data from the recipe PDF\nNote use_attribute_docstrings\n\n(10m) Parallel/batch calls\n\nActivity: Extract recipe data in parallel or batch",
-    "crumbs": [
-      "Workshop",
-      "Programming with LLMs"
-    ]
-  },
-  {
-    "objectID": "workshop-08.html",
-    "href": "workshop-08.html",
-    "title": "Tool Calling",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Tool Calling"
-    ]
-  },
-  {
-    "objectID": "workshop-08.html#slides",
-    "href": "workshop-08.html#slides",
-    "title": "Tool Calling",
-    "section": "",
-    "text": "View slides in full screen",
-    "crumbs": [
-      "Workshop",
-      "Tool Calling"
-    ]
-  },
-  {
-    "objectID": "workshop-08.html#outline",
-    "href": "workshop-08.html#outline",
-    "title": "Tool Calling",
-    "section": "Outline",
-    "text": "Outline\n\n(20m) Tool calling\n\nExplain how tool calling pattern, mostly following https://pkg.garrickadenbuie.com/genAI-2025-llms-meet-shiny\nActivity: quiz show\n\nWe’ve provided an R/Python function that plays a sound\n\nR: beepr, Python: playsound\n\nDocument the function and register it as a tool in the Quiz Show app\n\n\n(30m) Tool calling UI\n\nPrimarily a series of activities that progressively enhance the quiz show app\nActivity: Add tool annotations to give the tool an icon and title\nActivity: Use ContentToolResult to return custom title and icon\nActivity: Track answers and score in the app (add/update value boxes)",
-    "crumbs": [
-      "Workshop",
-      "Tool Calling"
-    ]
-  },
-  {
-    "objectID": "slides/slides-01.html#welcome-to-getting-started-with-llm-apis-in-r",
-    "href": "slides/slides-01.html#welcome-to-getting-started-with-llm-apis-in-r",
-    "title": "Welcome!",
-    "section": "Welcome to Getting Started with LLM APIs in R!",
-    "text": "Welcome to Getting Started with LLM APIs in R!\n Workshop repo: https://bit.ly/r-pharma-llm\n\n☁️ Set up Posit Cloud:\n\nCreate a free account at https://posit.cloud/.\nOpen the Posit Cloud space: https://posit.cloud/spaces/717315/.\nClick “Yes” to join the space.\nClick Content and select the RStudio project or go to https://posit.cloud/spaces/717315/content/11313957.\nTo save a copy of the project to your workspace at any point, click “Save a permanent copy”."
-  },
-  {
-    "objectID": "slides/slides-01.html#skaltman.github.ior-pharma-llm",
-    "href": "slides/slides-01.html#skaltman.github.ior-pharma-llm",
-    "title": "Welcome!",
-    "section": "🏡 skaltman.github.io/r-pharma-llm",
-    "text": "🏡 skaltman.github.io/r-pharma-llm\nAll materials live here!"
-  },
-  {
-    "objectID": "slides/slides-01.html#schedule",
-    "href": "slides/slides-01.html#schedule",
-    "title": "Welcome!",
-    "section": "Schedule",
-    "text": "Schedule\n\n\n\nTime\n\nActivity\n\n\n\n\n01:00 - 01:15\n👋\nIntro\n\n\n01:15 - 01:55\n💬\nAnatomy of a conversation\n\n\n01:55 - 02:25\n💻\nProgramming with LLMs\n\n\n02:25 - 02:40\n✍️\nPrompt engineering\n\n\n02:40 - 03:00\n🛠️\nTool calling"
-  },
-  {
-    "objectID": "slides/slides-01.html#asking-questions",
-    "href": "slides/slides-01.html#asking-questions",
-    "title": "Welcome!",
-    "section": "Asking questions",
-    "text": "Asking questions"
-  },
-  {
-    "objectID": "slides/slides-01.html#were-using-positron",
-    "href": "slides/slides-01.html#were-using-positron",
-    "title": "Welcome!",
-    "section": "We’re using Positron",
-    "text": "We’re using Positron\n\n\n\n\nRStudio and VS Code are great, too!"
-  },
-  {
-    "objectID": "slides/slides-01.html#file-organization",
-    "href": "slides/slides-01.html#file-organization",
-    "title": "Welcome!",
-    "section": "File organization",
-    "text": "File organization\n\n\n\n\n_exercises/\nFiles for Your Turn exercises\n\n\n_solutions/\nSolutions to those exercises\n\n\n_demos/\nFiles for stuff we demo\n\n\nwebsite/\nThe website and slides\n\n\n./*\nLots of project related files you can ignore"
-  },
-  {
-    "objectID": "slides/slides-01.html#exercise-solutions",
-    "href": "slides/slides-01.html#exercise-solutions",
-    "title": "Welcome!",
-    "section": "Exercise Solutions",
-    "text": "Exercise Solutions\n\n👨‍💻 👩‍💻 _exercises/01_hello-llm/01_hello-llm.R\n   🫣    _solutions/01_hello-llm/01_hello-llm.R"
-  },
-  {
-    "objectID": "slides/slides-01.html#to-use-an-ai-api",
-    "href": "slides/slides-01.html#to-use-an-ai-api",
-    "title": "Welcome!",
-    "section": "To use an AI API…",
-    "text": "To use an AI API…\n\n…you need an API key!"
-  },
-  {
-    "objectID": "slides/slides-01.html#how-to-get-an-api-key-beyond-this-workshop",
-    "href": "slides/slides-01.html#how-to-get-an-api-key-beyond-this-workshop",
-    "title": "Welcome!",
-    "section": "How to get an API key, beyond this workshop",
-    "text": "How to get an API key, beyond this workshop\n\n\n🆙 Sign up for an account with OpenAI, Anthropic, etc.\n💳 Add a payment method\n🔑 Get an API key\n💾 Store it in .Renviron fileas OPENAI_API_KEY, ANTHROPIC_API_KEY, etc."
-  },
-  {
-    "objectID": "slides/slides-01.html#but-well-give-you-api-keys-to-use-today",
-    "href": "slides/slides-01.html#but-well-give-you-api-keys-to-use-today",
-    "title": "Welcome!",
-    "section": "But we’ll give you API keys to use today!",
-    "text": "But we’ll give you API keys to use today!\n\nUse these keys for all of our activities today\nPlay and explore! But please be considerate :)\nWe’ll turn them off at the end of the workshop"
-  },
-  {
-    "objectID": "slides/slides-01.html#your-turn-01_hello-llm",
-    "href": "slides/slides-01.html#your-turn-01_hello-llm",
-    "title": "Welcome!",
-    "section": "Your Turn 01_hello-llm",
-    "text": "Your Turn 01_hello-llm\n\n\n🔓 Decrypt the .env.secret → .env:\n\nRun secret.R\n\n🤫 The special phrase is:\nr-pharma-llm-5\n🤖 Run the code in _exercises/01_hello-llm"
-  },
-  {
-    "objectID": "slides/slides-04.html#section",
-    "href": "slides/slides-04.html#section",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "Provider\n\ncompany that hosts and serves models\n\nModel\n\na specific LLM with particular capabilities"
-  },
-  {
-    "objectID": "slides/slides-04.html#how-are-models-different",
-    "href": "slides/slides-04.html#how-are-models-different",
-    "title": "Programming with LLMs",
-    "section": "How are models different?",
-    "text": "How are models different?\n\nContent: How many tokens can you give the model?\nSpeed: How many tokens per second?\nCost: How much does it cost to use the model?\nIntelligence: How smart is the model?\nCapabilities: Vision, reasoning, tools, etc.\n\n\n\nContent: 200k tokens is normal, 1M tokens in some newer models\nSpeed: Gemini Flash hits ~350 tokens/sec, 100-200 is very fast, 50-100 normal. Speed is often a trade-off with intelligence.\nCost: $1-5 per million tokens is normal for big frontier models, &lt; $1 for smaller, faster models\nIntelligence is a stand-in for lots of concepts"
-  },
-  {
-    "objectID": "slides/slides-04.html#how-are-models-different-1",
-    "href": "slides/slides-04.html#how-are-models-different-1",
-    "title": "Programming with LLMs",
-    "section": "How are models different?",
-    "text": "How are models different?\n\nContent: How many tokens can you give the model?\nSpeed: How many tokens per second?\nCost: How much does it cost to use the model?\nIntelligence: How smart is the model?\nCapabilities: Vision, reasoning, tools, etc."
-  },
-  {
-    "objectID": "slides/slides-04.html#how-are-models-different-2",
-    "href": "slides/slides-04.html#how-are-models-different-2",
-    "title": "Programming with LLMs",
-    "section": "How are models different?",
-    "text": "How are models different?\n\nContent: How many tokens can you give the model?\nSpeed: How many tokens per second?\nCost: How much does it cost to use the model?\nIntelligence: How smart is the model?\nCapabilities: Vision, reasoning, tools, etc."
-  },
-  {
-    "objectID": "slides/slides-04.html#section-1",
-    "href": "slides/slides-04.html#section-1",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "We’ll start with Anthropic, a company that builds LLMs, in particular a family of models they call Claude."
-  },
-  {
-    "objectID": "slides/slides-04.html#section-2",
-    "href": "slides/slides-04.html#section-2",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "Claude comes in different sizes, with different levels of intelligence.\nThey have a small model that’s fast and cheap, a large model that’s intelligent but expensive, and a just-right sized model that balances speed, cost, and intelligence."
-  },
-  {
-    "objectID": "slides/slides-04.html#section-3",
-    "href": "slides/slides-04.html#section-3",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "In line with Anthropic’s branding, these models are named after different types of poetry.\n\nHaiku is small, fast, and cheap\nSonnet is larger, more expensive, and more intelligent\nOpus is the largest, most expensive, and most intelligent\n\nAnthropic’s poetry naming offsets the fact that Anthropic has one of the most consistent naming schemes in the industry. (Yes, that’s says a lot.)"
-  },
-  {
-    "objectID": "slides/slides-04.html#section-4",
-    "href": "slides/slides-04.html#section-4",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "But there isn’t just one Claude model at different sizes. Anthropic keeps training new models which they generally release with a new version number.\n\nClaude 3.5 was released a year ago (in June 2024)\nClaude 3.7 was released earlier this year (Feb. 2025)\nClaude 4 was just released in May 2025\n\nAll four of these models are still active and available."
-  },
-  {
-    "objectID": "slides/slides-04.html#section-5",
-    "href": "slides/slides-04.html#section-5",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "When you’re choosing a model, you can get higher quality responses by moving up a size tier."
-  },
-  {
-    "objectID": "slides/slides-04.html#section-6",
-    "href": "slides/slides-04.html#section-6",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "And when new releases come out, you can often get similar quality improvements by moving up a version number. (This move tends to be cheaper than moving up a size tier.)"
-  },
-  {
-    "objectID": "slides/slides-04.html#section-7",
-    "href": "slides/slides-04.html#section-7",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "Oh, wait, sorry, to be very technically accurate, it turns out that the Opus models are only available for Claude 3 and Claude 4, but not for the intermediate versions 3.5 and 3.7.\nIt remains to be seen if this will be an enduring pattern, or just they way things happened for 3.5 and 3.7."
-  },
-  {
-    "objectID": "slides/slides-04.html#choose-a-model",
-    "href": "slides/slides-04.html#choose-a-model",
-    "title": "Programming with LLMs",
-    "section": "Choose a model",
-    "text": "Choose a model\n\n\n\nTask\nOpenAI\nAnthropic\nGemini\n\n\n\n\nCoding\nGPT-5\nClaude 4 Sonnet\nGemini 2.5 Pro\n\n\nFast/General\nGPT-5 mini\nClaude 3.5 Sonnet\nGemini 2.0 Flash\n\n\nComplex Tasks\no3\nClaude 4 Opus\nGemini 2.5 Pro\n\n\nCost-Effective\nMini\nHaiku\nFlash"
-  },
-  {
-    "objectID": "slides/slides-04.html#learn-more",
-    "href": "slides/slides-04.html#learn-more",
-    "title": "Programming with LLMs",
-    "section": "Learn more",
-    "text": "Learn more\n\nRanking of models: Artificial Analysis\nOpenAI models\nAnthropic models\nGoogle Gemini models"
-  },
-  {
-    "objectID": "slides/slides-04.html#ellmer",
-    "href": "slides/slides-04.html#ellmer",
-    "title": "Programming with LLMs",
-    "section": "",
-    "text": "Providers\n\nchat_openai()\nchat_anthropic()\nchat_google_gemini()\n\n\n\nLocal models\n\nchat_ollama()\n\n\n\nEnterprise\n\nchat_aws_bedrock()\n\n\n\n\nhttps://ellmer.tidyverse.org/"
-  },
-  {
-    "objectID": "slides/slides-04.html#chat-in-easy-mode",
-    "href": "slides/slides-04.html#chat-in-easy-mode",
-    "title": "Programming with LLMs",
-    "section": "Chat in Easy Mode",
-    "text": "Chat in Easy Mode\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"anthropic\")"
-  },
-  {
-    "objectID": "slides/slides-04.html#chat-in-easy-mode-1",
-    "href": "slides/slides-04.html#chat-in-easy-mode-1",
-    "title": "Programming with LLMs",
-    "section": "Chat in Easy Mode",
-    "text": "Chat in Easy Mode\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"anthropic\")\n#&gt; Using model = \"claude-sonnet-4-20250514\"."
-  },
-  {
-    "objectID": "slides/slides-04.html#chat-in-easy-mode-2",
-    "href": "slides/slides-04.html#chat-in-easy-mode-2",
-    "title": "Programming with LLMs",
-    "section": "Chat in Easy Mode",
-    "text": "Chat in Easy Mode\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai\")\n#&gt; Using model = \"gpt-4.1\"."
-  },
-  {
-    "objectID": "slides/slides-04.html#chat-in-easy-mode-3",
-    "href": "slides/slides-04.html#chat-in-easy-mode-3",
-    "title": "Programming with LLMs",
-    "section": "Chat in Easy Mode",
-    "text": "Chat in Easy Mode\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")"
-  },
-  {
-    "objectID": "slides/slides-04.html#favorite-models-for-today",
-    "href": "slides/slides-04.html#favorite-models-for-today",
-    "title": "Programming with LLMs",
-    "section": "Favorite models for today",
-    "text": "Favorite models for today\n\nOpenAI\n\ngpt-4.1-nano\ngpt-5\n\nAnthropic\n\nclaude-sonnet-4-20250514\nclaude-3-5-haiku-20241022"
-  },
-  {
-    "objectID": "slides/slides-04.html#a-picture-is-worth-a-thousand-words",
-    "href": "slides/slides-04.html#a-picture-is-worth-a-thousand-words",
-    "title": "Programming with LLMs",
-    "section": "A picture is worth a thousand words",
-    "text": "A picture is worth a thousand words\n\nOr for an LLM, a picture is roughly 227 words, or 170 tokens.\n\n\n🖼️ 🔍 Open Images Dataset"
-  },
-  {
-    "objectID": "slides/slides-04.html#content_image_file",
-    "href": "slides/slides-04.html#content_image_file",
-    "title": "Programming with LLMs",
-    "section": "🌆 content_image_file",
-    "text": "🌆 content_image_file\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\nchat$chat(\n  content_image_file(\"cute-cats.jpg\"),\n  \"What do you see in this image?\"\n)"
-  },
-  {
-    "objectID": "slides/slides-04.html#content_image_url",
-    "href": "slides/slides-04.html#content_image_url",
-    "title": "Programming with LLMs",
-    "section": "🐈 content_image_url",
-    "text": "🐈 content_image_url\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\nchat$chat(\n  content_image_url(\"https://placecats.com/bella/400/400\"),\n  \"What do you see in this image?\"\n)"
-  },
-  {
-    "objectID": "slides/slides-04.html#your-turn-08_vision",
-    "href": "slides/slides-04.html#your-turn-08_vision",
-    "title": "Programming with LLMs",
-    "section": "Your Turn 08_vision",
-    "text": "Your Turn 08_vision\n\nI’ve put some images of food in the data/recipes/images folder.\nYour job: show the food to the LLM and see if it gets hungry.\n\n\n  \n    −\n    +\n \n 05:00"
-  },
-  {
-    "objectID": "slides/slides-04.html#content_pdf_file",
-    "href": "slides/slides-04.html#content_pdf_file",
-    "title": "Programming with LLMs",
-    "section": "📑 content_pdf_file",
-    "text": "📑 content_pdf_file\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\nchat$chat(\n  content_pdf_file(\"financial-report.pdf\"),\n  \"What's my tax liability for 2024?\"\n)"
-  },
-  {
-    "objectID": "slides/slides-04.html#content_pdf_url",
-    "href": "slides/slides-04.html#content_pdf_url",
-    "title": "Programming with LLMs",
-    "section": "📑 content_pdf_url",
-    "text": "📑 content_pdf_url\n\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\nchat$chat(\n  content_pdf_url(\"http://pdf.secdatabase.com/1757/0001104659-25-042659.pdf\"),\n  \"Describe Tesla's executive compensation and stock award programs.\"\n)"
-  },
-  {
-    "objectID": "slides/slides-04.html#your-turn-09_pdf",
-    "href": "slides/slides-04.html#your-turn-09_pdf",
-    "title": "Programming with LLMs",
-    "section": "Your Turn 09_pdf",
-    "text": "Your Turn 09_pdf\n\nWe have the actual recipes as PDFs in the data/recipes/pdf folder.\nYour job: ask the LLM to convert the recipes to markdown.\n\n\n  \n    −\n    +\n \n 05:00"
-  },
-  {
-    "objectID": "slides/slides-04.html#how-would-you-extract-name-and-age",
-    "href": "slides/slides-04.html#how-would-you-extract-name-and-age",
-    "title": "Programming with LLMs",
-    "section": "How would you extract name and age?",
-    "text": "How would you extract name and age?\n\nage_free_text &lt;- list(\n    \"I go by Alex. 42 years on this planet and counting.\",\n    \"Pleased to meet you! I'm Jamal, age 27.\",\n    \"They call me Li Wei. Nineteen years young.\",\n    \"Fatima here. Just celebrated my 35th birthday last week.\",\n    \"The name's Robert - 51 years old and proud of it.\",\n    \"Kwame here - just hit the big 5-0 this year.\"\n)"
-  },
-  {
-    "objectID": "slides/slides-04.html#if-you-wrote-r-code-it-might-look-like-this",
-    "href": "slides/slides-04.html#if-you-wrote-r-code-it-might-look-like-this",
-    "title": "Programming with LLMs",
-    "section": "If you wrote R code, it might look like this…",
-    "text": "If you wrote R code, it might look like this…\n\nword_to_num &lt;- function(x) {\n    # normalize\n    x &lt;- tolower(x)\n    # direct numbers\n    if (grepl(\"\\\\b\\\\d+\\\\b\", x)) return(as.integer(regmatches(x, regexpr(\"\\\\b\\\\d+\\\\b\", x))))\n    # hyphenated like \"5-0\"\n    if (grepl(\"\\\\b\\\\d+\\\\s*-\\\\s*\\\\d+\\\\b\", x)) {\n        parts &lt;- as.integer(unlist(strsplit(regmatches(x, regexpr(\"\\\\b\\\\d+\\\\s*-\\\\s*\\\\d+\\\\b\", x)), \"\\\\s*-\\\\s*\")))\n        return(10 * parts[1] + parts[2])\n    }\n    # simple word numbers\n    ones &lt;- c(\n        zero=0, one=1, two=2, three=3, four=4, five=5, six=6, seven=7, eight=8, nine=9,\n        ten=10, eleven=11, twelve=12, thirteen=13, fourteen=14, fifteen=15, sixteen=16,\n        seventeen=17, eighteen=18, nineteen=19\n    )\n    tens &lt;- c(twenty=20, thirty=30, forty=40, fifty=50, sixty=60, seventy=70, eighty=80, ninety=90)\n    # e.g., \"nineteen\"\n    if (x %in% names(ones)) return(ones[[x]])\n    # e.g., \"thirty five\" or \"thirty-five\"\n    x2 &lt;- gsub(\"-\", \" \", x)\n    parts &lt;- strsplit(x2, \"\\\\s+\")[[1]]\n    if (length(parts) == 2 && parts[1] %in% names(tens) && parts[2] %in% names(ones)) {\n        return(tens[[parts[1]]] + ones[[parts[2]]])\n    }\n    if (length(parts) == 1 && parts[1] %in% names(tens)) return(tens[[parts[1]]])\n    return(NA_integer_)\n}\n\n# Extract name candidates\nextract_name &lt;- function(s) {\n    # patterns that introduce a name\n    pats &lt;- c(\n        \"I go by\\\\s+([A-Z][a-z]+)\",\n        \"I'm\\\\s+([A-Z][a-z]+(?:\\\\s+[A-Z][a-z]+)?)\",\n        \"They call me\\\\s+([A-Z][a-z]+(?:\\\\s+[A-Z][a-z]+)?)\",\n        \"^([A-Z][a-z]+) here\",\n        \"The name's\\\\s+([A-Z][a-z]+)\",\n        \"^([A-Z][a-z]+)\\\\s\" # fallback: leading capital word\n    )\n    for (p in pats) {\n        m &lt;- regexpr(p, s, perl = TRUE)\n        if (m[1] != -1) {\n            return(sub(p, \"\\\\1\", regmatches(s, m)))\n        }\n    }\n    NA_character_\n}\n\n# Extract age phrases and convert to number\nextract_age &lt;- function(s) {\n    # capture common age phrases around a number\n    m &lt;- regexpr(\"(\\\\b\\\\d+\\\\b|\\\\b\\\\d+\\\\s*-\\\\s*\\\\d+\\\\b|\\\\b[Nn][a-z-]+\\\\b)\\\\s*(years|year|birthday|young|this)\", s, perl = TRUE)\n    if (m[1] != -1) {\n        token &lt;- sub(\"(years|year|birthday|young|this)$\", \"\", trimws(substring(s, m, m + attr(m, \"match.length\") - 1)))\n        return(word_to_num(token))\n    }\n    # handle pure word-number without trailing keyword (e.g., \"Nineteen years young.\" handled above)\n    m2 &lt;- regexpr(\"\\\\b([A-Z][a-z]+)\\\\b\\\\s+years\", s, perl = TRUE)\n    if (m2[1] != -1) {\n        token &lt;- tolower(sub(\"\\\\s+years.*\", \"\", regmatches(s, m2)))\n        return(word_to_num(token))\n    }\n    # handle hyphenated \"big 5-0\"\n    m3 &lt;- regexpr(\"big\\\\s+(\\\\d+\\\\s*-\\\\s*\\\\d+)\", s, perl = TRUE)\n    if (m3[1] != -1) {\n        token &lt;- sub(\"big\\\\s+\", \"\", regmatches(s, m3))\n        return(word_to_num(token))\n    }\n    NA_integer_\n}"
-  },
-  {
-    "objectID": "slides/slides-04.html#if-you-wrote-r-code-it-might-look-like-this-1",
-    "href": "slides/slides-04.html#if-you-wrote-r-code-it-might-look-like-this-1",
-    "title": "Programming with LLMs",
-    "section": "If you wrote R code, it might look like this…",
-    "text": "If you wrote R code, it might look like this…\n\n\ndplyr::tibble(\n  name = purrr::map_chr(age_free_text, extract_name),\n  age = purrr::map_int(age_free_text, extract_age)\n)\n\n# A tibble: 6 × 2\n  name     age\n  &lt;chr&gt;  &lt;int&gt;\n1 Alex      42\n2 Jamal     NA\n3 Li Wei    NA\n4 Fatima    NA\n5 Robert    51\n6 Kwame      5\n\n\n\nage_free_text\n\n[[1]]\n[1] \"I go by Alex. 42 years on this planet and counting.\"\n\n[[2]]\n[1] \"Pleased to meet you! I'm Jamal, age 27.\"\n\n[[3]]\n[1] \"They call me Li Wei. Nineteen years young.\"\n\n[[4]]\n[1] \"Fatima here. Just celebrated my 35th birthday last week.\"\n\n[[5]]\n[1] \"The name's Robert - 51 years old and proud of it.\"\n\n[[6]]\n[1] \"Kwame here - just hit the big 5-0 this year.\""
-  },
-  {
-    "objectID": "slides/slides-04.html#but-if-you-ask-an-llm",
-    "href": "slides/slides-04.html#but-if-you-ask-an-llm",
-    "title": "Programming with LLMs",
-    "section": "But if you ask an LLM…",
-    "text": "But if you ask an LLM…\nlibrary(ellmer)\n\nchat &lt;- chat(\n  \"openai/gpt-5-nano\",\n  system_prompt = \"Extract the name and age.\"\n)\n\nchat$chat(age_free_text[[1]])\n#&gt;\n\nchat$chat(age_free_text[[2]])\n#&gt;"
-  },
-  {
-    "objectID": "slides/slides-04.html#but-if-you-ask-an-llm-1",
-    "href": "slides/slides-04.html#but-if-you-ask-an-llm-1",
-    "title": "Programming with LLMs",
-    "section": "But if you ask an LLM…",
-    "text": "But if you ask an LLM…\nlibrary(ellmer)\n\nchat &lt;- chat(\n  \"openai/gpt-5-nano\",\n  system_prompt = \"Extract the name and age.\"\n)\n\nchat$chat(age_free_text[[1]])\n#&gt; Name: Alex; Age: 42\n\nchat$chat(age_free_text[[2]])\n#&gt; Name: Jamal; Age: 27"
-  },
-  {
-    "objectID": "slides/slides-04.html#wouldnt-this-be-nice",
-    "href": "slides/slides-04.html#wouldnt-this-be-nice",
-    "title": "Programming with LLMs",
-    "section": "Wouldn’t this be nice?",
-    "text": "Wouldn’t this be nice?\nchat$chat(age_free_text[[1]])\n#&gt; list(\n#&gt;   name = \"Alex\",\n#&gt;   age = 42\n#&gt; )"
-  },
-  {
-    "objectID": "slides/slides-04.html#structured-chat-output",
-    "href": "slides/slides-04.html#structured-chat-output",
-    "title": "Programming with LLMs",
-    "section": "Structured chat output",
-    "text": "Structured chat output\nchat$chat_structured(age_free_text[[1]])\n#&gt; list(\n#&gt;   name = \"Alex\",\n#&gt;   age = 42\n#&gt; )"
-  },
-  {
-    "objectID": "slides/slides-04.html#structured-chat-output-1",
-    "href": "slides/slides-04.html#structured-chat-output-1",
-    "title": "Programming with LLMs",
-    "section": "Structured chat output",
-    "text": "Structured chat output\ntype_person &lt;- type_object(\n  name = type_string(),\n  age = type_integer()\n)\n\nchat$chat_structured(age_free_text[[1]], type = type_person)\n#&gt; list(\n#&gt;   name = \"Alex\",\n#&gt;   age = 42\n#&gt; )"
-  },
-  {
-    "objectID": "slides/slides-04.html#structured-chat-output-2",
-    "href": "slides/slides-04.html#structured-chat-output-2",
-    "title": "Programming with LLMs",
-    "section": "Structured chat output",
-    "text": "Structured chat output\ntype_person &lt;- type_object(\n  name = type_string(),\n  age = type_integer()\n)\n\nchat$chat_structured(age_free_text[[1]], type = type_person)\n#&gt; $name\n#&gt; [1] \"Alex\"\n#&gt;\n#&gt; $age\n#&gt; [1] 42"
-  },
-  {
-    "objectID": "slides/slides-04.html#ellmers-type-functions",
-    "href": "slides/slides-04.html#ellmers-type-functions",
-    "title": "Programming with LLMs",
-    "section": "ellmer’s type functions",
-    "text": "ellmer’s type functions\n\n\ntype_person &lt;- type_object(\n  name = type_string(\"The person's name\"),\n  age = type_integer(\"The person's age in years\")\n)"
-  },
-  {
-    "objectID": "slides/slides-08.html#recall-how-do-llms-work",
-    "href": "slides/slides-08.html#recall-how-do-llms-work",
-    "title": "Tool Calling",
-    "section": "Recall: How do LLMs work?",
-    "text": "Recall: How do LLMs work?\n\nYou write some words\nThe LLM writes some more words\nYou use those words\n\n\nOn their own, can LLMs… access the internet? run code? send an email? interact with the world?"
-  },
-  {
-    "objectID": "slides/slides-08.html#lets-try-it",
-    "href": "slides/slides-08.html#lets-try-it",
-    "title": "Tool Calling",
-    "section": "Let’s try it",
-    "text": "Let’s try it\nlibrary(ellmer)\n\nchat &lt;- chat(\"openai/gpt-4.1-nano\")\n\nchat$chat(\"What's the weather like in Utqiagvik, Alaska?\")\nchat$chat(\"Who are the keynote speakers at R/Pharma 2025?\")\nchat$chat(\"What day is it?\")\n\nRun these in the terminal.\nAsk: how could we get the model to know these answers? Let’s start with the easiest one: what day is it?\nAnswer: we could just tell it in the system prompt.\nWhat about keynote speakers? We could include that in the system prompt too. But what if the schedule changes?\nWhat about the weather? The model can’t know that because it’s not connected to the internet."
-  },
-  {
-    "objectID": "slides/slides-08.html#tools",
-    "href": "slides/slides-08.html#tools",
-    "title": "Tool Calling",
-    "section": "Tools",
-    "text": "Tools\na.k.a. functions, tool calling or function calling\n\nBring real-time or up-to-date information to the model\nLet the model interact with the world\n\n\nTools are extra capabilities that you give to the LLM, like the ability to search the R/Pharma 2025 schedule. These capabilities are things that the model can’t do on its own. The goal is let the model pull in real-time, or up-to-date, or high-quality information as needed, depending on the conversation.\nThey can also give the model new abilities to take action on behalf of the user."
-  },
-  {
-    "objectID": "slides/slides-08.html#section",
-    "href": "slides/slides-08.html#section",
-    "title": "Tool Calling",
-    "section": "",
-    "text": "Zooming out again, the conversation starts with a user sending a message to the chatbot.\nIn this case, the user asks the model whether they can go to the pool today. (I live in Atlanta, GA.)\nHow much does the model know about the weather in Atlanta, GA?\nWhat’s the weather like today in Atlanta, GA?\n\nI’m unable to provide real-time weather updates. For the latest weather forecast in Atlanta, GA, please check a trusted weather service such as the National Weather Service, Weather.com, or a weather app on your device.\n\nGo ahead and guess\n\nSure! Since it’s July in Atlanta, GA, you can generally expect hot and humid weather. Temperatures might range from the mid-80s to mid-90s Fahrenheit (around 29-35°C). There could also be some afternoon thunderstorms or showers, which are common during summer months in Georgia. Keep a fan or air conditioning handy if you’re indoors, and stay hydrated!"
-  },
-  {
-    "objectID": "slides/slides-08.html#section-1",
-    "href": "slides/slides-08.html#section-1",
-    "title": "Tool Calling",
-    "section": "",
-    "text": "Now imagine we’ve told the LLM that it has access to a tool called get_weather(). Knowing that it 1) needs to know the weather in Atlanta and 2) it doesn’t know the weather in Atlanta, GA; the model decides to use the weather tool.\nIt sends back a message that includes a tool call, basically instructions to call the get_weather() function with the argument 30303. Notice that the model does know that Atlanta, GA is in the 30303 ZIP code."
-  },
-  {
-    "objectID": "slides/slides-08.html#section-2",
-    "href": "slides/slides-08.html#section-2",
-    "title": "Tool Calling",
-    "section": "",
-    "text": "The programmer can then take that message from the LLM with the instructions to call the tool and they go off and run the code that that satisfies the tool request, in this case querying the weather API for the weather in 30303 because that has been a stable fact for a long time."
-  },
-  {
-    "objectID": "slides/slides-08.html#section-3",
-    "href": "slides/slides-08.html#section-3",
-    "title": "Tool Calling",
-    "section": "",
-    "text": "The weather API sends back some data:\n\nThe forecast is mostly sunny\nHigh of 98ºF\nLow of 78ºF"
-  },
-  {
-    "objectID": "slides/slides-08.html#section-4",
-    "href": "slides/slides-08.html#section-4",
-    "title": "Tool Calling",
-    "section": "",
-    "text": "The programmer sends that data back to the LLM. Note that it’s often in a pretty raw format, like JSON. Not the kind of thing you’d want to read directly unless you’re the kind of person who likes reading computer data formats."
-  },
-  {
-    "objectID": "slides/slides-08.html#section-5",
-    "href": "slides/slides-08.html#section-5",
-    "title": "Tool Calling",
-    "section": "",
-    "text": "The LLM doesn’t mind JSON though, so it reads the data and generates a response that incorporates the data from the tool call."
-  },
-  {
-    "objectID": "slides/slides-08.html#the-llm-cant-run-code-by-itself",
-    "href": "slides/slides-08.html#the-llm-cant-run-code-by-itself",
-    "title": "Tool Calling",
-    "section": "The LLM can’t run code by itself!",
-    "text": "The LLM can’t run code by itself!"
-  },
-  {
-    "objectID": "slides/slides-08.html#human-in-the-loop",
-    "href": "slides/slides-08.html#human-in-the-loop",
-    "title": "Tool Calling",
-    "section": "Human in the loop",
-    "text": "Human in the loop\n👩‍💻 _demos/18_manual-tools/app.R"
-  },
-  {
-    "objectID": "slides/slides-08.html#wait-i-can-write-code",
-    "href": "slides/slides-08.html#wait-i-can-write-code",
-    "title": "Tool Calling",
-    "section": "Wait… I can write code!",
-    "text": "Wait… I can write code!\n👩‍💻 _demos/19_tools/19_weather-tool.R"
-  },
-  {
-    "objectID": "slides/slides-08.html#tool-definitions-in-r",
-    "href": "slides/slides-08.html#tool-definitions-in-r",
-    "title": "Tool Calling",
-    "section": "Tool definitions in R",
-    "text": "Tool definitions in R\ntool_get_weather &lt;- tool(\n  tool_fn,\n  description = \"How and when to use the tool\",\n  arguments = list(\n    .... = type_string(),\n    .... = type_integer(),\n    .... = type_enum(\n      c(\"choice1\", \"choice2\"),\n      required = FALSE\n    )\n  )\n)"
-  },
-  {
-    "objectID": "slides/slides-08.html#tools-in-shiny",
-    "href": "slides/slides-08.html#tools-in-shiny",
-    "title": "Tool Calling",
-    "section": "Tools in Shiny",
-    "text": "Tools in Shiny\n\nDefine the tool function inside the server\nYou can update reactive values in the tool function!\nYou can read reactive values, if you isolate() reads. (Be careful!)"
-  },
-  {
-    "objectID": "slides/slides-08.html#your-turn-23_quiz-game-5",
-    "href": "slides/slides-08.html#your-turn-23_quiz-game-5",
-    "title": "Tool Calling",
-    "section": "Your Turn 23_quiz-game-5",
-    "text": "Your Turn 23_quiz-game-5\nI’ve updated the app to show the score in value boxes.\n(And turned off the sounds.)\n\nIn the system prompt, tell the model when to use update_score.\nRead update_score(). It should update a reactive value in the app when called. Finish implementing it.\nComplete the tool definition.\nAdd tool annotations (optional, but fun!)\n\n\n  \n    −\n    +\n \n 08:00"
+    "objectID": "slides/slides-05.html#more-tips-4",
+    "href": "slides/slides-05.html#more-tips-4",
+    "title": "Prompt Engineering",
+    "section": "More tips",
+    "text": "More tips\nSee Anthropic’s Prompt Engineering Overview and OpenAI’s OpenAI Cookbook are excellent, and contain lots of tips and examples.\nGoogle’s Prompt Design Strategies may also be useful."
   }
 ]

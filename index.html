@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Programming with LLMs</title>
+<title>Getting Started with LLM APIs in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./assets/posit-conf-favicon.svg" rel="icon" type="image/svg+xml">
+<link href="./assets/logo-rinpharma.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-c2b8127be6a994787a9e8cac26dcef8b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6448fde214487a67aa47dd6e1fa48527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9e93f2a3316b58b95be1d8f480ba3d32.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/quarto-auto-dark-mode-1.0.0/auto-dark-mode.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -73,33 +73,16 @@ ul.task-list li input[type="checkbox"] {
 <meta name="theme-color" content="black">
 
 
-<meta property="og:title" content="Programming with LLMs">
-<meta property="og:description" content="posit::conf(2025)">
-<meta property="og:image" content="https://skaltman.github.io/r-pharma-llm/assets/open-graph-card.png">
-<meta property="og:site_name" content="Programming with LLMs">
-<meta property="og:image:height" content="400">
-<meta property="og:image:width" content="765">
-<meta name="twitter:title" content="Programming with LLMs">
-<meta name="twitter:description" content="posit::conf(2025)">
-<meta name="twitter:image" content="https://skaltman.github.io/r-pharma-llm/assets/open-graph-card.png">
-<meta name="twitter:creator" content="@grrrck">
-<meta name="twitter:site" content="@posit-dev">
-<meta name="twitter:image-height" content="400">
-<meta name="twitter:image-width" content="765">
-<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Programming with LLMs</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -120,43 +103,21 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./setup.html"> 
 <span class="menu-text">Setup</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about/index.html"> 
-<span class="menu-text">Team</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/posit-conf-2025/llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
-    <a href="https://discord.com/channels/1381993558437007490/1402378610861408266" title="" class="quarto-navigation-tool px-1" aria-label="Discord channel"><i class="bi bi-discord"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Programming with LLMs</h1>
-            <p class="subtitle lead">posit::conf(2025)</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 <script>document.querySelector('.navbar').dataset.bsTheme = 'dark';</script>
 <script>
   const icons = document.querySelectorAll(".quarto-navigation-tool")
@@ -168,178 +129,26 @@ ul.task-list li input[type="checkbox"] {
   })
 </script>
 
-
-
-
-
-<style>
-.quarto-title-banner {
-    color: var(--bs-body-bg);
-    background-image: url(assets/erik-skof-Xn8ilXVKntg-unsplash.png);
-    background-size: cover;
-    background-position: center;
-    height: 350px;
-    transition: filter 15s;
-}
-.quarto-title {
-    position: absolute;
-    top: 1rem;
-    left: 1.5rem;
-    grid-column: unset !important;
-}
-.quarto-title > * {
-    z-index: 1;
-    position: relative;
-}
-.quarto-title-banner .quarto-title::before {
-    position: absolute;
-    inset: 0;
-    content: "";
-    z-index: 0;
-}
-.quarto-title-banner h1 {
-    color: var(--bs-body-bg);
-    font-weight: 300 !important;
-    font-size: max(min(4vw, 2.5em), 1.5em);
-    text-wrap: pretty;
-}
-@media (max-width: 575.98px) {
-    .quarto-title-banner {
-        height: 300px;
-    }
-}
-header#title-block-header::before {
-    content: "";
-    width: 100%;
-    height: 80px;
-    position: absolute;
-    background-color: black;
-    top: -80px;
-}
-.video-background {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* Full viewport height */
-  overflow: hidden;
-}
-.slow-fade {
-  animation: fadeIn 5s ease-in forwards;
-  animation-delay: 3s;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-</style>
-<script>
-function setHue() {
-    const randomHue = Math.random() * 360
-    document.querySelector('.quarto-title-banner').style.filter = `hue-rotate(${randomHue}deg)`
-    setTimeout(setHue, 18000)
-}
-setHue()
-
-function createVideoBackground(options = {}) {
-  const config = {
-    container: '#title-block-header',
-    poster: null,
-    className: 'video-background',
-    ...options
-  };
-
-  const supportsVideo = () => {
-    const video = document.createElement('video');
-    return !!(video.canPlayType && video.canPlayType('video/mp4').replace(/no/, ''));
-  };
-
-  const prefersReducedMotion = () => {
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  };
-
-  const container = document.querySelector(config.container);
-
-  if (!container) {
-    console.error(`Container for video '${config.container}' not found`);
-    return null;
-  }
-
-  if (!supportsVideo() || prefersReducedMotion()) {
-    console.log('Video background not supported or user prefers reduced motion');
-    return null;
-  }
-
-  const video = document.createElement('video');
-  video.autoplay = true;
-  video.muted = true;
-  video.loop = true;
-  video.playsInline = true;
-  video.controls = false;
-  video.playbackRate = 0.5;
-
-  if (config.className) {
-    video.className = config.className;
-  }
-
-  if (config.poster) {
-    video.poster = config.poster;
-  }
-
-  video.style.cssText = `
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    object-fit: cover;
-    grid-column: unset;
-    opacity: 0;
-  `;
-
-  // Add video sources
-  if (config.videoSrc.mp4) {
-    const mp4Source = document.createElement('source');
-    mp4Source.src = config.videoSrc.mp4;
-    mp4Source.type = 'video/mp4';
-    video.appendChild(mp4Source);
-  }
-
-  if (config.videoSrc.webm) {
-    const webmSource = document.createElement('source');
-    webmSource.src = config.videoSrc.webm;
-    webmSource.type = 'video/webm';
-    video.appendChild(webmSource);
-  }
-
-  if (getComputedStyle(container).position === 'static') {
-    container.style.position = 'relative';
-  }
-  container.style.overflow = 'hidden';
-
-  container.insertBefore(video, container.firstChild);
-
-  video.play().catch(console.warn);
-
-  return video;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  createVideoBackground({
-    container: '#title-block-header .quarto-title-banner',
-    videoSrc: {
-      mp4: 'assets/replicate-prediction-ajsyfca4q9rme0cryvv8509r2w.mp4'
-    },
-    poster: 'assets/erik-skof-Xn8ilXVKntg-unsplash.png',
-    className: 'video-background slow-fade'
-  });
-});
-</script>
-<div class="lead mb-4">
-<p><strong>Workshop at <a href="https://posit.co/conference">posit::conf(2025)</a></strong> in Atlanta, GA<br>September 16, 2025 :: 09:00 - 17:00<br><strong>Room:</strong> Regency VII</p>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Getting Started with LLM APIs in R</h1>
+<p class="subtitle lead">R/Pharma 2025</p>
 </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Large Language Models (LLMs) offer developers unprecedented programmatic capabilities. This workshop introduces ellmer (R) and chatlas (Python), Posit packages that simplify LLM API integration, handling conversation complexities and enabling seamless interactions with AI models.</p>
@@ -355,11 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
 <h2 class="anchored" data-anchor-id="links">Links</h2>
 <div class="lead fs-3">
 <p>📘 <a href="./workshop.html">Workshop Materials</a></p>
-<p>🔧 <a href="./setup.html">Getting Setup</a></p>
-<!-- 🧑‍💻 [Join Posit Cloud Space](setup.qmd#using-posit-cloud) -->
-<p>👾 <a href="https://discord.com/channels/1381993558437007490/1402378610861408266">Discord</a> (<a href="./setup.html#create-accounts">signup instructions</a>)</p>
-<p>📦 <a href="https://github.com/posit-conf-2025/llm">Repository</a></p>
-<p>🍑 <a href="http://pos.it/conf-event-portal">posit::conf(2025)</a></p>
+<p>☁️ <a href="./setup.html">Getting Setup</a></p>
+<p>📦 <a href="https://github.com/skaltman/r-pharma-llm">Repository</a></p>
+<p>💻 <a href="https://rinpharma.com/docs/RPH2025/">R/Pharma 2025</a></p>
 </div>
 
 
@@ -767,21 +574,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p><a href="https:://posi.it/conf-event-portal">posit::conf(2025)</a></p>
-<div class="toc-actions"><ul><li><a href="https://github.com/posit-conf-2025/llm/edit/main/website/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/posit-conf-2025/llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/skaltman/r-pharma-llm/edit/main/website/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skaltman/r-pharma-llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

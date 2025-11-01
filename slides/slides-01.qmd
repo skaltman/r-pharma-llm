@@ -18,7 +18,7 @@ editor:
 
 ☁️ **Set up Posit Cloud:**
 
-1. Create a free account at <https://posit.cloud/>.
+1. Create a free account: <https://posit.cloud/>.
 1. Open the Posit Cloud space: <https://posit.cloud/spaces/717315/>.
 1. Click “Yes” to join the space.
 1. Click Content and select the RStudio project or go to <https://posit.cloud/spaces/717315/content/11313957>.
@@ -73,8 +73,6 @@ All materials live here!
 RStudio and VS Code are great, too!
 :::
 
-
-<!-- TODO: Cloud project instructions here -->
 
 ## File organization
 
