@@ -1,21 +1,17 @@
 workshop:
-  title: "Programming with LLMs"
+  title: "Getting Started with LLM APIs in R"
   conference:
-    name: "posit::conf(2025)"
-    link: "https://posit.co/conference"
-    location: Atlanta, GA
-  date: September 16, 2025
-  time: 09:00 - 17:00
-  location: "**Room:** Regency VII"
-  discord_channel: "#workshop-llm"
+    name: "R/Pharma 2025"
+    link: "https://rinpharma.com/"
+  date: November 3, 2025
+  time: 01:00 - 03:00
   links:
-    repo: https://github.com/posit-conf-2025/llm
+    repo: https://github.com/skaltman/r-pharma-llm
     website: https://skaltman.github.io/r-pharma-llm
-    cloud: TODO
+    cloud: https://posit.cloud/spaces/717315/join?access_code=mAvAnVqxlvWZoHvvast68J6EEzswuCA4MQUnBUXO
     cloud_short:
-      href: "https://posit.cloud/"
-      text: TODO
-    discord: https://discord.com/channels/1381993558437007490/1402378610861408266
+      href: "https://bit.ly/llm-cloud"
+      text: https://bit.ly/llm-cloud
     conf:
-      name: posit::conf(2025)
-      href: http://pos.it/conf-event-portal
+      name: R/Pharma 2025
+      href: https://rinpharma.com/docs/RPH2025/

@@ -8,11 +8,10 @@ listing:
       - file
     sort-ui: false
     filter-ui: false
-    fields: 
+    fields:
       - title
-      - time
       - description-short
-    field-display-names: 
+    field-display-names:
       description-short: Description
     contents:
       - "workshop-*.qmd"

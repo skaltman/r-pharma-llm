@@ -10,36 +10,16 @@ project:
     - slides
 
 website:
-  title: "Programming with LLMs"
-  description: "A beginner's guide to programming with large language models in R and Python"
   site-url: https://skaltman.github.io/r-pharma-llm
 
-  favicon: assets/posit-conf-favicon.svg
-  twitter-card:
-    creator: "@grrrck"
-    site: "@posit-dev"
-    image: assets/open-graph-card.png
-  open-graph:
-    image: assets/open-graph-card.png
+  favicon: assets/logo-rinpharma.png
 
-  # announcement:
-  #   icon: ""
-  #   dismissable: false
-  #   content: |
-  #     🍑 Thanks for joining us at <code>posit::conf(2025)</code>!
-  #     Please fill out our <a href="https://pos.it/conf-workshop-survey" target="_blank">workshop feedback form</a>, it's quick and easy!
-  #   type: info
-
-  page-footer: |
-    <a href="https:://posi.it/conf-event-portal">posit::conf(2025)</a>
-
-  repo-url: https://github.com/posit-conf-2025/llm
+  repo-url: https://github.com/skaltman/r-pharma-llm
   repo-subdir: website
   repo-actions: [edit, issue]
 
   navbar:
-    title: "Programming with LLMs"
-    background: "#000"
+    background: "#297075"
     foreground: white
     left:
       - href: index.qmd
@@ -48,15 +28,10 @@ website:
         text: Workshop
       - href: setup.qmd
         text: Setup
-      - href: about/index.qmd
-        text: Team
     tools:
       - icon: github
         href: https://github.com/posit-conf-2025/llm
         aria-label: Workshop materials
-      - icon: discord
-        href: https://discord.com/channels/1381993558437007490/1402378610861408266
-        aria-label: Discord channel
 
   page-navigation: true
 
@@ -68,20 +43,11 @@ website:
       foreground: dark
       contents:
         - workshop.qmd
-        - text: '<div class="sidebar-divider font-monospace">Morning 1</div>'
         - workshop-01.qmd
         - workshop-02.qmd
-        - workshop-03-break.qmd
-        - text: '<div class="sidebar-divider font-monospace">Morning 2</div>'
         - workshop-04.qmd
         - workshop-05.qmd
-        - workshop-06-break.qmd
-        - text: '<div class="sidebar-divider font-monospace">Afternoon 1</div>'
-        - workshop-07.qmd
         - workshop-08.qmd
-        - workshop-09-break.qmd
-        - text: '<div class="sidebar-divider font-monospace">Afternoon 2</div>'
-        - workshop-10.qmd
 
 format:
   html:

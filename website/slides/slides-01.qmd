@@ -10,15 +10,25 @@ editor:
   render-on-save: true
 ---
 
-## Welcome to [Getting Started with LLM APIs in R]{.dark-blue}! {.fs-step-2 background-image="assets/retro-mac.jpg" background-size="cover" background-position="bottom left"}
+## Welcome to [Getting Started with LLM APIs in R]{.dark-blue}! 
 
-* Update your local copy of the workshop: \
-  [skaltman.github.io/r-pharma-llm/setup.html]{.code .b .orange}
+![](../assets/icons/github.svg){width="32px" style="vertical-align: middle"} **Workshop repo:** <https://bit.ly/r-pharma-llm>
+
+<br>
+
+☁️ **Set up Posit Cloud:**
+
+1. Create a free account: <https://posit.cloud/>.
+1. Open the Posit Cloud space: <https://posit.cloud/spaces/717315/>.
+1. Click “Yes” to join the space.
+1. Click Content and select the RStudio project or go to <https://posit.cloud/spaces/717315/content/11313957>.
+1. To save a copy of the project to your workspace at any point, click “Save a permanent copy”.
 
 ```{=html}
 <style>
 .reveal .footer {
   font-size: 0.5em !important;
+  color: white !important;
 }
 </style>
 ```
@@ -63,8 +73,6 @@ All materials live here!
 RStudio and VS Code are great, too!
 :::
 
-
-<!-- TODO: Cloud project instructions here -->
 
 ## File organization
 
