@@ -3,11 +3,6 @@
 # https://ellmer.tidyverse.org/
 library(ellmer)
 
-# I've configured this project to automatically load the API keys from `.env` in
-# the project root. If you need to load them manually, you can use:
-#
-# dotenv::load_dot_env(here::here(".env"))
-
 # ---- OpenAI ----
 chat_gpt <- chat_openai()
 chat_gpt$chat(
