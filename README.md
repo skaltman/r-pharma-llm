@@ -2,13 +2,12 @@
 
 ### R/Pharma 2025
 
+November 3, 2025
+01:00 - 03:00 EST
+
 Adapted from: <https://github.com/posit-conf-2025/llm>
 
 -----
-
-:spiral_calendar: November 3, 2025
-
-:alarm_clock: 01:00 - 03:00 EST
 
 📘 **Workshop website:** <https://skaltman.github.io/r-pharma-llm>
 
