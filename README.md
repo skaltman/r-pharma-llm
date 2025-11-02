@@ -2,17 +2,17 @@
 
 ### R/Pharma 2025
 
-by Sara Altman
-
 Adapted from: <https://github.com/posit-conf-2025/llm>
 
 -----
 
 :spiral_calendar: November 3, 2025
-:alarm_clock: 01:00 - 03:00 EST
-:cloud: <https://bit.ly/llm-cloud>
 
------
+:alarm_clock: 01:00 - 03:00 EST
+
+📘 **Workshop website:** <https://skaltman.github.io/r-pharma-llm>
+
+☁️ **Posit Cloud workspace:** <https://bit.ly/llm-cloud>
 
 ## Overview
 
@@ -20,13 +20,6 @@ LLMs are transforming how we write code, build tools, and analyze data, but gett
 
 No AI or machine learning background is required—just basic R familiarity. Attendees will gain hands-on experience through guided exercises.
 
-This workshop is an abbreviated version of <https://github.com/posit-conf-2025/llm>.
-
-## Links
-
-📘 **Workshop website:** <https://skaltman.github.io/r-pharma-llm>
-
-☁️ **Posit Cloud workspace:** <https://bit.ly/llm-cloud>
 
 ## Setup
 
