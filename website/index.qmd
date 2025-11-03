@@ -21,7 +21,7 @@ No AI or machine learning background is required—just basic R familiarity. Att
 ::: {.lead .fs-3}
 📘 [Workshop Materials](workshop.qmd)
 
-☁️ [Getting Setup](setup.qmd)
+☁️ [Setup](setup.qmd)
 
 📦 [Repository]({{< meta workshop.links.repo >}})
 
