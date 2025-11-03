@@ -13,8 +13,8 @@ duration: 30min
 
 **LLMs and plots**
 
-- **Activity:** `12_plot-image-1` - Interpret a real scatter plot (3 min)
-- **Activity:** `13_plot-image-2` - Handle random noise and improve prompting (7 min)
+- **Activity:** `07_plot-image-1` - Interpret a real scatter plot (3 min)
+- **Activity:** `08_plot-image-2` - Handle random noise and improve prompting (7 min)
 
 **Prompt engineering best practices**
 
@@ -24,4 +24,4 @@ duration: 30min
 
 **Apply your skills**
 
-- **Activity:** `14_quiz-game-1` - Write system prompt for quiz game (8 min)
+- **Activity:** `09_quiz-game-1` - Write system prompt for quiz game (8 min)

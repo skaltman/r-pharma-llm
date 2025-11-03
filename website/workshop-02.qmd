@@ -33,4 +33,4 @@ editor: { render-on-save: true }
 
 **Shinychat basics**
 - Building apps with `chat_mod_ui()` and `chat_mod_server()`
-- **Activity:** `06_word-games` (7 min)
+- **Activity:** `03_word-games` (7 min)

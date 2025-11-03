@@ -15,16 +15,16 @@ duration: 40min
 
 - Model sizes: small/fast/cheap, medium/balanced, large/smart/expensive
 - Major providers: OpenAI, Anthropic, Google
-- **Activity:** `07_models` - Try different models (4 min)
+- **Activity:** `04_models` - Try different models (4 min)
 
 **Multi-modal input**
 
 - Vision: `content_image_file()` and `content_image_url()`
 - PDFs: `content_pdf_file()` and `content_pdf_url()`
-- **Activity:** `08_vision` - Show food images to LLM (5 min)
+- **Activity:** `05_vision` - Show food images to LLM (5 min)
 
 **Structured output**
 
 - Using `ellmer::type_*()` to get structured data instead of text
 - Define schemas with `type_object()`, `type_string()`, `type_integer()`, etc.
-- **Activity:** `10_structured-output` - Extract structured recipe data (7 min)
+- **Activity:** `06_structured-output` - Extract structured recipe data (7 min)

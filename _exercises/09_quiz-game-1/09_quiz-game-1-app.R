@@ -16,7 +16,7 @@ server <- function(input, output, session) {
     "anthropic/claude-3-7-sonnet-20250219",
     # Step 1: Edit `prompt.md` to get the model to play the quiz game.
     system_prompt = readr::read_file(
-      here::here("_exercises/14_quiz-game-1/prompt.md")
+      here::here("_exercises/09_quiz-game-1/prompt.md")
     )
   )
 

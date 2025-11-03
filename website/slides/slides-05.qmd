@@ -303,7 +303,7 @@ tool_get_weather <- tool(
 chat$register_tool(tool_get_weather)
 ```
 
-# Your Turn `20_quiz-game-2` {.slide-your-turn}
+# Your Turn `10_quiz-game-2` {.slide-your-turn}
 
 ::: notes
 claude: Now practice - add a tool to the quiz game that plays sounds. This reinforces the pattern we just learned.

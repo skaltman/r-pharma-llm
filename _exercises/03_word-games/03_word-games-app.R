@@ -15,6 +15,7 @@ no. When they win, use lots of emojis.
 
 ui <- page_fillable(
   # Step 1: Add the chat module UI to the app UI
+  ____("chat", placeholder = r"(Say "Let's play" to get started!)")
 )
 
 server <- function(input, output, session) {

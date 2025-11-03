@@ -25,7 +25,7 @@ duration: 50min
 
 **Practice with tools**
 
-- **Activity:** `20_quiz-game-2` - Add sound tool to quiz game (6 min)
+- **Activity:** `10_quiz-game-2` - Add sound tool to quiz game (6 min)
 
 **Tools in Shiny apps**
 

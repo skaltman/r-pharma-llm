@@ -420,25 +420,6 @@ This isn't a limitation of transformers specifically - it's how the HTTP API is 
 Now that you understand how conversations work with LLMs - the statelessness, sending full history - let's talk briefly about how LLMs themselves actually work. How do they understand what you're asking? And how do they construct their responses?
 :::
 
-## ChatGPT {.center}
-
-::: r-fit-text
-**Chat**ting with a **G**enerative **P**re-trained **T**ransformer
-:::
-
-::: {.fragment .r-fit-text}
-**LLM** &rarr; **L**arge **L**anguage **M**odel
-:::
-
-::: notes
-GPT is a type of LLM, but not all LLMs are GPTs.
-
-LLM: Deep learning on huge amounts of text data to understand and generate human language.
-GPT: Specific architectural design of LLMs.
-
-From now on, we'll use **LLM** to refer to any large language model.
-:::
-
 ## How do LLMs understand? {.center}
 
 ::: notes
@@ -475,7 +456,7 @@ This is how LLMs understand the conversation. They're trained on massive amounts
 Now let's talk about how LLMs construct their responses. They don't generate whole sentences at once - they generate responses token by token, choosing the most likely next piece based on everything they've seen so far.
 :::
 
-## Actually: tokens, not words {.center}
+## Tokens {.center}
 
 ::: notes
 LLMs don't think in words - they think in tokens. This is the fundamental unit they use to construct responses, one token at a time.
@@ -518,44 +499,20 @@ into the chat window and the model could "pay attention" to it all.
 
 ::: notes
 This demo shows how LLMs construct responses in real-time. You'll see the model generating tokens one at a time, and you can see the probabilities for what token might come next. This is how all LLM responses are built - token by token, choosing the most likely next piece.
+
+The breakthrough insight is the attention mechanism in the Transformer architecture.
+Instead of processing text sequentially (word by word),
+GPT models can look at all words in a sequence simultaneously
+and understand how they relate to each other.
+
+The attention mechanism allows the model to:
+
+* Weigh the importance of every word in relation to every other word
+* Capture long-range dependencies that traditional models missed
+* Process sequences in parallel rather than sequentially
 :::
 
 👩‍💻 [_demos/04_token-possibilities/app.R]{.code .b .purple}
-
-# [What if I want to keep chatting back-and-forth?]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-empty.png" background-size="contain" background-position="center"}
-
-::: notes
-claude: Transition to showing how to build interactive chat interfaces with shinychat.
-:::
-
-# [ellmer can do that, too!]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-focused.png" background-size="contain" background-position="center"}
-
-## {.center}
-
-::: {.table-no-border}
-| | Console | Browser |
-|:---:|:---:|:---:|
-| ![](../assets/logos/ellmer.png){height="4em" alt="ellmer"} | `live_console(chat)` | `live_browser(chat)` |
-: {tbl-colwidths="[20,40,40]"}
-:::
-
-::: notes
-As we'll see, everything we're going to do today can be done
-in either R or Python and ellmer and chatlas are designed to be similar.
-
-But they're in different languages and those languages have different
-conventions and idioms, so they're not completely identical. If they were,
-one or the other would start to feel unnatural to use.
-:::
-
-# Demo: <br> `live` {.slide-demo style="--code-font-size: 0.66em"}
-
-::: notes
-claude: This demo shows live_console() and live_browser() - easy ways to chat with an LLM interactively from R.
-:::
-
-👩‍💻 [_demos/05_live/05_live.R]{.code .b .purple}
-
 
 # How to think about LLMs {.dark-blue background-image="assets/retro-mac.jpg" background-size="cover" background-position="bottom left"}
 
@@ -638,6 +595,40 @@ claude: Don't expect smooth, predictable performance across tasks. LLMs can surp
 - Build intuition through hands-on experience rather than theoretical study
 - We want to have fun in this course! It's worth saying up front that our examples are not necessarily practical, but they're full of practical lessons.
 :::
+
+# [What if I want to keep chatting back-and-forth?]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-empty.png" background-size="contain" background-position="center"}
+
+::: notes
+claude: Transition to showing how to build interactive chat interfaces with shinychat.
+:::
+
+# [ellmer can do that, too!]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-focused.png" background-size="contain" background-position="center"}
+
+## {.center}
+
+::: {.table-no-border}
+| | Console | Browser |
+|:---:|:---:|:---:|
+| ![](../assets/logos/ellmer.png){height="4em" alt="ellmer"} | `live_console(chat)` | `live_browser(chat)` |
+: {tbl-colwidths="[20,40,40]"}
+:::
+
+::: notes
+As we'll see, everything we're going to do today can be done
+in either R or Python and ellmer and chatlas are designed to be similar.
+
+But they're in different languages and those languages have different
+conventions and idioms, so they're not completely identical. If they were,
+one or the other would start to feel unnatural to use.
+:::
+
+# Demo: <br> `live` {.slide-demo style="--code-font-size: 0.66em"}
+
+::: notes
+claude: This demo shows live_console() and live_browser() - easy ways to chat with an LLM interactively from R.
+:::
+
+👩‍💻 [_demos/05_live/05_live.R]{.code .b .purple}
 
 
 # [shinychat]{.hidden} {.no-invert-dark-mode background-image="assets/shinychat.png" background-size="contain" background-position="center"}
@@ -792,7 +783,7 @@ Copy and paste the app code into an R session and run it!
 
 -->
 
-# Your Turn `06_word-games` {.slide-your-turn}
+# Your Turn `03_word-games` {.slide-your-turn}
 
 ::: notes
 claude: Now participants will build their own shinychat app. The exercise file has the setup - they just need to add the shinychat and ellmer code to make it work.

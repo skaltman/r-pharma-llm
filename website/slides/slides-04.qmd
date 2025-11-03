@@ -14,7 +14,7 @@ editor:
 claude: Prompt engineering is the art of getting LLMs to do what you want. Let's start by exploring what happens when LLMs see plots.
 :::
 
-# Your Turn `12_plot-image-1` {.slide-your-turn}
+# Your Turn `07_plot-image-1` {.slide-your-turn}
 
 ::: notes
 claude: First, let's see how well LLMs can interpret real data visualizations. Create a scatter plot and see what the model says.
@@ -32,7 +32,7 @@ claude: First, let's see how well LLMs can interpret real data visualizations. C
 it does pretty well
 :::
 
-# Your Turn `13_plot-image-2` {.slide-your-turn}
+# Your Turn `08_plot-image-2` {.slide-your-turn}
 
 ::: notes
 claude: Now let's explore hallucination. Show the model random noise and see if you can get it to admit there's no pattern - this demonstrates the importance of good prompting.
@@ -223,7 +223,7 @@ See Anthropic's [_Prompt Engineering Overview_](https://docs.anthropic.com/en/do
 
 Google's [_Prompt Design Strategies_](https://ai.google.dev/gemini-api/docs/prompting-strategies) may also be useful.
 
-# Your Turn `14_quiz-game-1` {.slide-your-turn}
+# Your Turn `09_quiz-game-1` {.slide-your-turn}
 
 ::: notes
 claude: Now put it all together - write a system prompt for a quiz game. This is a complex task that requires clear instructions and structure.
