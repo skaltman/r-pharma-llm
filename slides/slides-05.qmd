@@ -354,7 +354,7 @@ These are the Posit packages for working with AI. We've focused on ellmer and sh
 
 **Databot**: <https://positron.posit.co/databot.html>
 
-* EDA assistant for Positron
+* EDA assistant for Positron.
 
 **Posit AI newsletter**: <https://posit.co/blog/?post_tag=ai-newsletter>
 

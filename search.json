@@ -158,7 +158,7 @@
     "href": "slides/slides-05.html#learn-more-1",
     "title": "Tool Calling",
     "section": "Learn more",
-    "text": "Learn more\nquerychat: https://github.com/posit-dev/querychat\n\nChat with your data using natural language queries.\n\nggbot2: https://github.com/tidyverse/ggbot2\n\nTalk out loud to create and iterate on plots.\n\nDatabot: https://positron.posit.co/databot.html\n\nEDA assistant for Positron\n\nPosit AI newsletter: https://posit.co/blog/?post_tag=ai-newsletter"
+    "text": "Learn more\nquerychat: https://github.com/posit-dev/querychat\n\nChat with your data using natural language queries.\n\nggbot2: https://github.com/tidyverse/ggbot2\n\nTalk out loud to create and iterate on plots.\n\nDatabot: https://positron.posit.co/databot.html\n\nEDA assistant for Positron.\n\nPosit AI newsletter: https://posit.co/blog/?post_tag=ai-newsletter"
   },
   {
     "objectID": "slides/slides-03.html#section",
@@ -880,11 +880,11 @@
     "text": "How do LLMs respond?\n\nNow let’s talk about how LLMs construct their responses. They don’t generate whole sentences at once - they generate responses token by token, choosing the most likely next piece based on everything they’ve seen so far."
   },
   {
-    "objectID": "slides/slides-02.html#tokens",
-    "href": "slides/slides-02.html#tokens",
+    "objectID": "slides/slides-02.html#llms-think-in-tokens",
+    "href": "slides/slides-02.html#llms-think-in-tokens",
     "title": "Anatomy of a conversation",
-    "section": "Tokens",
-    "text": "Tokens\n\nLLMs don’t think in words - they think in tokens. This is the fundamental unit they use to construct responses, one token at a time.\n\n\nFundamental units of information for LLMs\nWords, parts of words, or individual characters\n\n“hello” → 1 token\n“unconventional” → 3 tokens: un|con|ventional\n\nImportant for:\n\nModel input/output limits\nAPI pricing is usually by token\n\nNot just words, but images can be tokenized too"
+    "section": "LLMs think in tokens",
+    "text": "LLMs think in tokens\n\nLLMs don’t think in words - they think in tokens. This is the fundamental unit they use to construct responses, one token at a time.\n\n\nFundamental units of information for LLMs\nWords, parts of words, or individual characters\n\n“hello” → 1 token\n“unconventional” → 3 tokens: un|con|ventional\n\nImportant for:\n\nModel input/output limits\nAPI pricing is usually by token\n\nNot just words, but images can be tokenized too"
   },
   {
     "objectID": "slides/slides-02.html#think-empirically-not-theoretically",
