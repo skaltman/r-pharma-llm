@@ -328,8 +328,10 @@ When using tools in Shiny apps, remember these key points - tools can interact w
 * Define the tool function **inside the server**
 
 * You can **update reactive values** in the tool function!
+:::
 
-* You can **read reactive values**, _if you `isolate()` reads_. (Be careful!)
+::: notes
+useful if you want to update a table based on chat input
 :::
 
 ## Learn more
