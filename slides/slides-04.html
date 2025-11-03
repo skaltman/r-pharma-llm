@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<link href="../assets/logo-rinpharma.png" rel="icon" type="image/png">
+<link href="../assets/icons/logo-rinpharma.png" rel="icon" type="image/png">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -17,7 +17,7 @@
 
   <meta name="author" content="R/Pharma 2025">
   <meta name="dcterms.date" content="2025-11-03">
-  <title>Programming with LLMs</title>
+  <title>Prompt Engineering</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -103,7 +103,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c0f2fc08fdbbfe7d3a7979f8cfda8447.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-03ef827d7d46bcd30fe2e31b9e118fc2.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -201,7 +201,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Programming with LLMs</h1>
+  <h1 class="title">Prompt Engineering</h1>
   <p class="subtitle">Getting Started with LLM APIs in R</p>
 
 <div class="quarto-title-authors">
@@ -215,89 +215,91 @@ R/Pharma 2025
   <p class="date">2025-11-03</p>
 </section>
 <section>
-<section id="providers-and-models" class="title-slide slide level1 no-invert-dark-mode center" data-background-image="assets/sunira-moses-Naj9-n5apvs-unsplash.jpg" data-background-size="cover" data-background-position="center">
-<h1><span class="white ph4" style="background-color: #4ea8a7e6;">Providers and Models</span></h1>
-
-</section>
-<section id="section" class="slide level2 center">
-<h2></h2>
-<div class="r-fit-text">
-<dl>
-<dt class="fragment"><strong>Provider</strong></dt>
-<dd class="fragment">
-company that hosts and serves models
-</dd>
-<dt class="fragment"><strong>Model</strong></dt>
-<dd class="fragment">
-a specific LLM with particular capabilities
-</dd>
-</dl>
-</div>
-<style>
-dt {
-  line-height: 0.8;
-}
-
-dd {
-  margin-bottom: 1em;
-  margin-left: 0 !important;
-}
-
-dd:before {
-  content: "\2192";
-  font-family: var(--r-code-font);
-  font-size: 0.8em;
-  opacity: 0.66;
-}
-</style>
+<section id="prompt-engineering" class="title-slide slide level1 no-invert-dark-mode center" data-background-image="assets/kelly-sikkema-tk9RQCq5eQo-unsplash.jpg" data-background-size="cover" data-background-position="bottom left">
+<h1><span class="white dib" style="text-align: center; width: 100%;">Prompt engineering</span></h1>
+<aside class="notes">
+<p>Prompt engineering is the art of getting LLMs to do what you want.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <!--
+# Your Turn `07_plot-image-1` {.slide-your-turn}
 
-## {.text-center transition="fade"}
+::: notes
+First, let's see how well LLMs can interpret real data visualizations. Create a scatter plot and see what the model says.
+:::
 
-![](assets/providers-models-01.excalidraw.svg)
+1. ellmer lets you show the model your plots!
 
-## {.text-center transition="fade"}
+2. Create a basic `mtcars` scatter plot and ask Claude Sonnet 4.5 to interpret it.
 
-![](assets/providers-models-02.excalidraw.svg)
+3. How does it do? Experiment with other plots!
 
-## {.text-center transition="fade"}
 
-![](assets/providers-models-03.excalidraw.svg)
 
-## {.text-center transition="fade"}
+::: notes
+it does pretty well
+:::
 
-![](assets/providers-models-04.excalidraw.svg)
+# Your Turn `08_plot-image-2` {.slide-your-turn}
 
-## {.text-center transition="fade"}
+::: notes
+Now let's explore hallucination. Show the model random noise and see if you can get it to admit there's no pattern - this demonstrates the importance of good prompting.
+:::
 
-![](assets/providers-models-05.excalidraw.svg)
+1. Replace the scatter plot with random noise.
 
-## {.text-center transition="fade"}
+2. Show this new plot to Claude Sonnet 4.5 and ask it to interpret it. How does it do this time?
 
-![](assets/providers-models-06.excalidraw.svg)
+3. Experiment to see if you can improve the prompt to get a better answer.
 
-## {.text-center transition="fade"}
 
-![](assets/providers-models-07.excalidraw.svg)
+
+# [Prompt engineering]{.white .dib style="text-align: center; width: 100%;"} {.no-invert-dark-mode background-image="assets/kelly-sikkema-tk9RQCq5eQo-unsplash.jpg" background-size="cover" background-position="bottom left"}
+
+::: notes
+After those exercises, let's talk about prompt engineering best practices. When things don't work, ask yourself these three questions.
+:::
 
 -->
 </section>
-<section id="how-are-models-different" class="slide level2">
-<h2>How are models different?</h2>
+<section id="reminder-the-system_prompt-arg" class="slide level2">
+<h2>Reminder: the <code>system_prompt</code> arg</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="1-3|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>prompt <span class="ot">&lt;-</span> </span>
+<span id="cb1-2"><a></a>   <span class="st">"Your primary goal is to accurately and thoroughly </span></span>
+<span id="cb1-3"><a></a><span class="st">   understand patterns in data."</span></span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"anthropic"</span>, <span class="at">system_prompt =</span> prompt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reminder-the-system_prompt-arg-1" class="slide level2">
+<h2>Reminder: the <code>system_prompt</code> arg</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>chat <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a></a>   <span class="fu">chat</span>(</span>
+<span id="cb2-3"><a></a>      <span class="st">"anthropic"</span>, </span>
+<span id="cb2-4"><a></a>      <span class="at">system_prompt =</span> readr<span class="sc">::</span><span class="fu">read_file</span>(<span class="st">"prompt.md"</span>)</span>
+<span id="cb2-5"><a></a>   )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="three-questions-to-ask-yourself" class="slide level2">
+<h2>Three questions to ask yourself</h2>
 <ol type="1">
-<li class="fragment"><strong>Content:</strong> How many tokens can you give the model?</li>
-<li class="fragment"><strong>Speed:</strong> How many tokens per second?</li>
-<li class="fragment"><strong>Cost:</strong> How much does it cost to use the model?</li>
-<li class="fragment"><strong>Intelligence:</strong> How smart is the model?</li>
-<li class="fragment"><strong>Capabilities:</strong> Vision, reasoning, tools, etc.</li>
+<li class="fragment"><p>Did you use the best models?</p></li>
+<li class="fragment"><p>Did you clearly explain what you want the model to do in the system prompt?</p></li>
+<li class="fragment"><p>Did you provide examples of what you want?</p></li>
 </ol>
 <aside class="notes">
-<ol type="1">
-<li>Content: 200k tokens is normal, 1M tokens in some newer models</li>
-<li>Speed: Gemini Flash hits ~350 tokens/sec, 100-200 is very fast, 50-100 normal. Speed is often a trade-off with intelligence.</li>
-<li>Cost: $1-5 per million tokens is normal for big frontier models, &lt; $1 for smaller, faster models</li>
-<li>Intelligence is a stand-in for lots of concepts</li>
-</ol>
+<blockquote>
+<p>There’s going to be 3 questions we’re usually going to ask you in this order? Number one, did you try the best models? Did you try this with at least like Claude Sonnet 4.5, or GPT 4.1?</p>
+<p>so number one like, did you use the best models number 2 is, did you ask for what you wanted in the system prompt like. Did you describe the behavior that you were looking for from the model in the system prompt?</p>
+<p>And then number 3, if you did do that. Did you provide an example of what you wanted? And usually that, that, you know, takes care of a lot of the the kind of misbehaving that people see.</p>
+</blockquote>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -310,31 +312,10 @@ dd:before {
           display:block!important;
       }</style></aside>
 </section>
-<section id="how-are-models-different-1" class="slide level2">
-<h2>How are models different?</h2>
-<ol type="1">
-<li><strong>Content:</strong> How many tokens can you give the model?</li>
-<li><span style="opacity: 0.25"><strong>Speed:</strong> How many tokens per second?</span></li>
-<li><span style="opacity: 0.25"><strong>Cost:</strong> How much does it cost to use the model?</span></li>
-<li><span style="opacity: 0.25"><strong>Intelligence:</strong> How smart is the model?</span></li>
-<li><strong>Capabilities:</strong> Vision, reasoning, tools, etc.</li>
-</ol>
-</section>
-<section id="how-are-models-different-2" class="slide level2">
-<h2>How are models different?</h2>
-<ol type="1">
-<li><span style="opacity: 0.25"><strong>Content:</strong> How many tokens can you give the model?</span></li>
-<li><strong>Speed:</strong> How many tokens per second?</li>
-<li><strong>Cost:</strong> How much does it cost to use the model?</li>
-<li><strong>Intelligence:</strong> How smart is the model?</li>
-<li><span style="opacity: 0.25"><strong>Capabilities:</strong> Vision, reasoning, tools, etc.</span></li>
-</ol>
-</section>
-<section id="section-1" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-01.excalidraw.svg" class="r-stretch"><aside class="notes">
-<p>We’ll start with Anthropic, a company that builds LLMs, in particular a family of models they call Claude.</p>
+<section id="system-prompt-vs.-user-prompt" class="slide level2">
+<h2>System prompt vs.&nbsp;user prompt</h2>
+<aside class="notes">
+<p>A common question - what goes in the system prompt versus the user prompt? Here’s the simple rule.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -346,13 +327,12 @@ dd:before {
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+<p>Short answer: put instructions and background knowledge in the system prompt.</p>
 </section>
-<section id="section-2" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-02.excalidraw.svg" class="r-stretch"><aside class="notes">
-<p>Claude comes in different sizes, with different levels of intelligence.</p>
-<p>They have a small model that’s fast and cheap, a large model that’s intelligent but expensive, and a just-right sized model that balances speed, cost, and intelligence.</p>
+<section id="more-tips" class="slide level2 scrollable">
+<h2>More tips</h2>
+<aside class="notes">
+<p>Here are more practical tips. First - use LLMs to write your prompts! Claude has a prompt generator that’s excellent for this.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -364,18 +344,119 @@ dd:before {
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+<p><strong>Use LLMs to help draft or improve your prompts.</strong></p>
+<p>E.g., this input to Claude’s prompt generator:</p>
+<blockquote>
+<p>Make a data science agent that can run Python data analysis code via a tool. Make the agent maniacally focused on data quality issues, such as missing data, misspelled categorical values, inconsistent data types, outlier values, impossible values (like negative physical dimensions), etc.</p>
+</blockquote>
+<p>Generates this prompt:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>You are a data science agent with an obsessive focus on data quality. You have been given access to a dataset and a Python code execution tool. Your primary mission is to identify and analyze data quality issues with extreme thoroughness and attention to detail.</span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>Here is the dataset description:</span>
+<span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">dataset_description</span><span class="dt">&gt;</span></span>
+<span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a>{{DATASET_DESCRIPTION}}</span>
+<span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">dataset_description</span><span class="dt">&gt;</span></span>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a aria-hidden="true" tabindex="-1"></a>You have access to the following Python code execution tool:</span>
+<span id="cb3-9"><a aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">python_tool</span><span class="dt">&gt;</span></span>
+<span id="cb3-10"><a aria-hidden="true" tabindex="-1"></a>{{PYTHON_CODE_TOOL}}</span>
+<span id="cb3-11"><a aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">python_tool</span><span class="dt">&gt;</span></span>
+<span id="cb3-12"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a aria-hidden="true" tabindex="-1"></a>Your role is to act as a maniacally thorough data quality inspector. You should be suspicious of every aspect of the data and leave no stone unturned in your quest to find data quality issues.</span>
+<span id="cb3-14"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a aria-hidden="true" tabindex="-1"></a>Focus intensively on these categories of data quality problems:</span>
+<span id="cb3-16"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Missing data (nulls, empty strings, placeholder values like "N/A", "Unknown", etc.)</span>
+<span id="cb3-17"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inconsistent data types (mixed types in columns, incorrect data types)</span>
+<span id="cb3-18"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Misspelled or inconsistent categorical values (typos, case inconsistencies, extra spaces)</span>
+<span id="cb3-19"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outlier values (statistical outliers, values that seem unreasonable)</span>
+<span id="cb3-20"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Impossible or illogical values (negative ages, future birth dates, negative physical dimensions)</span>
+<span id="cb3-21"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Duplicate records or near-duplicates</span>
+<span id="cb3-22"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inconsistent formatting (date formats, phone numbers, addresses)</span>
+<span id="cb3-23"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Data entry errors (obvious typos, transposed digits)</span>
+<span id="cb3-24"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Referential integrity issues (if applicable)</span>
+<span id="cb3-25"><a aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Range violations (values outside expected bounds)</span>
+<span id="cb3-26"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a aria-hidden="true" tabindex="-1"></a>Your analysis process should be systematic and comprehensive:</span>
+<span id="cb3-28"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Start by loading and examining the basic structure of the dataset</span>
+<span id="cb3-30"><a aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Check data types and identify any type inconsistencies</span>
+<span id="cb3-31"><a aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Examine missing data patterns thoroughly</span>
+<span id="cb3-32"><a aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Analyze each column individually for quality issues specific to its data type</span>
+<span id="cb3-33"><a aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Look for statistical outliers and impossible values</span>
+<span id="cb3-34"><a aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Check for duplicates and near-duplicates</span>
+<span id="cb3-35"><a aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Examine categorical variables for inconsistencies</span>
+<span id="cb3-36"><a aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Validate logical relationships between columns</span>
+<span id="cb3-37"><a aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span>Look for formatting inconsistencies</span>
+<span id="cb3-38"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a aria-hidden="true" tabindex="-1"></a>Use the Python tool to write and execute code that will help you uncover these issues. Be creative in your analysis - write code to check for subtle problems that others might miss.</span>
+<span id="cb3-40"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a aria-hidden="true" tabindex="-1"></a>Before providing your final analysis, use the scratchpad to plan your investigation strategy:</span>
+<span id="cb3-42"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">scratchpad</span><span class="dt">&gt;</span></span>
+<span id="cb3-44"><a aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Plan your systematic approach to analyzing the data quality, thinking through what specific checks you want to perform and in what order</span><span class="co">]</span></span>
+<span id="cb3-45"><a aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">scratchpad</span><span class="dt">&gt;</span></span>
+<span id="cb3-46"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a aria-hidden="true" tabindex="-1"></a>Then execute your analysis using the Python tool. After completing your investigation, provide your findings in this format:</span>
+<span id="cb3-48"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">data_quality_report</span><span class="dt">&gt;</span></span>
+<span id="cb3-50"><a aria-hidden="true" tabindex="-1"></a>**CRITICAL ISSUES FOUND:**</span>
+<span id="cb3-51"><a aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">List the most severe data quality problems</span><span class="co">]</span></span>
+<span id="cb3-52"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a aria-hidden="true" tabindex="-1"></a>**MODERATE ISSUES FOUND:**</span>
+<span id="cb3-54"><a aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">List issues that should be addressed but aren't critical</span><span class="co">]</span></span>
+<span id="cb3-55"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a aria-hidden="true" tabindex="-1"></a>**MINOR ISSUES FOUND:**</span>
+<span id="cb3-57"><a aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">List smaller issues that could be improved</span><span class="co">]</span></span>
+<span id="cb3-58"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a aria-hidden="true" tabindex="-1"></a>**DETAILED ANALYSIS:**</span>
+<span id="cb3-60"><a aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Provide detailed explanations of each issue found, including specific examples and the potential impact</span><span class="co">]</span></span>
+<span id="cb3-61"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a aria-hidden="true" tabindex="-1"></a>**RECOMMENDATIONS:**</span>
+<span id="cb3-63"><a aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Provide specific, actionable recommendations for fixing each category of issues</span><span class="co">]</span></span>
+<span id="cb3-64"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a aria-hidden="true" tabindex="-1"></a>**DATA QUALITY SCORE:**</span>
+<span id="cb3-66"><a aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Provide an overall data quality score from 1-10, where 10 is perfect quality</span><span class="co">]</span></span>
+<span id="cb3-67"><a aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">data_quality_report</span><span class="dt">&gt;</span></span>
+<span id="cb3-68"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a aria-hidden="true" tabindex="-1"></a>Remember: Be obsessively thorough. Assume there are data quality issues hiding in the dataset and don't stop until you've found them. Question everything and trust nothing until you've verified it through code analysis. Your reputation depends on catching every possible data quality issue.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="section-3" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-03.excalidraw.svg" class="r-stretch"><aside class="notes">
-<p>In line with Anthropic’s branding, these models are named after different types of poetry.</p>
+<section id="more-tips-1" class="slide level2 scrollable">
+<h2>More tips</h2>
+<aside class="notes">
+<p>Structure matters. Use Markdown headings and XML tags to organize your prompts. And you can use variables for dynamic content.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <ul>
-<li>Haiku is small, fast, and cheap</li>
-<li>Sonnet is larger, more expensive, and more intelligent</li>
-<li>Opus is the largest, most expensive, and most intelligent</li>
+<li><strong>Use Markdown headings and XML tags to give structure to your prompts.</strong></li>
+<li><strong>Use variables to insert dynamic content into your prompts–BUT be aware of prompt injection!</strong></li>
 </ul>
-<p>Anthropic’s poetry naming offsets the fact that Anthropic has one of the most consistent naming schemes in the industry. (Yes, that’s says a lot.)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a>Your task is to provide feedback on a research paper summary.</span>
+<span id="cb4-2"><a></a>Here is a summary of a medical research paper:</span>
+<span id="cb4-3"><a></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb4-4"><a></a>{{SUMMARY}}</span>
+<span id="cb4-5"><a></a><span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a>Here is the research paper:</span>
+<span id="cb4-8"><a></a><span class="dt">&lt;</span><span class="kw">paper</span><span class="dt">&gt;</span></span>
+<span id="cb4-9"><a></a>{{RESEARCH_PAPER}}</span>
+<span id="cb4-10"><a></a><span class="dt">&lt;/</span><span class="kw">paper</span><span class="dt">&gt;</span></span>
+<span id="cb4-11"><a></a></span>
+<span id="cb4-12"><a></a>Review this summary for accuracy, clarity, and completeness on</span>
+<span id="cb4-13"><a></a>a graded A-F scale.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="more-tips-2" class="slide level2">
+<h2>More tips</h2>
+<aside class="notes">
+<p>When prompts get long, move them to separate files. This makes your code cleaner and version control easier to read.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -387,575 +468,78 @@ dd:before {
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="section-4" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-04.excalidraw.svg" class="r-stretch"><aside class="notes">
-<p>But there isn’t just one Claude model at different sizes. Anthropic keeps training new models which they generally release with a new version number.</p>
+<p><strong>Get large prompts out of the code and into separate files.</strong></p>
 <ul>
-<li>Claude 3.5 was released a year ago (in June 2024)</li>
-<li>Claude 3.7 was released earlier this year (Feb.&nbsp;2025)</li>
-<li>Claude 4 was just released in May 2025</li>
-</ul>
-<p>All four of these models are still active and available.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="section-5" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-04a.excalidraw.svg" class="r-stretch"><aside class="notes">
-<p>When you’re choosing a model, you can get higher quality responses by moving up a size tier.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="section-6" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-04b.excalidraw.svg" class="r-stretch"><aside class="notes">
-<p>And when new releases come out, you can often get similar quality improvements by moving up a version number. (This move tends to be cheaper than moving up a size tier.)</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="section-7" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-04c.excalidraw.svg" class="r-stretch"><aside class="notes">
-<p>Oh, wait, sorry, to be very technically accurate, it turns out that the Opus models are only available for Claude 3 and Claude 4, but not for the intermediate versions 3.5 and 3.7.</p>
-<p>It remains to be seen if this will be an enduring pattern, or just they way things happened for 3.5 and 3.7.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="section-8" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-07.excalidraw.svg" class="r-stretch"></section>
-<section id="section-9" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-06.excalidraw.svg" class="r-stretch"></section>
-<section id="section-10" class="slide level2" data-transition="fade">
-<h2></h2>
-
-<img data-src="assets/model-sizes-05.excalidraw.svg" class="r-stretch"></section>
-<section id="model-comparison" class="slide level2 smaller">
-<h2></h2>
-<!--
-{{< include ../partials/model-comparison.qmd >}} -->
-</section>
-
-<section id="choose-a-model" class="slide level2 smaller table-spaced-out">
-<h2>Choose a model</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Task</th>
-<th style="text-align: left;">OpenAI</th>
-<th style="text-align: left;">Anthropic</th>
-<th style="text-align: left;">Gemini</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Coding</strong></td>
-<td style="text-align: left;">GPT-5</td>
-<td style="text-align: left;">Claude 4 Sonnet</td>
-<td style="text-align: left;">Gemini 2.5 Pro</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Fast/General</strong></td>
-<td style="text-align: left;">GPT-5 mini</td>
-<td style="text-align: left;">Claude 3.5 Sonnet</td>
-<td style="text-align: left;">Gemini 2.0 Flash</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Complex Tasks</strong></td>
-<td style="text-align: left;">o3</td>
-<td style="text-align: left;">Claude 4 Opus</td>
-<td style="text-align: left;">Gemini 2.5 Pro</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Cost-Effective</strong></td>
-<td style="text-align: left;">Mini</td>
-<td style="text-align: left;">Haiku</td>
-<td style="text-align: left;">Flash</td>
-</tr>
-</tbody>
-</table>
-<style>
-.table-spaced-out table td,
-.table-spaced-out table th {
-  padding-top: 0.66em;
-  padding-bottom: 0.66em;
-}
-</style>
-</section>
-<section id="learn-more" class="slide level2">
-<h2>Learn more</h2>
-<ul>
-<li>Ranking of models: <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis</a></li>
-<li><a href="https://platform.openai.com/docs/models">OpenAI models</a></li>
-<li><a href="https://docs.anthropic.com/en/docs/about-claude/models/overview">Anthropic models</a></li>
-<li><a href="https://ai.google.dev/gemini-api/docs/models">Google Gemini models</a></li>
+<li><p>Easier to read (both locally and on GitHub)</p></li>
+<li><p>Easier to read diffs in version control</p></li>
 </ul>
 </section>
-<section id="ellmer" class="slide level2 center" data-transition="fade">
-<h2></h2>
-<div style="display: flex; flex-direction: row; align-items: center; gap: 1em;">
-<div class="column">
-<p><img data-src="../assets/logos/ellmer.png" width="400"></p>
-</div><div class="column">
-<div class="fragment">
-<p><strong>Providers</strong></p>
-<ul>
-<li class="fragment"><p><code>chat_openai()</code></p></li>
-<li class="fragment"><p><code>chat_anthropic()</code></p></li>
-<li class="fragment"><p><code>chat_google_gemini()</code></p></li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Local models</strong></p>
-<ul>
-<li><code>chat_ollama()</code></li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Enterprise</strong></p>
-<ul>
-<li><code>chat_aws_bedrock()</code></li>
-</ul>
-</div>
-</div></div>
-<div class="footer">
-<p><a href="https://ellmer.tidyverse.org/" class="uri">https://ellmer.tidyverse.org/</a></p>
-</div>
+<section id="more-tips-3" class="slide level2">
+<h2>More tips</h2>
+<aside class="notes">
+<p>Advanced technique - make the model think out loud. This helps it follow complex rules or constraints.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p><strong>Force the model to say things out loud.</strong></p>
+<p>E.g., “Use no more than three rounds of tool calls” =&gt; “Before answering, note how many tool calls you have made inside <memo></memo> tags. If you have made three, stop and answer.”</p>
 </section>
-<section id="chat-in-easy-mode" class="slide level2" data-transition="fade">
-<h2>Chat in Easy Mode</h2>
-<div style="--code-font-size: 0.9em">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"anthropic"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="chat-in-easy-mode-1" class="slide level2" data-transition="fade">
-<h2>Chat in Easy Mode</h2>
-<div style="--code-font-size: 0.9em">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-code-line-numbers="3-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"anthropic"</span>)</span>
-<span id="cb2-4"><a></a><span class="co">#&gt; Using model = "claude-sonnet-4-20250514".</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="chat-in-easy-mode-2" class="slide level2" data-transition="fade">
-<h2>Chat in Easy Mode</h2>
-<div style="--code-font-size: 0.9em">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai"</span>)</span>
-<span id="cb3-4"><a></a><span class="co">#&gt; Using model = "gpt-4.1".</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="chat-in-easy-mode-3" class="slide level2" data-transition="fade">
-<h2>Chat in Easy Mode</h2>
-<div style="--code-font-size: 0.9em">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1-nano"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="more-tips-4" class="slide level2">
+<h2>More tips</h2>
+<aside class="notes">
+<p>Finally, all the major providers have excellent documentation on prompt engineering. These are great resources to dive deeper.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p>See Anthropic’s <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview"><em>Prompt Engineering Overview</em></a> and OpenAI’s <a href="https://cookbook.openai.com/"><em>OpenAI Cookbook</em></a> are excellent, and contain lots of tips and examples.</p>
+<p>Google’s <a href="https://ai.google.dev/gemini-api/docs/prompting-strategies"><em>Prompt Design Strategies</em></a> may also be useful.</p>
 </section></section>
-<section>
-<section id="your-turn-07_models" class="title-slide slide level1 slide-your-turn center">
-<h1>Your Turn <code>07_models</code></h1>
-<div id="timer_b10e64be236ce3fe297be4e0deb332e02f057330" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: -1em;right: 0;">
+<section id="your-turn-09_quiz-game-1" class="title-slide slide level1 slide-your-turn center">
+<h1>Your Turn <code>09_quiz-game-1</code></h1>
+<aside class="notes">
+<p>Now put it all together - write a system prompt for a quiz game. This is a complex task that requires clear instructions and structure.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<div style="width: 90%;">
+<ol type="1">
+<li><p>Your job: teach the model to play a quiz game with you:</p></li>
+<li><p>The user picks a theme from a short list provided by the model.</p></li>
+<li><p>They then answer multiple choice questions on that theme.</p></li>
+<li><p>After each question, tell the user if they were right or wrong and why. Then go to the next question.</p></li>
+<li><p>After 5 questions, end the round and tell the user they won, regardless of their score. Then, start a new round.</p></li>
+</ol>
+</div>
+<div id="timer_404ce8bb7e44c669283f07a74ef3353a26efc14d" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="bottom: -1em;left: 0;">
   <div class="countdown-controls">
     <button class="countdown-bump-down">−</button>
     <button class="countdown-bump-up">+</button>
  </div>
- <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
- </div>
-<ol type="1">
-<li><p>Use <code>ellmer</code> to list available models from Anthropic and OpenAI.</p></li>
-<li><p>Send the same prompt to different models and compare the responses.</p></li>
-<li><p>Feel free to change the prompt!</p></li>
-</ol>
-</section>
-<section id="favorite-models-for-today" class="slide level2">
-<h2>Favorite models for today</h2>
-<ul>
-<li>OpenAI
-<ul>
-<li><code>gpt-4.1-nano</code></li>
-<li><code>gpt-5</code></li>
-</ul></li>
-<li>Anthropic
-<ul>
-<li><code>claude-sonnet-4-20250514</code></li>
-<li><code>claude-3-5-haiku-20241022</code></li>
-</ul></li>
-</ul>
-</section></section>
-<section>
-<section id="multi-modal-input" class="title-slide slide level1 center" data-background-image="assets/bud-helisson-kqguzgvYrtM-unsplash.jpg" data-background-size="cover" data-background-position="center">
-<h1><span class="hidden">Multi-modal input</span></h1>
-<p><span class="white b absolute" style="font-size: 3em;top: -400px; right: 0px; ">Multi-modal input</span></p>
-</section>
-<section id="a-picture-is-worth-a-thousand-words" class="slide level2 center">
-<h2>A picture is worth a thousand words</h2>
-<div class="fragment">
-<p>Or for an LLM, a picture is roughly 227 words, or <span class="b blue">170 tokens</span>.</p>
-</div>
-<div class="fragment">
-<p>🖼️ 🔍 <a href="https://storage.googleapis.com/openimages/web/visualizer/index.html?type=localized%20narratives&amp;set=train&amp;c=/m/06_fw&amp;id=025d772e7181ca1f" data-preview-link="true">Open Images Dataset</a></p>
-</div>
-</section>
-<section id="content_image_file" class="slide level2" data-transition="fade">
-<h2>🌆 content_image_file</h2>
-<div style="--code-font-size: 0.9em">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-code-line-numbers="4-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1-nano"</span>)</span>
-<span id="cb5-4"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(</span>
-<span id="cb5-5"><a></a>  <span class="fu">content_image_file</span>(<span class="st">"cute-cats.jpg"</span>),</span>
-<span id="cb5-6"><a></a>  <span class="st">"What do you see in this image?"</span></span>
-<span id="cb5-7"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="content_image_url" class="slide level2" data-transition="fade">
-<h2><a href="https://placecats.com/bella/400/400" target="_blank" rel="noopener noreferrer">🐈</a> content_image_url</h2>
-<div style="--code-font-size: 0.9em">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1-nano"</span>)</span>
-<span id="cb6-4"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(</span>
-<span id="cb6-5"><a></a>  <span class="fu">content_image_url</span>(<span class="st">"https://placecats.com/bella/400/400"</span>),</span>
-<span id="cb6-6"><a></a>  <span class="st">"What do you see in this image?"</span></span>
-<span id="cb6-7"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="your-turn-08_vision" class="slide level2 slide-your-turn">
-<h2>Your Turn <code>08_vision</code></h2>
-<ol type="1">
-<li><p>I’ve put some images of food in the <code>data/recipes/images</code> folder.</p></li>
-<li><p>Your job: show the food to the LLM and see if it gets hungry.</p></li>
-</ol>
-<div id="timer_b10e64be236ce3fe297be4e0deb332e02f057330" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="bottom: 0;left: 0;">
-  <div class="countdown-controls">
-    <button class="countdown-bump-down">−</button>
-    <button class="countdown-bump-up">+</button>
- </div>
- <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
- </div>
-</section>
-<section id="content_pdf_file" class="slide level2">
-<h2>📑 content_pdf_file</h2>
-<div style="--code-font-size: 0.9em">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1-nano"</span>)</span>
-<span id="cb7-4"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(</span>
-<span id="cb7-5"><a></a>  <span class="fu">content_pdf_file</span>(<span class="st">"financial-report.pdf"</span>),</span>
-<span id="cb7-6"><a></a>  <span class="st">"What's my tax liability for 2024?"</span></span>
-<span id="cb7-7"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="content_pdf_url" class="slide level2">
-<h2>📑 content_pdf_url</h2>
-<div style="--code-font-size: 0.9em">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb8-2"><a></a></span>
-<span id="cb8-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1-nano"</span>)</span>
-<span id="cb8-4"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(</span>
-<span id="cb8-5"><a></a>  <span class="fu">content_pdf_url</span>(<span class="st">"http://pdf.secdatabase.com/1757/0001104659-25-042659.pdf"</span>),</span>
-<span id="cb8-6"><a></a>  <span class="st">"Describe Tesla's executive compensation and stock award programs."</span></span>
-<span id="cb8-7"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="your-turn-09_pdf" class="slide level2 slide-your-turn">
-<h2>Your Turn <code>09_pdf</code></h2>
-<ol type="1">
-<li><p>We have the actual recipes as PDFs in the <code>data/recipes/pdf</code> folder.</p></li>
-<li><p>Your job: ask the LLM to convert the recipes to markdown.</p></li>
-</ol>
-<div id="timer_b10e64be236ce3fe297be4e0deb332e02f057330" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="bottom: 0;left: 0;">
-  <div class="countdown-controls">
-    <button class="countdown-bump-down">−</button>
-    <button class="countdown-bump-up">+</button>
- </div>
- <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
- </div>
-</section></section>
-<section>
-<section id="structured-output" class="title-slide slide level1 no-invert-dark-mode center" data-background-image="assets/vitaly-taranov-J6hE2DTWSEw-unsplash.jpg" data-background-size="cover" data-background-position="center">
-<h1><span class="title-push-down dib bg-black ph4 white">Structured output</span></h1>
-
-</section>
-<section id="how-would-you-extract-name-and-age" class="slide level2" style="--code-font-size: 0.66em">
-<h2>How would you extract name and age?</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>age_free_text <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb9-2"><a></a>    <span class="st">"I go by Alex. 42 years on this planet and counting."</span>,</span>
-<span id="cb9-3"><a></a>    <span class="st">"Pleased to meet you! I'm Jamal, age 27."</span>,</span>
-<span id="cb9-4"><a></a>    <span class="st">"They call me Li Wei. Nineteen years young."</span>,</span>
-<span id="cb9-5"><a></a>    <span class="st">"Fatima here. Just celebrated my 35th birthday last week."</span>,</span>
-<span id="cb9-6"><a></a>    <span class="st">"The name's Robert - 51 years old and proud of it."</span>,</span>
-<span id="cb9-7"><a></a>    <span class="st">"Kwame here - just hit the big 5-0 this year."</span></span>
-<span id="cb9-8"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="if-you-wrote-r-code-it-might-look-like-this" class="slide level2 scrollable" style="--code-font-size: 0.66em">
-<h2>If you wrote R code, it might look like this…</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>word_to_num <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb10-2"><a></a>    <span class="co"># normalize</span></span>
-<span id="cb10-3"><a></a>    x <span class="ot">&lt;-</span> <span class="fu">tolower</span>(x)</span>
-<span id="cb10-4"><a></a>    <span class="co"># direct numbers</span></span>
-<span id="cb10-5"><a></a>    <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">b"</span>, x)) <span class="fu">return</span>(<span class="fu">as.integer</span>(<span class="fu">regmatches</span>(x, <span class="fu">regexpr</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">b"</span>, x))))</span>
-<span id="cb10-6"><a></a>    <span class="co"># hyphenated like "5-0"</span></span>
-<span id="cb10-7"><a></a>    <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">s*-</span><span class="sc">\\</span><span class="st">s*</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">b"</span>, x)) {</span>
-<span id="cb10-8"><a></a>        parts <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(<span class="fu">regmatches</span>(x, <span class="fu">regexpr</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">s*-</span><span class="sc">\\</span><span class="st">s*</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">b"</span>, x)), <span class="st">"</span><span class="sc">\\</span><span class="st">s*-</span><span class="sc">\\</span><span class="st">s*"</span>)))</span>
-<span id="cb10-9"><a></a>        <span class="fu">return</span>(<span class="dv">10</span> <span class="sc">*</span> parts[<span class="dv">1</span>] <span class="sc">+</span> parts[<span class="dv">2</span>])</span>
-<span id="cb10-10"><a></a>    }</span>
-<span id="cb10-11"><a></a>    <span class="co"># simple word numbers</span></span>
-<span id="cb10-12"><a></a>    ones <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb10-13"><a></a>        <span class="at">zero=</span><span class="dv">0</span>, <span class="at">one=</span><span class="dv">1</span>, <span class="at">two=</span><span class="dv">2</span>, <span class="at">three=</span><span class="dv">3</span>, <span class="at">four=</span><span class="dv">4</span>, <span class="at">five=</span><span class="dv">5</span>, <span class="at">six=</span><span class="dv">6</span>, <span class="at">seven=</span><span class="dv">7</span>, <span class="at">eight=</span><span class="dv">8</span>, <span class="at">nine=</span><span class="dv">9</span>,</span>
-<span id="cb10-14"><a></a>        <span class="at">ten=</span><span class="dv">10</span>, <span class="at">eleven=</span><span class="dv">11</span>, <span class="at">twelve=</span><span class="dv">12</span>, <span class="at">thirteen=</span><span class="dv">13</span>, <span class="at">fourteen=</span><span class="dv">14</span>, <span class="at">fifteen=</span><span class="dv">15</span>, <span class="at">sixteen=</span><span class="dv">16</span>,</span>
-<span id="cb10-15"><a></a>        <span class="at">seventeen=</span><span class="dv">17</span>, <span class="at">eighteen=</span><span class="dv">18</span>, <span class="at">nineteen=</span><span class="dv">19</span></span>
-<span id="cb10-16"><a></a>    )</span>
-<span id="cb10-17"><a></a>    tens <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">twenty=</span><span class="dv">20</span>, <span class="at">thirty=</span><span class="dv">30</span>, <span class="at">forty=</span><span class="dv">40</span>, <span class="at">fifty=</span><span class="dv">50</span>, <span class="at">sixty=</span><span class="dv">60</span>, <span class="at">seventy=</span><span class="dv">70</span>, <span class="at">eighty=</span><span class="dv">80</span>, <span class="at">ninety=</span><span class="dv">90</span>)</span>
-<span id="cb10-18"><a></a>    <span class="co"># e.g., "nineteen"</span></span>
-<span id="cb10-19"><a></a>    <span class="cf">if</span> (x <span class="sc">%in%</span> <span class="fu">names</span>(ones)) <span class="fu">return</span>(ones[[x]])</span>
-<span id="cb10-20"><a></a>    <span class="co"># e.g., "thirty five" or "thirty-five"</span></span>
-<span id="cb10-21"><a></a>    x2 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"-"</span>, <span class="st">" "</span>, x)</span>
-<span id="cb10-22"><a></a>    parts <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(x2, <span class="st">"</span><span class="sc">\\</span><span class="st">s+"</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb10-23"><a></a>    <span class="cf">if</span> (<span class="fu">length</span>(parts) <span class="sc">==</span> <span class="dv">2</span> <span class="sc">&amp;&amp;</span> parts[<span class="dv">1</span>] <span class="sc">%in%</span> <span class="fu">names</span>(tens) <span class="sc">&amp;&amp;</span> parts[<span class="dv">2</span>] <span class="sc">%in%</span> <span class="fu">names</span>(ones)) {</span>
-<span id="cb10-24"><a></a>        <span class="fu">return</span>(tens[[parts[<span class="dv">1</span>]]] <span class="sc">+</span> ones[[parts[<span class="dv">2</span>]]])</span>
-<span id="cb10-25"><a></a>    }</span>
-<span id="cb10-26"><a></a>    <span class="cf">if</span> (<span class="fu">length</span>(parts) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> parts[<span class="dv">1</span>] <span class="sc">%in%</span> <span class="fu">names</span>(tens)) <span class="fu">return</span>(tens[[parts[<span class="dv">1</span>]]])</span>
-<span id="cb10-27"><a></a>    <span class="fu">return</span>(<span class="cn">NA_integer_</span>)</span>
-<span id="cb10-28"><a></a>}</span>
-<span id="cb10-29"><a></a></span>
-<span id="cb10-30"><a></a><span class="co"># Extract name candidates</span></span>
-<span id="cb10-31"><a></a>extract_name <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
-<span id="cb10-32"><a></a>    <span class="co"># patterns that introduce a name</span></span>
-<span id="cb10-33"><a></a>    pats <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb10-34"><a></a>        <span class="st">"I go by</span><span class="sc">\\</span><span class="st">s+([A-Z][a-z]+)"</span>,</span>
-<span id="cb10-35"><a></a>        <span class="st">"I'm</span><span class="sc">\\</span><span class="st">s+([A-Z][a-z]+(?:</span><span class="sc">\\</span><span class="st">s+[A-Z][a-z]+)?)"</span>,</span>
-<span id="cb10-36"><a></a>        <span class="st">"They call me</span><span class="sc">\\</span><span class="st">s+([A-Z][a-z]+(?:</span><span class="sc">\\</span><span class="st">s+[A-Z][a-z]+)?)"</span>,</span>
-<span id="cb10-37"><a></a>        <span class="st">"^([A-Z][a-z]+) here"</span>,</span>
-<span id="cb10-38"><a></a>        <span class="st">"The name's</span><span class="sc">\\</span><span class="st">s+([A-Z][a-z]+)"</span>,</span>
-<span id="cb10-39"><a></a>        <span class="st">"^([A-Z][a-z]+)</span><span class="sc">\\</span><span class="st">s"</span> <span class="co"># fallback: leading capital word</span></span>
-<span id="cb10-40"><a></a>    )</span>
-<span id="cb10-41"><a></a>    <span class="cf">for</span> (p <span class="cf">in</span> pats) {</span>
-<span id="cb10-42"><a></a>        m <span class="ot">&lt;-</span> <span class="fu">regexpr</span>(p, s, <span class="at">perl =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-43"><a></a>        <span class="cf">if</span> (m[<span class="dv">1</span>] <span class="sc">!=</span> <span class="sc">-</span><span class="dv">1</span>) {</span>
-<span id="cb10-44"><a></a>            <span class="fu">return</span>(<span class="fu">sub</span>(p, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, <span class="fu">regmatches</span>(s, m)))</span>
-<span id="cb10-45"><a></a>        }</span>
-<span id="cb10-46"><a></a>    }</span>
-<span id="cb10-47"><a></a>    <span class="cn">NA_character_</span></span>
-<span id="cb10-48"><a></a>}</span>
-<span id="cb10-49"><a></a></span>
-<span id="cb10-50"><a></a><span class="co"># Extract age phrases and convert to number</span></span>
-<span id="cb10-51"><a></a>extract_age <span class="ot">&lt;-</span> <span class="cf">function</span>(s) {</span>
-<span id="cb10-52"><a></a>    <span class="co"># capture common age phrases around a number</span></span>
-<span id="cb10-53"><a></a>    m <span class="ot">&lt;-</span> <span class="fu">regexpr</span>(<span class="st">"(</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">b|</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">s*-</span><span class="sc">\\</span><span class="st">s*</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">b|</span><span class="sc">\\</span><span class="st">b[Nn][a-z-]+</span><span class="sc">\\</span><span class="st">b)</span><span class="sc">\\</span><span class="st">s*(years|year|birthday|young|this)"</span>, s, <span class="at">perl =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-54"><a></a>    <span class="cf">if</span> (m[<span class="dv">1</span>] <span class="sc">!=</span> <span class="sc">-</span><span class="dv">1</span>) {</span>
-<span id="cb10-55"><a></a>        token <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"(years|year|birthday|young|this)$"</span>, <span class="st">""</span>, <span class="fu">trimws</span>(<span class="fu">substring</span>(s, m, m <span class="sc">+</span> <span class="fu">attr</span>(m, <span class="st">"match.length"</span>) <span class="sc">-</span> <span class="dv">1</span>)))</span>
-<span id="cb10-56"><a></a>        <span class="fu">return</span>(<span class="fu">word_to_num</span>(token))</span>
-<span id="cb10-57"><a></a>    }</span>
-<span id="cb10-58"><a></a>    <span class="co"># handle pure word-number without trailing keyword (e.g., "Nineteen years young." handled above)</span></span>
-<span id="cb10-59"><a></a>    m2 <span class="ot">&lt;-</span> <span class="fu">regexpr</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b([A-Z][a-z]+)</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">s+years"</span>, s, <span class="at">perl =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-60"><a></a>    <span class="cf">if</span> (m2[<span class="dv">1</span>] <span class="sc">!=</span> <span class="sc">-</span><span class="dv">1</span>) {</span>
-<span id="cb10-61"><a></a>        token <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">sub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">s+years.*"</span>, <span class="st">""</span>, <span class="fu">regmatches</span>(s, m2)))</span>
-<span id="cb10-62"><a></a>        <span class="fu">return</span>(<span class="fu">word_to_num</span>(token))</span>
-<span id="cb10-63"><a></a>    }</span>
-<span id="cb10-64"><a></a>    <span class="co"># handle hyphenated "big 5-0"</span></span>
-<span id="cb10-65"><a></a>    m3 <span class="ot">&lt;-</span> <span class="fu">regexpr</span>(<span class="st">"big</span><span class="sc">\\</span><span class="st">s+(</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">s*-</span><span class="sc">\\</span><span class="st">s*</span><span class="sc">\\</span><span class="st">d+)"</span>, s, <span class="at">perl =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-66"><a></a>    <span class="cf">if</span> (m3[<span class="dv">1</span>] <span class="sc">!=</span> <span class="sc">-</span><span class="dv">1</span>) {</span>
-<span id="cb10-67"><a></a>        token <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"big</span><span class="sc">\\</span><span class="st">s+"</span>, <span class="st">""</span>, <span class="fu">regmatches</span>(s, m3))</span>
-<span id="cb10-68"><a></a>        <span class="fu">return</span>(<span class="fu">word_to_num</span>(token))</span>
-<span id="cb10-69"><a></a>    }</span>
-<span id="cb10-70"><a></a>    <span class="cn">NA_integer_</span></span>
-<span id="cb10-71"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="if-you-wrote-r-code-it-might-look-like-this-1" class="slide level2 scrollable">
-<h2>If you wrote R code, it might look like this…</h2>
-<div class="easy-columns gap-2">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>dplyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb11-2"><a></a>  <span class="at">name =</span> purrr<span class="sc">::</span><span class="fu">map_chr</span>(age_free_text, extract_name),</span>
-<span id="cb11-3"><a></a>  <span class="at">age =</span> purrr<span class="sc">::</span><span class="fu">map_int</span>(age_free_text, extract_age)</span>
-<span id="cb11-4"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  name     age
-  &lt;chr&gt;  &lt;int&gt;
-1 Alex      42
-2 Jamal     NA
-3 Li Wei    NA
-4 Fatima    NA
-5 Robert    51
-6 Kwame      5</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>age_free_text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[1] "I go by Alex. 42 years on this planet and counting."
-
-[[2]]
-[1] "Pleased to meet you! I'm Jamal, age 27."
-
-[[3]]
-[1] "They call me Li Wei. Nineteen years young."
-
-[[4]]
-[1] "Fatima here. Just celebrated my 35th birthday last week."
-
-[[5]]
-[1] "The name's Robert - 51 years old and proud of it."
-
-[[6]]
-[1] "Kwame here - just hit the big 5-0 this year."</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="but-if-you-ask-an-llm" class="slide level2" data-transition="fade">
-<h2>But if you ask an LLM…</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-code-line-numbers="4-5|8,11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb15-2"><a></a></span>
-<span id="cb15-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(</span>
-<span id="cb15-4"><a></a>  <span class="st">"openai/gpt-5-nano"</span>,</span>
-<span id="cb15-5"><a></a>  <span class="at">system_prompt =</span> <span class="st">"Extract the name and age."</span></span>
-<span id="cb15-6"><a></a>)</span>
-<span id="cb15-7"><a></a></span>
-<span id="cb15-8"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(age_free_text[[<span class="dv">1</span>]])</span>
-<span id="cb15-9"><a></a><span class="co">#&gt;</span></span>
-<span id="cb15-10"><a></a></span>
-<span id="cb15-11"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(age_free_text[[<span class="dv">2</span>]])</span>
-<span id="cb15-12"><a></a><span class="co">#&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="but-if-you-ask-an-llm-1" class="slide level2" data-transition="fade">
-<h2>But if you ask an LLM…</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-code-line-numbers="8-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(ellmer)</span>
-<span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(</span>
-<span id="cb16-4"><a></a>  <span class="st">"openai/gpt-5-nano"</span>,</span>
-<span id="cb16-5"><a></a>  <span class="at">system_prompt =</span> <span class="st">"Extract the name and age."</span></span>
-<span id="cb16-6"><a></a>)</span>
-<span id="cb16-7"><a></a></span>
-<span id="cb16-8"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(age_free_text[[<span class="dv">1</span>]])</span>
-<span id="cb16-9"><a></a><span class="co">#&gt; Name: Alex; Age: 42</span></span>
-<span id="cb16-10"><a></a></span>
-<span id="cb16-11"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(age_free_text[[<span class="dv">2</span>]])</span>
-<span id="cb16-12"><a></a><span class="co">#&gt; Name: Jamal; Age: 27</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="wouldnt-this-be-nice" class="slide level2" data-transition="fade">
-<h2>Wouldn’t this be nice?</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>chat<span class="sc">$</span><span class="fu">chat</span>(age_free_text[[<span class="dv">1</span>]])</span>
-<span id="cb17-2"><a></a><span class="co">#&gt; list(</span></span>
-<span id="cb17-3"><a></a><span class="co">#&gt;   name = "Alex",</span></span>
-<span id="cb17-4"><a></a><span class="co">#&gt;   age = 42</span></span>
-<span id="cb17-5"><a></a><span class="co">#&gt; )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="structured-chat-output" class="slide level2" data-transition="fade">
-<h2>Structured chat output</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>chat<span class="sc">$</span><span class="fu">chat_structured</span>(age_free_text[[<span class="dv">1</span>]])</span>
-<span id="cb18-2"><a></a><span class="co">#&gt; list(</span></span>
-<span id="cb18-3"><a></a><span class="co">#&gt;   name = "Alex",</span></span>
-<span id="cb18-4"><a></a><span class="co">#&gt;   age = 42</span></span>
-<span id="cb18-5"><a></a><span class="co">#&gt; )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="structured-chat-output-1" class="slide level2" data-transition="fade">
-<h2>Structured chat output</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-code-line-numbers="1-4|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>type_person <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb19-2"><a></a>  <span class="at">name =</span> <span class="fu">type_string</span>(),</span>
-<span id="cb19-3"><a></a>  <span class="at">age =</span> <span class="fu">type_integer</span>()</span>
-<span id="cb19-4"><a></a>)</span>
-<span id="cb19-5"><a></a></span>
-<span id="cb19-6"><a></a>chat<span class="sc">$</span><span class="fu">chat_structured</span>(age_free_text[[<span class="dv">1</span>]], <span class="at">type =</span> type_person)</span>
-<span id="cb19-7"><a></a><span class="co">#&gt; list(</span></span>
-<span id="cb19-8"><a></a><span class="co">#&gt;   name = "Alex",</span></span>
-<span id="cb19-9"><a></a><span class="co">#&gt;   age = 42</span></span>
-<span id="cb19-10"><a></a><span class="co">#&gt; )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="structured-chat-output-2" class="slide level2" data-transition="fade">
-<h2>Structured chat output</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-code-line-numbers="7-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>type_person <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb20-2"><a></a>  <span class="at">name =</span> <span class="fu">type_string</span>(),</span>
-<span id="cb20-3"><a></a>  <span class="at">age =</span> <span class="fu">type_integer</span>()</span>
-<span id="cb20-4"><a></a>)</span>
-<span id="cb20-5"><a></a></span>
-<span id="cb20-6"><a></a>chat<span class="sc">$</span><span class="fu">chat_structured</span>(age_free_text[[<span class="dv">1</span>]], <span class="at">type =</span> type_person)</span>
-<span id="cb20-7"><a></a><span class="co">#&gt; $name</span></span>
-<span id="cb20-8"><a></a><span class="co">#&gt; [1] "Alex"</span></span>
-<span id="cb20-9"><a></a><span class="co">#&gt;</span></span>
-<span id="cb20-10"><a></a><span class="co">#&gt; $age</span></span>
-<span id="cb20-11"><a></a><span class="co">#&gt; [1] 42</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="ellmers-type-functions" class="slide level2">
-<h2>ellmer’s type functions</h2>
-
-<img data-src="assets/ellmer-type-functions.png" class="r-stretch"><div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>type_person <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb21-2"><a></a>  <span class="at">name =</span> <span class="fu">type_string</span>(<span class="st">"The person's name"</span>),</span>
-<span id="cb21-3"><a></a>  <span class="at">age =</span> <span class="fu">type_integer</span>(<span class="st">"The person's age in years"</span>)</span>
-<span id="cb21-4"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section></section>
-<section id="your-turn-10_structured-output" class="title-slide slide level1 slide-your-turn center">
-<h1>Your Turn <code>10_structured-output</code></h1>
-<ol type="1">
-<li><p>We also have text versions of the recipes in <code>data/recipes/txt</code>.</p></li>
-<li><p>Use <code>ellmer::type_*()</code> to extract structured data from the recipe you used in <strong>activity 09</strong>.</p></li>
-<li><p>I’ve given you the expected structure, you just need to implement it.</p></li>
-</ol>
-<div id="timer_b10e64be236ce3fe297be4e0deb332e02f057330" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="bottom: -1em;left: 0;">
-  <div class="countdown-controls">
-    <button class="countdown-bump-down">−</button>
-    <button class="countdown-bump-up">+</button>
- </div>
- <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+ <code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
  </div>
 
 
@@ -1156,44 +740,6 @@ dd:before {
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

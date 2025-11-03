@@ -28,49 +28,84 @@ editor:
 <style>
 .reveal .footer {
   font-size: 0.5em !important;
-  color: white !important;
+  color: #666666 !important;
 }
 </style>
 ```
 
-# 👋 {.middle}
+# 👋
+
+::: columns
+::: {.column width="60%"}
+::: {style="font-size: 1.5em; font-weight: 300; margin-top: 1em;"}
+Sara Altman
+:::
+
+**Senior Developer Advocate, AI Core**
+
+Posit
+
+::: {style="margin-top: 1.5em; font-size: 0.9em;"}
+![](../assets/icons/github.svg){width="24px" style="vertical-align: middle"} [\@skaltman](https://github.com/skaltman)
+
+![](../assets/icons/bluesky.svg){width="24px" style="vertical-align: middle"}  [\@sara-altman.bsky.social](https://bsky.app/profile/sara-altman.bsky.social)
+:::
+:::
+
+::: {.column width="40%"}
+![](assets/headshot-sara-crop.png){style="border-radius: 40%; max-width: 95%; display: block; margin: 1em auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"}
+:::
+:::
 
 # About this workshop
 
 ## 🏡 [skaltman.github.io/r-pharma-llm]{.code} {.center .text-center}
 
-All materials live here!
+All slides and info lives here!
+
+::: notes
+You can follow along with the slides here
+also includes set up instructions for posit cloud, but i'll give you 
+some time to set up soon
+:::
+
+## Workshop format
+
+::: {style="font-size: 1.5em;"}
+📊 Slides
+
+💻 Demos
+
+✏️ Exercises on Posit Cloud
+:::
+
+::: fragment
+Ask questions at any point in the chat
+:::
+
+::: notes
+we'll have lecture components with slides
+demos where I'll show demo something and we'll discuss how it works
+and interactive exercises where you'll do some coding
+for these, I've set up a posit cloud project for you with everything you'll need
+including api keys
+
+if you have questions, you can put them in the chat at any time
+I can't promise that I'll see them while I'm talking, but during the exercise portions
+I'll monitor it and also consolidate questions to answer when we regroup 
+::: 
 
 ## Schedule
 
 {{< partial ../partials/schedule.qmd >}}
 
+::: notes
+here's a rough schedule of what we're going to be covering today
+this is only a two hour workshop, so there's a lot more to discover afterwards
 
-## Asking questions {.center .text-center}
-
-<!-- TODO --> 
-
-
-# Setup {.middle .text-center}
-
-1. Head to [skaltman.github.io/r-pharma-llm/setup.html](https://skaltman.github.io/r-pharma-llm/setup.html)
-
-2. Clone our workshop repo `posit-conf-2025/llm`
-
-3. Open the project in **Positron**
-
-4. Install all the packages: 
-
-    * From R: `renv::restore()`
-
-## We're using Positron
-
-::: text-center
-![](../assets/positron-astropy.png){style="max-height: min(650px, 80vh)"}
-:::
-
-::: footer
-RStudio and VS Code are great, too!
+my goal is to show you what's possible with llm apis from r and give you a good strating point
+so you'll walk away understanding the basics of how to call llm apis from R,
+build basic chatbots, hook LLMs up to external tools, and do some system prompt designing
 :::
 
 
@@ -81,23 +116,10 @@ RStudio and VS Code are great, too!
 |:---|:------------|
 | `_exercises/` | Files for **Your Turn** exercises |
 | `_solutions/` | Solutions to those exercises |
-| `_demos/` | Files for stuff we demo |
-| `website/` | The website and slides |
-| `./*` | Lots of project related files you can ignore |
-:::
-
-## Exercise Solutions
-
-::: {.flex .flex-column .justify-center-ns .items-center-ns style="min-height: 20vh"}
-👨‍💻 👩‍💻 `_exercises/01_hello-llm/01_hello-llm.R` \
-[&nbsp;&nbsp;&nbsp;🫣&nbsp;&nbsp;&nbsp; `_solutions/01_hello-llm/01_hello-llm.R`]{.fragment}
+| `_demos/` | Files for demos |
 :::
 
 # Let's Dive In!
-
-::: fragment
-..to our first activity!
-:::
 
 ## To use an AI API... {.center}
 
@@ -117,24 +139,43 @@ RStudio and VS Code are great, too!
 4. 💾 Store it in `.Renviron` file<br>as `OPENAI_API_KEY`,  `ANTHROPIC_API_KEY`, etc. 
 :::
 
+::: notes
+this is likely what you'll want to do if you want to run the exercises locally after this workshop is over
+:::
+
 ## But we'll give you API keys to use today! {.center}
 
 ::: incremental
-1. Use these keys for all of our activities today
+1. Use these keys for all of our activities today -- *they are already set up in Posit Cloud!*
 
 2. Play and explore! But please be considerate :)
 
 3. We'll turn them off at the end of the workshop
 :::
 
-## Your Turn `01_hello-llm` {background-image="assets/your-turn.png" background-size="30%" background-position="bottom right"}
+::: notes
+already set up in posit cloud 
+:::
+
+## Your Turn {.slide-your-turn}
 
 ::: {style="--li-margin: 0.66em;"}
-1. 🔓 Decrypt the `.env.secret` &rarr; `.env`:
-    * Run [secret.R]{class="b--light-red red ph2 pv1 ba br2 code"}
 
-2. 🤫 The special phrase is: \
-   [r-pharma-llm-5]{class="b--purple purple ph2 pv1 ba br2 code" contenteditable="true" style="font-size: 1.25em"}
-
-3. 🤖 Run the code in [_exercises/01_hello-llm]{.b}
+::: {style="font-size: 1.1em;"}
+**☁️ Set up Posit Cloud:** 
 :::
+
+1. Sign up for a free Posit Cloud account: <https://posit.cloud/plans>. 
+
+2. Join our workspace on Posit Cloud: <https://bit.ly/llm-cloud>.
+
+3. Go to _Content_, then select the `r-pharma-llm` project. 
+
+::: {style="font-size: 1.1em;"}
+**🤖 Check that everything's working:**
+:::
+
+* Run the code in [_exercises/01_hello-llm]{.b}
+:::
+
+{{< countdown 6:00 right=0 top="-0.5em" >}}

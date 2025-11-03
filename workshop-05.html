@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Getting LLMs to do what you want through effective prompting.">
+<meta name="description" content="Giving LLMs the ability to interact with the world through tools.">
 
-<title>Prompt Engineering</title>
+<title>Tool Calling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,9 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workshop-08.html" rel="next">
 <link href="./workshop-04.html" rel="prev">
-<link href="./assets/logo-rinpharma.png" rel="icon" type="image/png">
+<link href="./assets/icons/logo-rinpharma.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -117,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/posit-conf-2025/llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/skaltman/r-pharma-llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -126,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workshop-05.html">Prompt Engineering</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workshop-05.html">Tool Calling</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -162,19 +161,19 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-04.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programming with LLMs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-05.html" class="sidebar-item-text sidebar-link active">
+  <a href="./workshop-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prompt Engineering</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-08.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop-05.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tool Calling</span></a>
   </div>
 </li>
@@ -208,12 +207,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Prompt Engineering</h1>
+<h1 class="title">Tool Calling</h1>
 </div>
 
 <div>
   <div class="description">
-    Getting LLMs to do what you want through effective prompting.
+    Giving LLMs the ability to interact with the world through tools.
   </div>
 </div>
 
@@ -240,15 +239,30 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="outline" class="level2">
 <h2 class="anchored" data-anchor-id="outline">Outline</h2>
+<p><strong>Why tools?</strong></p>
 <ul>
-<li>(35m) Prompting engineering and hallucinations
+<li>LLMs can’t access real-time data or interact with the world</li>
+<li>Examples: R/Pharma speakers, weather, current date</li>
+</ul>
+<p><strong>How tool calling works</strong></p>
 <ul>
-<li>Activity: images of mpg vs weight and ask for interpretation</li>
-<li>Activity (part 1): same question, but we’ve replaced the image with random noise</li>
-<li>Activity (part 2): work with partner to try to get the model to give you a decent interpretation of the random noise image</li>
-<li>Prompt engineering best practices, in particular the system prompt</li>
-<li>Activity: create <a href="https://github.com/jcheng5/llm-quickstart/blob/main/02-tools-prompt.md">the prompt for the quiz game show</a></li>
-</ul></li>
+<li>Step-by-step walkthrough of the tool calling pattern</li>
+<li>LLM requests tools, you execute them, send results back</li>
+<li><strong>Demo:</strong> <code>18_manual-tools</code> - Manual tool approval</li>
+<li><strong>Demo:</strong> <code>19_weather-tool</code> - Automated tools</li>
+</ul>
+<p><strong>Practice with tools</strong></p>
+<ul>
+<li><strong>Activity:</strong> <code>10_quiz-game-2</code> - Add sound tool to quiz game (6 min)</li>
+</ul>
+<p><strong>Tools in Shiny apps</strong></p>
+<ul>
+<li>Define tools inside server function</li>
+<li>Tools can update and read reactive values</li>
+</ul>
+<p><strong>Resources</strong></p>
+<ul>
+<li>querychat, ggbot2, Databot, Posit AI newsletter</li>
 </ul>
 
 
@@ -657,14 +671,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./workshop-04.html" class="pagination-link" aria-label="Programming with LLMs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Programming with LLMs</span>
+      <a href="./workshop-04.html" class="pagination-link" aria-label="Prompt Engineering">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prompt Engineering</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workshop-08.html" class="pagination-link" aria-label="Tool Calling">
-        <span class="nav-page-text">Tool Calling</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

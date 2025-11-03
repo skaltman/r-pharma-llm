@@ -15,18 +15,23 @@ source("_incremental_slides.R")
 
 # [Anatomy of a Conversation]{.white} {.title-push-down .no-invert-dark-mode background-image="assets/jaroslaw-glogowski-oAYKzeP0qF4-unsplash.jpg" background-size="cover" background-position="left 30%"}
 
+::: notes
+first, let's talk about how talking to llms works
+:::
+
 ## {.center}
 
 ![](assets/cat-fact-1.png)
 ![](assets/cat-fact-2.png){.fragment}
 
 ::: notes
-Those conversations often look something like this:
+you've probably talked with chatgpt or claude or gemini and seen a conversation that looks something like this:
 
 You ask a question and ChatGPT responds.
 You can keep talking to ChatGPT and it keeps responding,
-almost like you're having a conversation with a person.
+and it feels kind of like you're having a conversation with a person.
 
+how is this happening?
 The entire conversation happens via HTTP requests and responses
 :::
 
@@ -34,6 +39,7 @@ The entire conversation happens via HTTP requests and responses
 
 ::: notes
 HTTP requests power the internet.
+
 When you visit a website, your browser sends an HTTP request to the server hosting that website.
 The server responds to the request by sending back the HTML of the webpage.
 And then your browser makes a bunch more requests to get the images, stylesheets, and scripts that make up the page, etc.
@@ -47,7 +53,7 @@ incremental_slides(
   template = r"(::: {{.mt6}}
 {{{{< include {path} >}}}}
 :::)",
-  collapse = "\n\n## What's an HTTP request?\n\n"
+  collapse = "\n\n## What's an HTTP request?\n\n::: notes\nHTTP requests power the internet.\n\nWhen you visit a website, your browser sends an HTTP request to the server hosting that website.\nThe server responds to the request by sending back the HTML of the webpage.\nAnd then your browser makes a bunch more requests to get the images, stylesheets, and scripts that make up the page, etc.\n:::\n\n"
 )
 ```
 
@@ -69,11 +75,27 @@ incremental_slides(
 {{{{< include {path} >}}}}
 :::
   )",
-  collapse = "\n\n## Talking with ChatGPT happens via HTTP\n\n"
+  collapse = "\n\n## Talking with ChatGPT happens via HTTP\n\n::: notes\nTalking to an LLM like ChatGPT also happens via HTTP requests.\nWhen you send a message to ChatGPT, you're sending an HTTP request to OpenAI's servers, this time a `POST` request.\n\nOpenAI processes the request, runs the model, gets the answer and sends it back to you as the response to that POST request.\n:::\n\n"
 )
 ```
 
 ## Messages have roles
+
+::: notes
+Now let's talk about how these messages are structured.
+
+When you send a message to an LLM, you're not just sending text -
+you're sending text with a specific ROLE attached to it.
+
+There are three main roles that messages can have, and understanding
+these roles is key to working with LLMs programmatically.
+
+- Then USER role - marks what the person using your app types
+- And ASSISTANT role - marks what the LLM responds with
+
+This might seem like a small detail, but these roles are fundamental to
+how you control and guide LLM behavior.
+:::
 
 ```{r}
 #| output: asis
@@ -83,11 +105,17 @@ incremental_slides(
   template = r"(::: {{.tc}}
 {{{{< include {path} >}}}}
 :::)",
-  collapse = "\n\n## Messages have roles\n\n"
+  collapse = "\n\n## Messages have roles\n\n::: notes\nNow let's talk about how these messages are structured.\n\nWhen you send a message to an LLM, you're not just sending text -\nyou're sending text with a specific ROLE attached to it.\n\nThere are three main roles that messages can have, and understanding\nthese roles is key to working with LLMs programmatically.\n\n[As the diagrams appear]\n- USER messages - what the person using your app types\n- And ASSISTANT messages - what the LLM responds with\n\nThis might seem like a small detail, but these roles are fundamental to\nhow you control and guide LLM behavior.\n\n\n\nthere's also the SYSTEM PROMPT - This is your instruction manual for the LLM. It's where YOU as the developer tell the model how to behave, what personality to have, what constraints to follow. The user typically never sees this. think about how you would never really come across the chatgpt system prompt. The system prompt is particularly powerful because it persists across
+the entire conversation and shapes how the assistant responds to every
+user message.\n:::\n\n"
 )
 ```
 
 ## Message roles
+
+::: notes
+to recap
+:::
 
 | Role        | Description                                                       |
 |:-----------|:---------------------------------------------------------------|
@@ -97,9 +125,25 @@ incremental_slides(
 
 ## {.center}
 
+::: notes
+So now that we understand how messages work and what roles they play,
+let's see how to actually DO this in R.
+
+ellmer is an open source R package from Posit that makes it easy to work with LLMs.
+It handles all the HTTP requests and API details for you,
+so you can focus on building with LLMs rather than wrestling with API documentation.
+
+
+Let's see what the code looks like.
+:::
+
 ![](../assets/logos/ellmer.png){style="max-width: 100%; max-height: 500px; display: block; margin-left: auto; margin-right: auto;"}
 
 ## {transition="fade"}
+
+::: notes
+First step - load the ellmer package, just like any other R package.
+:::
 
 ::: {style="--code-font-size: 0.9em"}
 ```r
@@ -108,6 +152,11 @@ library(ellmer)
 :::
 
 ## {transition="fade"}
+
+::: notes
+Now we create a chat object. This sets up a connection to OpenAI's API.
+The chat object is what we'll use to send messages and get responses.
+:::
 
 ::: {style="--code-font-size: 0.9em"}
 ```{.r code-line-numbers="3"}
@@ -118,6 +167,12 @@ chat <- chat_openai()
 :::
 
 ## {transition="fade"}
+
+::: notes
+Now we can use the chat object to send a message using the chat method
+
+and pass in our message as a string.
+:::
 
 ::: {style="--code-font-size: 0.9em"}
 ```{.r code-line-numbers="5"}
@@ -131,6 +186,17 @@ chat$chat("Tell me a quick fact about sheep.")
 
 ## {transition="fade"}
 
+::: notes
+And we get a response back!
+
+think back to what we just learned about roles.
+What are the user and assistant roles in this example?
+
+
+The user role is our question - "Tell me a quick fact about sheep"
+The assistant role is the response we got back.
+:::
+
 ::: {style="--code-font-size: 0.9em"}
 ```{.r code-line-numbers="5-8"}
 library(ellmer)
@@ -139,7 +205,7 @@ chat <- chat_openai()
 
 chat$chat("Tell me a quick fact about sheep.")
 #> Sheep have excellent memories—they can remember up
-#> to 50 individual sheep faces and even recognize 
+#> to 50 individual sheep faces and even recognize
 #> human faces for years!
 ```
 :::
@@ -149,6 +215,17 @@ chat$chat("Tell me a quick fact about sheep.")
 :::
 
 ## {transition="fade"}
+
+::: notes
+One of the nice things about ellmer is that you can easily inspect the chat object
+to see the full conversation history.
+
+If we just call 'chat', we can see all the messages and their roles.
+You can see the user message and the assistant response, as well as how many tokens were used
+
+but what about the third role -- the system prompt? where is that?
+we didn't set up one, so the model just uses whatever behavior it defaults to
+:::
 
 ::: {style="--code-font-size: 0.9em"}
 ```r
@@ -169,6 +246,14 @@ Sheep have excellent memories—they can remember up to 50 individual sheep face
 
 ## {transition="fade"}
 
+::: notes
+the chat_openai() function includes a system_prompt argument where you can set a system prompt
+Let's try adding one
+
+This is a silly example - we're telling the model to always answer in haikus.
+But it demonstrates how system prompts work and can control model behavior
+:::
+
 ::: {.smaller style="--code-font-size: 0.9em"}
 ```{.r code-line-numbers="3-5"}
 library(ellmer)
@@ -182,6 +267,13 @@ chat$chat("What is chirality?")
 :::
 
 ## {transition="fade"}
+
+::: notes
+It actually answered in a haiku.
+
+The system prompt shapes EVERY response the model gives.
+this is really powerful because you can exert quite a bit of control over how the model behaves 
+:::
 
 ::: {.smaller style="--code-font-size: 0.9em"}
 
@@ -197,14 +289,18 @@ chat$chat("What is chirality?")
 
 ::: fragment
 ```{.markdown code-line-numbers=false}
-Left and right differ—  
-mirrored, yet not the same thing.  
+Left and right differ—
+mirrored, yet not the same thing.
 Chirality's twist.
 ```
 :::
 :::
 
 ## {transition="fade"}
+
+::: notes
+Now when we inspect the chat object, we can see all three roles - system, user, and assistant. The system prompt is there shaping the conversation.
+:::
 
 ::: {.smaller style="--code-font-size: 0.9em"}
 [![](../assets/icons/r-color.svg){height="36px" alt="R"} ellmer]{.flex .items-center .gap-1}
@@ -245,7 +341,18 @@ Chirality's twist.
 
 {{< countdown 5:00 left=0 bottom="-2em" >}}
 
+::: notes
+ 1. Chat objects maintain conversation history - the original chat "remembers" the British English
+  context
+  2. New chat objects start with no history - creating a new chat means starting fresh
+:::
+
+
 # Demo: `clearbot` {.slide-demo style="--code-font-size: 0.66em"}
+
+::: notes
+Demo showing what's really happening behind the scenes - the full conversation history being sent with each request. This reveals that LLMs are stateless.
+:::
 
 👩‍💻 [_demos/03_clearbot/app.py]{.code .b .purple}
 
@@ -267,8 +374,6 @@ In British English, guess the word for the person who lives next door.
 What helps a car move smoothly down the road?
 ```
 
-# [How LLMs work (briefly)]{.dib .bg-black .ph4 .white style="position: relative; top: -3em;"} {.no-invert-dark-mode background-image="assets/andy-kelly-0E_vhMVqL9g-unsplash.jpg" background-size="cover" background-position="center"}
-
 ## {.center}
 
 ![](assets/intro-conversation-01.png)
@@ -277,54 +382,49 @@ What helps a car move smoothly down the road?
 ![](assets/intro-conversation-04.png){.fragment}
 
 ::: notes
-Those conversations often look something like this:
+You just saw in clearbot what's really happening when you have a conversation with an LLM.
 
-You ask a question and ChatGPT responds.
-You can keep talking to ChatGPT and it keeps responding,
-almost like you're having a conversation with a person.
+Those conversations look something like this - you ask, it responds, back and forth.
+But as clearbot showed, something interesting is happening behind the scenes.
 :::
 
-## [but is it really a conversation?...]{.dib .bg-black .ph4 .white} {.no-invert-dark-mode background-image="assets/marija-zaric-wFWXRDilwKo-unsplash.jpg" background-size="cover" background-position="center"}
+## [Is this actually a conversation?]{.dib .bg-black .ph4 .white} {.no-invert-dark-mode background-image="assets/marija-zaric-wFWXRDilwKo-unsplash.jpg" background-size="cover" background-position="center"}
 
 ::: notes
-But this is not a conversation.
-
-It certainly _feels_ like a conversation,
-but something else is happening behind the scenes.
+It IS a conversation, but it works differently than you might think.
 :::
 
 
-## When you talk to ChatGPT {.center}
+## LLMs are stateless {.center}
 
 ::: incremental
-1. You send words to ChatGPT
+- The LLM doesn't remember anything between requests
 
-2. ChatGPT sends words back to you
+- You have to send the **entire conversation history** with every message
 
-3. It feels like you're having a conversation
-:::
-
-
-## ChatGPT {.center}
-
-::: r-fit-text
-**Chat**ting with a **G**enerative **P**re-trained **T**ransformer
-:::
-
-::: {.fragment .r-fit-text}
-**LLM** &rarr; **L**arge **L**anguage **M**odel
+- The LLM reconstructs the "conversation" from what you send
 :::
 
 ::: notes
-GPT is a type of LLM, but not all LLMs are GPTs.
+The LLM has amnesia - it forgets everything after each response. Each API request is completely independent.
 
-LLM: Deep learning on huge amounts of text data to understand and generate human language.
-GPT: Specific architectural design of LLMs.
+Just like if you were talking to someone with amnesia, you have to recap the entire conversation every time you want to continue. That's what clearbot showed you - the full history being sent with each request.
 
-From now on, we'll use **LLM** to refer to any large language model.
+This isn't a limitation of transformers specifically - it's how the HTTP API is designed. Though it aligns with how transformers work (each forward pass is independent).
 :::
 
-## How to make an LLM {.center}
+
+# [How LLMs work (briefly)]{.dib .bg-black .ph4 .white style="position: relative; top: -3em;"} {.no-invert-dark-mode background-image="assets/andy-kelly-0E_vhMVqL9g-unsplash.jpg" background-size="cover" background-position="center"}
+
+::: notes
+Now that you understand how conversations work with LLMs - the statelessness, sending full history - let's talk briefly about how LLMs themselves actually work. How do they understand what you're asking? And how do they construct their responses?
+:::
+
+## How do LLMs understand? {.center}
+
+::: notes
+This is how LLMs understand the conversation. They're trained on massive amounts of text data - essentially everything written on the internet, in books, etc. By learning patterns from all this text, they develop the ability to understand context, meaning, and how language works.
+:::
 
 ::: {.columns}
 ::: {.column}
@@ -350,37 +450,17 @@ From now on, we'll use **LLM** to refer to any large language model.
 :::
 
 
-## The cat sat in the ____ {.center}
-
-::: incremental
-::: {.columns style="font-size: 6rem;"}
-::: {.column}
-* 🎩
-* 🛌
-* 📦
-:::
-::: {.column}
-* 🪟
-* 🛒
-* 👠
-:::
-:::
-:::
+## How do LLMs respond? {.center}
 
 ::: notes
-The breakthrough insight is the attention mechanism in the Transformer architecture.
-Instead of processing text sequentially (word by word),
-GPT models can look at all words in a sequence simultaneously
-and understand how they relate to each other.
-
-The attention mechanism allows the model to:
-
-* Weigh the importance of every word in relation to every other word
-* Capture long-range dependencies that traditional models missed
-* Process sequences in parallel rather than sequentially
+Now let's talk about how LLMs construct their responses. They don't generate whole sentences at once - they generate responses token by token, choosing the most likely next piece based on everything they've seen so far.
 :::
 
-## Actually: tokens, not words {.center}
+## Tokens {.center}
+
+::: notes
+LLMs don't think in words - they think in tokens. This is the fundamental unit they use to construct responses, one token at a time.
+:::
 
 ::: {.incremental}
 - Fundamental units of information for LLMs
@@ -417,34 +497,22 @@ into the chat window and the model could "pay attention" to it all.
 
 # Demo: <br> `token-possibilities` {.slide-demo style="--code-font-size: 0.66em"}
 
-👩‍💻 [_demos/04_token-possibilities/app.R]{.code .b .purple}
-
-# [What if I want to keep chatting back-and-forth?]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-empty.png" background-size="contain" background-position="center"}
-
-# [ellmer can do that, too!]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-focused.png" background-size="contain" background-position="center"}
-
-## {.center}
-
-::: {.table-no-border}
-| | Console | Browser |
-|:---:|:---:|:---:|
-| ![](../assets/logos/ellmer.png){height="4em" alt="ellmer"} | `live_console(chat)` | `live_browser(chat)` |
-: {tbl-colwidths="[20,40,40]"}
-:::
-
 ::: notes
-As we'll see, everything we're going to do today can be done
-in either R or Python and ellmer and chatlas are designed to be similar.
+This demo shows how LLMs construct responses in real-time. You'll see the model generating tokens one at a time, and you can see the probabilities for what token might come next. This is how all LLM responses are built - token by token, choosing the most likely next piece.
 
-But they're in different languages and those languages have different
-conventions and idioms, so they're not completely identical. If they were,
-one or the other would start to feel unnatural to use.
+The breakthrough insight is the attention mechanism in the Transformer architecture.
+Instead of processing text sequentially (word by word),
+GPT models can look at all words in a sequence simultaneously
+and understand how they relate to each other.
+
+The attention mechanism allows the model to:
+
+* Weigh the importance of every word in relation to every other word
+* Capture long-range dependencies that traditional models missed
+* Process sequences in parallel rather than sequentially
 :::
 
-# Demo: <br> `token-possibilities` {.slide-demo style="--code-font-size: 0.66em"}
-
-👩‍💻 [_demos/05_live/05_live.R]{.code .b .purple}
-
+👩‍💻 [_demos/04_token-possibilities/app.R]{.code .b .purple}
 
 # How to think about LLMs {.dark-blue background-image="assets/retro-mac.jpg" background-size="cover" background-position="bottom left"}
 
@@ -455,8 +523,6 @@ source(here::here("website/slides/_incremental_slides.R"))
 ::: notes
 Some motivational words by Joe urging everyone to approach LLMs with curiosity and experimentation rather than preconceived notions about limitations, while building understanding from the ground up through practical experience.
 :::
-
-## Think Empirically, Not Theoretically {.center .text-center}
 
 ## Think Empirically, Not Theoretically {.center .text-center}
 
@@ -482,11 +548,15 @@ Some motivational words by Joe urging everyone to approach LLMs with curiosity a
 
 ## LLMs are jagged {.center}
 
-![](assets/model-performance-smooth.png){style="max-width: 90%; max-height: 700px; display: block; margin-left: auto; margin-right: auto;"}
+::: notes
+Don't expect smooth, predictable performance across tasks. LLMs can surprise you - excelling at some complex tasks while struggling with seemingly simple ones.
+:::
+
+![](assets/model-performance-smooth.png){style="max-width: 90%; max-height: 550px; display: block; margin-left: auto; margin-right: auto;"}
 
 ## LLMs are jagged {.center}
 
-![](assets/model-performance-jagged.png){style="max-width: 90%; max-height: 700px; display: block; margin-left: auto; margin-right: auto;"}
+![](assets/model-performance-jagged.png){style="max-width: 90%; max-height: 550px; display: block; margin-left: auto; margin-right: auto;"}
 
 # [Embrace the Experimental Process]{.dib .bg-black .ph4 .white style="position: relative; top: 5em;"} {.no-invert-dark-mode background-image="assets/national-cancer-institute-Okk-eID2Z9k-unsplash.jpg" background-size="cover" background-position="center"}
 
@@ -526,10 +596,48 @@ Some motivational words by Joe urging everyone to approach LLMs with curiosity a
 - We want to have fun in this course! It's worth saying up front that our examples are not necessarily practical, but they're full of practical lessons.
 :::
 
+# [What if I want to keep chatting back-and-forth?]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-empty.png" background-size="contain" background-position="center"}
+
+::: notes
+Transition to showing how to build interactive chat interfaces with shinychat.
+:::
+
+# [ellmer can do that, too!]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-focused.png" background-size="contain" background-position="center"}
+
+## {.center}
+
+::: {.table-no-border}
+| | Console | Browser |
+|:---:|:---:|:---:|
+| ![](../assets/logos/ellmer.png){height="4em" alt="ellmer"} | `live_console(chat)` | `live_browser(chat)` |
+: {tbl-colwidths="[20,40,40]"}
+:::
+
+::: notes
+As we'll see, everything we're going to do today can be done
+in either R or Python and ellmer and chatlas are designed to be similar.
+
+But they're in different languages and those languages have different
+conventions and idioms, so they're not completely identical. If they were,
+one or the other would start to feel unnatural to use.
+:::
+
+# Demo: <br> `live` {.slide-demo style="--code-font-size: 0.66em"}
+
+::: notes
+This demo shows live_console() and live_browser() - easy ways to chat with an LLM interactively from R.
+:::
+
+👩‍💻 [_demos/05_live/05_live.R]{.code .b .purple}
+
 
 # [shinychat]{.hidden} {.no-invert-dark-mode background-image="assets/shinychat.png" background-size="contain" background-position="center"}
 
 ## {.center}
+
+::: notes
+shinychat and ellmer work together - ellmer handles the LLM API calls, shinychat provides the chat interface for Shiny apps.
+:::
 
 ::: {.easy-columns .tc}
 ![](../assets/logos/shinychat.png){style="max-width: 100%; max-height: 500px" alt="shinychat"}
@@ -539,6 +647,10 @@ Some motivational words by Joe urging everyone to approach LLMs with curiosity a
 
 ## shinychat in R {style="--code-font-size: var(--shinychat-code-font-size)" auto-animate=true}
 
+::: notes
+We'll build up a shinychat app step by step. Start with a basic Shiny app structure.
+:::
+
 ```{=html}
 <style>
 :root {
@@ -547,7 +659,7 @@ Some motivational words by Joe urging everyone to approach LLMs with curiosity a
 </style>
 ```
 
-Start with the `shinyapp` snippet
+Start with a basic shinyapp
 
 ```{.r}
 library(shiny)
@@ -564,11 +676,11 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-::: footer
-<https://www.garrickadenbuie.com/blog/shiny-new-bslib-snippet/>
-:::
-
 ## shinychat in R {style="--code-font-size: var(--shinychat-code-font-size)" auto-animate=true}
+
+::: notes
+Add the two key packages - shinychat for the UI and ellmer for LLM interactions.
+:::
 
 Load `{shinychat}` and `{ellmer}`
 
@@ -591,6 +703,10 @@ shinyApp(ui, server)
 
 ## shinychat in R {style="--code-font-size: var(--shinychat-code-font-size)" auto-animate=true}
 
+::: notes
+Use the shinychat module pattern - chat_mod_ui in the UI and chat_mod_server in the server. The "chat" ID connects them.
+:::
+
 Use the shinychat chat module
 
 ```{.r code-line-numbers="7,11"}
@@ -611,6 +727,10 @@ shinyApp(ui, server)
 ```
 
 ## shinychat in R {style="--code-font-size: var(--shinychat-code-font-size)" auto-animate=true}
+
+::: notes
+Finally, create the chat client and pass it to chat_mod_server. Now you have a working chatbot in your Shiny app!
+:::
 
 Create and hook up a chat client to use in the app
 
@@ -663,7 +783,11 @@ Copy and paste the app code into an R session and run it!
 
 -->
 
-# Your Turn `06_word-games` {.slide-your-turn}
+# Your Turn `03_word-games` {.slide-your-turn}
+
+::: notes
+Now participants will build their own shinychat app. The exercise file has the setup - they just need to add the shinychat and ellmer code to make it work.
+:::
 
 1. I've set up the basic Shiny app snippet and a system prompt.
 

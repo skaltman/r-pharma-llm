@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A deeper dive into the things you can do with LLMs when you’re programming with them that are harder to do in a chat interface.">
+<meta name="description" content="Getting LLMs to do what you want through effective prompting.">
 
-<title>Programming with LLMs</title>
+<title>Prompt Engineering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,8 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./workshop-05.html" rel="next">
-<link href="./workshop-02.html" rel="prev">
-<link href="./assets/logo-rinpharma.png" rel="icon" type="image/png">
+<link href="./workshop-03.html" rel="prev">
+<link href="./assets/icons/logo-rinpharma.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -117,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/posit-conf-2025/llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/skaltman/r-pharma-llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workshop-04.html">Programming with LLMs</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workshop-04.html">Prompt Engineering</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -162,19 +162,19 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-04.html" class="sidebar-item-text sidebar-link active">
+  <a href="./workshop-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programming with LLMs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-05.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop-04.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Prompt Engineering</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-08.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tool Calling</span></a>
   </div>
 </li>
@@ -189,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/skaltman/r-pharma-llm/edit/main/website/workshop-04.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/skaltman/r-pharma-llm/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -208,12 +208,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Programming with LLMs</h1>
+<h1 class="title">Prompt Engineering</h1>
 </div>
 
 <div>
   <div class="description">
-    A deeper dive into the things you can do with LLMs when you’re programming with them that are harder to do in a chat interface.
+    Getting LLMs to do what you want through effective prompting.
   </div>
 </div>
 
@@ -238,30 +238,22 @@ ul.task-list li input[type="checkbox"] {
     </div>
   
 </section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<section id="outline" class="level2">
+<h2 class="anchored" data-anchor-id="outline">Outline</h2>
+<p><strong>LLMs and plots</strong></p>
 <ul>
-<li>(15m) Choosing a model
+<li><strong>Activity:</strong> <code>07_plot-image-1</code> - Interpret a real scatter plot (3 min)</li>
+<li><strong>Activity:</strong> <code>08_plot-image-2</code> - Handle random noise and improve prompting (7 min)</li>
+</ul>
+<p><strong>Prompt engineering best practices</strong></p>
 <ul>
-<li>Overview of major providers: OpenAI, Anthropic, Google, ollama</li>
-<li>Tradeoffs: capability, context length, speed, cost, intelligence</li>
-<li>Activity: same question, change one string to switch models, e.g.&nbsp;<code>chat("openai")</code>, <code>chat("anthropic")</code>.</li>
-</ul></li>
-<li>(15m) Multi-modal input (vision, PDF)
+<li>Three key questions: best models? clear system prompt? examples?</li>
+<li>System prompt vs user prompt</li>
+<li>Tips: use LLMs to write prompts, add structure, separate files, think out loud</li>
+</ul>
+<p><strong>Apply your skills</strong></p>
 <ul>
-<li>Activity: images of food and ask for recipes</li>
-<li>Activity: take a PDF of a recipe, turn it into markdown</li>
-</ul></li>
-<li>(15m) Structured output
-<ul>
-<li>Explain <code>ellmer::type_*()</code> or <a href="https://posit-dev.github.io/chatlas/get-started/structured-data.html">pydantic model in chatlas</a></li>
-<li>Activity: Extract rich data from the recipe PDF</li>
-<li>Note <a href="https://docs.pydantic.dev/latest/api/config/#pydantic.config.ConfigDict.use_attribute_docstrings">use_attribute_docstrings</a></li>
-</ul></li>
-<li>(10m) Parallel/batch calls
-<ul>
-<li>Activity: Extract recipe data in parallel or batch</li>
-</ul></li>
+<li><strong>Activity:</strong> <code>09_quiz-game-1</code> - Write system prompt for quiz game (8 min)</li>
 </ul>
 
 
@@ -670,13 +662,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./workshop-02.html" class="pagination-link" aria-label="Anatomy of a conversation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Anatomy of a conversation</span>
+      <a href="./workshop-03.html" class="pagination-link" aria-label="Programming with LLMs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Programming with LLMs</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workshop-05.html" class="pagination-link" aria-label="Prompt Engineering">
-        <span class="nav-page-text">Prompt Engineering</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./workshop-05.html" class="pagination-link" aria-label="Tool Calling">
+        <span class="nav-page-text">Tool Calling</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

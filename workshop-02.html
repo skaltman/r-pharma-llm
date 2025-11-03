@@ -31,9 +31,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workshop-04.html" rel="next">
+<link href="./workshop-03.html" rel="next">
 <link href="./workshop-01.html" rel="prev">
-<link href="./assets/logo-rinpharma.png" rel="icon" type="image/png">
+<link href="./assets/icons/logo-rinpharma.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -117,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/posit-conf-2025/llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/skaltman/r-pharma-llm" title="" class="quarto-navigation-tool px-1" aria-label="Workshop materials"><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -162,19 +162,19 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-04.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programming with LLMs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-05.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prompt Engineering</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workshop-08.html" class="sidebar-item-text sidebar-link">
+  <a href="./workshop-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tool Calling</span></a>
   </div>
 </li>
@@ -240,33 +240,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="outline" class="level2">
 <h2 class="anchored" data-anchor-id="outline">Outline</h2>
-<ul>
-<li>(10m) Think empirically, be pragmatic
-<ul>
-<li>Getting into the right mindset for working with LLMs</li>
-<li>How to approach this workshop</li>
-<li>Extra time to work with participants on setup if needed</li>
-</ul></li>
-<li>(20m) Anatomy of a conversation
-<ul>
-<li>To get a get a response, you send a message via HTTP</li>
-<li>Message roles: system, user, assistant</li>
-<li>Activity (<code>02_word-game</code>): Word guessing game</li>
-<li>How does the LLM remember the conversation? <code>demos/03_clearbot</code></li>
-</ul></li>
-<li>(20m) How do LLMs work?
-<ul>
-<li><em>How to Talk to Robots</em> slides</li>
-<li>Tokens as the fundamental unit</li>
-<li>Example: <code>_demos/04_token-possibilities</code></li>
-</ul></li>
-<li>(20m) Shinychat basics
-<ul>
-<li>Activity (<code>05_live</code>): <code>live_console()</code> and <code>live_browser()</code> (or <code>chat.console()</code> and <code>chat.app()</code>)</li>
-<li>Making your own shinychat app with <code>chat.ui()</code> and <code>chat.append()</code>. R users can use the chat module with <code>chat_mod_server()</code>.</li>
-<li>Activity (<code>06_word-games</code>): Reverse the word-guessing game with the word to guess in the system prompt. User has to guess, LLM gives hints.</li>
-</ul></li>
-</ul>
+<p><strong>Anatomy of a conversation</strong> - HTTP requests, message roles, ellmer basics - <strong>Activity:</strong> <code>02_word-game</code> (5 min) - <strong>Demo:</strong> <code>03_clearbot</code></p>
+<p><strong>Understanding statelessness</strong> - LLMs don’t remember - you send full conversation history each time</p>
+<p><strong>How LLMs work</strong> - Training on text data, tokens, probabilistic generation - <strong>Demo:</strong> <code>04_token-possibilities</code></p>
+<p><strong>Interactive chatting</strong> - <strong>Demo:</strong> <code>05_live</code> - <code>live_console()</code> and <code>live_browser()</code></p>
+<p><strong>How to think about LLMs</strong> - Think empirically, LLMs are jagged, embrace experimentation</p>
+<p><strong>Shinychat basics</strong> - Building apps with <code>chat_mod_ui()</code> and <code>chat_mod_server()</code> - <strong>Activity:</strong> <code>03_word-games</code> (7 min)</p>
 
 
 </section>
@@ -679,7 +658,7 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workshop-04.html" class="pagination-link" aria-label="Programming with LLMs">
+      <a href="./workshop-03.html" class="pagination-link" aria-label="Programming with LLMs">
         <span class="nav-page-text">Programming with LLMs</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

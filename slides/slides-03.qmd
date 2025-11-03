@@ -1,0 +1,759 @@
+---
+title: Programming with LLMs
+subtitle: Getting Started with LLM APIs in R
+author: R/Pharma 2025
+date: 2025-11-03
+
+editor:
+  render-on-save: true
+---
+
+# [Providers and Models]{.white .ph4 style="background-color: #4ea8a7e6;"} {.no-invert-dark-mode background-image="assets/sunira-moses-Naj9-n5apvs-unsplash.jpg" background-size="cover" background-position="center"}
+
+::: notes
+Now that you know how to use ellmer, let's talk about choosing which model to use. There are many providers and many models to choose from.
+:::
+
+## {.center}
+
+::: notes
+First, let's clarify two terms: a provider is a company that hosts and serves models. A model is a specific LLM with particular capabilities.
+:::
+
+::: {.r-fit-text .incremental}
+**Provider**
+:    company that hosts and serves models
+
+**Model**
+:    a specific LLM with particular capabilities
+:::
+
+```{=html}
+<style>
+dt {
+  line-height: 0.8;
+}
+
+dd {
+  margin-bottom: 1em;
+  margin-left: 0 !important;
+}
+
+dd:before {
+  content: "\2192";
+  font-family: var(--r-code-font);
+  font-size: 0.8em;
+  opacity: 0.66;
+}
+</style>
+```
+
+<!--
+
+## {.text-center transition="fade"}
+
+![](assets/providers-models-01.excalidraw.svg)
+
+## {.text-center transition="fade"}
+
+![](assets/providers-models-02.excalidraw.svg)
+
+## {.text-center transition="fade"}
+
+![](assets/providers-models-03.excalidraw.svg)
+
+## {.text-center transition="fade"}
+
+![](assets/providers-models-04.excalidraw.svg)
+
+## {.text-center transition="fade"}
+
+![](assets/providers-models-05.excalidraw.svg)
+
+## {.text-center transition="fade"}
+
+![](assets/providers-models-06.excalidraw.svg)
+
+## {.text-center transition="fade"}
+
+![](assets/providers-models-07.excalidraw.svg)
+
+-->
+
+## How are models different?
+
+::: notes
+Models differ across several dimensions. Let's look at the main factors you'll consider when choosing a model.
+:::
+
+::: incremental
+1. **Content:** How many tokens can you give the model?
+1. **Speed:** How many tokens per second?
+1. **Cost:** How much does it cost to use the model?
+1. **Intelligence:** How smart is the model?
+1. **Capabilities:** Vision, reasoning, tools, etc.
+:::
+
+::: notes
+1. Content: 200k tokens is normal, 1M tokens in some newer models
+1. Speed: Gemini Flash hits ~350 tokens/sec, 100-200 is very fast, 50-100 normal. Speed is often a trade-off with intelligence.
+1. Cost: $1-5 per million tokens is normal for big frontier models, < $1 for smaller, faster models
+1. Intelligence is a stand-in for lots of concepts
+:::
+
+## {transition="fade"}
+
+![](assets/model-sizes-01.excalidraw.svg)
+
+::: notes
+We'll start with Anthropic, a company that builds LLMs, in particular a family of models they call Claude.
+:::
+
+## {transition="fade"}
+
+![](assets/model-sizes-02.excalidraw.svg)
+
+::: notes
+Claude comes in different sizes, with different levels of intelligence.
+
+They have a small model that's fast and cheap,
+a large model that's intelligent but expensive,
+and a just-right sized model that balances speed, cost, and intelligence.
+:::
+
+## {transition="fade"}
+
+![](assets/model-sizes-03.excalidraw.svg)
+
+::: notes
+In line with Anthropic's branding, these models are named after different types of poetry.
+
+* Haiku is small, fast, and cheap
+* Sonnet is larger, more expensive, and more intelligent
+* Opus is the largest, most expensive, and most intelligent
+
+Anthropic's poetry naming offsets the fact that Anthropic has one of the most consistent naming schemes in the industry.
+(Yes, that's says a lot.)
+:::
+
+## {transition="fade"}
+
+![](assets/model-sizes-04.excalidraw.svg)
+
+::: notes
+But there isn't just one Claude model at different sizes.
+Anthropic keeps training new models which they generally release with a new version number.
+
+Multiple versions are still active and available.
+:::
+
+## {transition="fade"}
+
+![](assets/model-sizes-04a.excalidraw.svg)
+
+::: notes
+When you're choosing a model, you can get higher quality responses by moving up a size tier.
+:::
+
+## {transition="fade"}
+
+![](assets/model-sizes-04b.excalidraw.svg)
+
+::: notes
+And when new releases come out, you can often get similar quality improvements by moving up a version number.
+(This move tends to be cheaper than moving up a size tier.)
+:::
+
+## {transition="fade"}
+
+![](assets/model-sizes-04c.excalidraw.svg)
+
+::: notes
+Oh, wait, sorry, to be very technically accurate, it turns out that the Opus models are only available for some Claude versions, but not all.
+
+It remains to be seen if this will be an enduring pattern.
+:::
+
+## {transition="fade"}
+
+::: notes
+All the major providers follow similar patterns - small/fast/cheap, medium/balanced, large/smart/expensive models.
+:::
+
+![](assets/model-sizes-07.excalidraw.svg)
+
+## {transition="fade"}
+
+::: notes
+OpenAI has GPT models in different sizes, Google has Gemini in different sizes - same pattern everywhere.
+:::
+
+![](assets/model-sizes-06.excalidraw.svg)
+
+## {transition="fade"}
+
+::: notes
+So when choosing a model, think about whether you need speed or intelligence, and pick the size that matches your needs.
+:::
+
+![](assets/model-sizes-05.excalidraw.svg)
+
+## {#model-comparison .smaller}
+
+::: notes
+Here's a comparison table if you want to see the specific numbers for different models. But don't stress too much about this - pick something and try it.
+:::
+
+<!--
+{{< include ../partials/model-comparison.qmd >}} -->
+
+## Model Naming Philosophies {.smaller visibility="hidden"}
+
+| Company | Theme | Logic | Clarity |
+|---------|-------|-------|---------|
+| **OpenAI** | _nano_, mini, (regular), pro | Inconsistent across series | Confusing |
+| **Anthropic** | haiku, sonnet, opus | Size/capability hierarchy | Makes you think about it |
+| **Google** | flash, pro, ultra | Clear tier system | Very clear |
+
+: {tbl-colwidths="[10,35,25,20]"}
+
+
+## How to choose a model 
+
+
+
+Generally: just start with a recent frontier model.
+
+* GPT-5
+* Claude Sonnet 4.5
+* Gemini 2.5 Pro
+
+::: notes
+you're probably not doing anything where you need to worry about cost effectiveness right away. 
+:::
+
+## {#ellmer .center transition="fade"}
+
+::: notes
+Now let's see how to actually use different providers and models in ellmer. Ellmer supports all the major providers plus local models and enterprise options.
+:::
+
+:::::: {style="display: flex; flex-direction: row; align-items: center; gap: 1em;"}
+::::: {.column style="flex: 0 0 auto;"}
+![](/assets/logos/ellmer.png){width="200px"}
+:::::
+
+::::: {.column}
+:::: fragment
+**Providers**
+
+::: incremental
+* `chat_openai()`
+
+* `chat_anthropic()`
+
+* `chat_google_gemini()`
+:::
+::::
+
+:::: fragment
+**Local models**
+
+* `chat_ollama()`
+::::
+
+:::: fragment
+**Enterprise**
+
+* `chat_aws_bedrock()`
+::::
+:::::
+::::::
+
+::: footer
+<https://ellmer.tidyverse.org/>
+:::
+
+## Chat in Easy Mode {transition="fade"}
+
+::: notes
+Ellmer has a shortcut - the chat() function. Just pass a provider name and it picks a good default model for you.
+:::
+
+::: {style="--code-font-size: 0.9em"}
+
+```{.r code-line-numbers="3"}
+library(ellmer)
+
+chat <- chat("anthropic")
+```
+:::
+
+## Chat in Easy Mode {transition="fade"}
+
+::: notes
+See? It tells you which model it chose - Claude Sonnet 4.5.
+:::
+
+::: {style="--code-font-size: 0.9em"}
+
+```{.r code-line-numbers="3-4"}
+library(ellmer)
+
+chat <- chat("anthropic")
+#> Using model = "claude-sonnet-4-5-20250929".
+```
+:::
+
+## Chat in Easy Mode {transition="fade"}
+
+::: notes
+Works the same way with OpenAI - it picks GPT-4.1 as the default.
+:::
+
+::: {style="--code-font-size: 0.9em"}
+
+```{.r code-line-numbers="3"}
+library(ellmer)
+
+chat <- chat("openai")
+#> Using model = "gpt-4.1".
+```
+:::
+
+## Chat in Easy Mode {transition="fade"}
+
+::: notes
+Or if you want a specific model, use "provider/model-name" format.
+:::
+
+::: {style="--code-font-size: 0.9em"}
+
+```{.r code-line-numbers="3"}
+library(ellmer)
+
+chat <- chat("openai/gpt-4.1-nano")
+```
+:::
+
+# Your Turn `04_models` {.slide-your-turn}
+
+::: notes
+Try using different models and see how they compare. This activity helps you get a feel for the differences between models.
+:::
+
+{{< countdown 4:00 top="-1em" >}}
+
+1. Use `ellmer` to list available models from Anthropic and OpenAI.
+
+2. Send the same prompt to different models and compare the responses.
+
+3. Feel free to change the prompt!
+
+## Favorite models for today
+
+::: notes
+These are the models I recommend using today. Nano and Haiku are fast, GPT-5 and Sonnet 4.5 are smarter. Pick based on what you're doing.
+:::
+
+* OpenAI
+    * `gpt-4.1-nano`
+    * `gpt-5`
+
+* Anthropic
+    * `claude-sonnet-4-5-20250929`
+    * `claude-3-5-haiku-20241022`
+
+## How to choose a model
+
+::: columns
+
+::: {.column width="30%"}
+![](../assets/logos/vitals.png)
+:::
+
+
+::: {.column width="70%"}
+![](assets/eval.png)
+:::
+
+:::
+
+## How to choose a model
+
+![](assets/eval-costs.png)
+
+# [Multi-modal input]{.hidden} {background-image="assets/bud-helisson-kqguzgvYrtM-unsplash.jpg" background-size="cover" background-position="center"}
+
+::: notes
+Modern LLMs aren't just text - they can handle images and PDFs too. This is called multi-modal input.
+:::
+
+[Multi-modal input]{.white .b .absolute top="-400px" right=0 style="font-size: 3em;"}
+
+## A picture is worth a thousand words {.center}
+
+::: notes
+Images get tokenized just like text. For LLMs, an image is roughly 170 tokens.
+:::
+
+::: fragment
+Or for an LLM, a picture is roughly 227 words, or [170 tokens]{.b .blue}.
+:::
+
+## 🌆 content_image_file {transition="fade"}
+
+::: notes
+Use content_image_file() to pass an image from your local filesystem. Just provide the path to the image.
+:::
+
+::: {style="--code-font-size: 0.9em"}
+
+```{.r code-line-numbers="4-7"}
+library(ellmer)
+
+chat <- chat("openai/gpt-4.1-nano")
+chat$chat(
+  content_image_file("cats.jpg"),
+  "What do you see in this image?"
+)
+```
+:::
+
+## [🐈](https://placecats.com/bella/400/400){target="_blank" rel="noopener noreferrer"} content_image_url {transition="fade"}
+
+::: notes
+Or use content_image_url() to pass an image from a URL. Same pattern, different source.
+:::
+
+::: {style="--code-font-size: 0.9em"}
+
+```{.r code-line-numbers="5"}
+library(ellmer)
+
+chat <- chat("openai/gpt-4.1-nano")
+chat$chat(
+  content_image_url("https://placecats.com/bella/400/400"),
+  "What do you see in this image?"
+)
+```
+:::
+
+## Your Turn `05_vision` {.slide-your-turn}
+
+::: notes
+Now try it yourself - use these food images to practice vision with LLMs. See what kind of descriptions they give.
+:::
+
+1. I've put some images of food in the `data/recipes/images` folder.
+
+2. Your job: show the food to the LLM and ask it to write a corresponding recipe. 
+
+{{< countdown 5:00 left=0 >}}
+
+## 📑 content_pdf_file / content_pdf_url
+
+::: notes
+LLMs can also read PDFs. Use content_pdf_file() to pass a PDF from your filesystem.
+:::
+
+::: {style="--code-font-size: 0.9em"}
+
+```{.r code-line-numbers="5"}
+library(ellmer)
+
+chat <- chat("openai/gpt-4.1-nano")
+chat$chat(
+   content_pdf_file("prescribing-information.pdf"),
+  "List the contraindications and serious adverse reactions."
+)
+```
+:::
+
+
+<!--
+## Your Turn `09_pdf` {.slide-your-turn}
+
+::: notes
+Practice with PDFs - convert these recipe PDFs to markdown. This shows how LLMs can extract and reformat document content.
+:::
+
+1. We have the actual recipes as PDFs in the `data/recipes/pdf` folder.
+
+2. Your job: ask the LLM to convert the recipes to markdown.
+
+{{< countdown 5:00 left=0 >}}
+
+-->
+
+# [Structured output]{.title-push-down .dib .bg-black .ph4 .white} {.no-invert-dark-mode background-image="assets/vitaly-taranov-J6hE2DTWSEw-unsplash.jpg" background-size="cover" background-position="center"}
+
+::: notes
+Now let's talk about structured output - getting LLMs to return data in a predictable format instead of free text.
+:::
+
+## How would you extract name and age? {style="--code-font-size: 0.66em"}
+
+::: notes
+Here's a common problem - you have messy text data and need to extract specific fields like name and age.
+:::
+
+```{r}
+#| echo: true
+
+age_free_text <- list(
+    "I go by Alex. 42 years on this planet and counting.",
+    "Pleased to meet you! I'm Jamal, age 27.",
+    "They call me Li Wei. Nineteen years young.",
+    "Fatima here. Just celebrated my 35th birthday last week.",
+    "The name's Robert - 51 years old and proud of it.",
+    "Kwame here - just hit the big 5-0 this year."
+)
+```
+
+## If you wrote R code, it might look like this... {.scrollable style="--code-font-size: 0.66em"}
+
+::: notes
+If you tried to solve this with traditional R code, you'd need complex regex patterns and string parsing. This is painful.
+:::
+
+```{r}
+#| echo: true
+
+word_to_num <- function(x) {
+    # normalize
+    x <- tolower(x)
+    # direct numbers
+    if (grepl("\\b\\d+\\b", x)) return(as.integer(regmatches(x, regexpr("\\b\\d+\\b", x))))
+    # hyphenated like "5-0"
+    if (grepl("\\b\\d+\\s*-\\s*\\d+\\b", x)) {
+        parts <- as.integer(unlist(strsplit(regmatches(x, regexpr("\\b\\d+\\s*-\\s*\\d+\\b", x)), "\\s*-\\s*")))
+        return(10 * parts[1] + parts[2])
+    }
+    # simple word numbers
+    ones <- c(
+        zero=0, one=1, two=2, three=3, four=4, five=5, six=6, seven=7, eight=8, nine=9,
+        ten=10, eleven=11, twelve=12, thirteen=13, fourteen=14, fifteen=15, sixteen=16,
+        seventeen=17, eighteen=18, nineteen=19
+    )
+    tens <- c(twenty=20, thirty=30, forty=40, fifty=50, sixty=60, seventy=70, eighty=80, ninety=90)
+    # e.g., "nineteen"
+    if (x %in% names(ones)) return(ones[[x]])
+    # e.g., "thirty five" or "thirty-five"
+    x2 <- gsub("-", " ", x)
+    parts <- strsplit(x2, "\\s+")[[1]]
+    if (length(parts) == 2 && parts[1] %in% names(tens) && parts[2] %in% names(ones)) {
+        return(tens[[parts[1]]] + ones[[parts[2]]])
+    }
+    if (length(parts) == 1 && parts[1] %in% names(tens)) return(tens[[parts[1]]])
+    return(NA_integer_)
+}
+
+# Extract name candidates
+extract_name <- function(s) {
+    # patterns that introduce a name
+    pats <- c(
+        "I go by\\s+([A-Z][a-z]+)",
+        "I'm\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?)",
+        "They call me\\s+([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?)",
+        "^([A-Z][a-z]+) here",
+        "The name's\\s+([A-Z][a-z]+)",
+        "^([A-Z][a-z]+)\\s" # fallback: leading capital word
+    )
+    for (p in pats) {
+        m <- regexpr(p, s, perl = TRUE)
+        if (m[1] != -1) {
+            return(sub(p, "\\1", regmatches(s, m)))
+        }
+    }
+    NA_character_
+}
+
+# Extract age phrases and convert to number
+extract_age <- function(s) {
+    # capture common age phrases around a number
+    m <- regexpr("(\\b\\d+\\b|\\b\\d+\\s*-\\s*\\d+\\b|\\b[Nn][a-z-]+\\b)\\s*(years|year|birthday|young|this)", s, perl = TRUE)
+    if (m[1] != -1) {
+        token <- sub("(years|year|birthday|young|this)$", "", trimws(substring(s, m, m + attr(m, "match.length") - 1)))
+        return(word_to_num(token))
+    }
+    # handle pure word-number without trailing keyword (e.g., "Nineteen years young." handled above)
+    m2 <- regexpr("\\b([A-Z][a-z]+)\\b\\s+years", s, perl = TRUE)
+    if (m2[1] != -1) {
+        token <- tolower(sub("\\s+years.*", "", regmatches(s, m2)))
+        return(word_to_num(token))
+    }
+    # handle hyphenated "big 5-0"
+    m3 <- regexpr("big\\s+(\\d+\\s*-\\s*\\d+)", s, perl = TRUE)
+    if (m3[1] != -1) {
+        token <- sub("big\\s+", "", regmatches(s, m3))
+        return(word_to_num(token))
+    }
+    NA_integer_
+}
+```
+
+## If you wrote R code, it might look like this... {.scrollable}
+
+::: notes
+And here's what running that code looks like. It works, but look at all the code you had to write!
+:::
+
+::: {.easy-columns .gap-2}
+```{r}
+#| echo: true
+
+dplyr::tibble(
+  name = purrr::map_chr(age_free_text, extract_name),
+  age = purrr::map_int(age_free_text, extract_age)
+)
+```
+
+```{r}
+#| echo: true
+
+age_free_text
+```
+:::
+
+## But if you ask an LLM... {transition="fade"}
+
+::: notes
+But with an LLM, you can just ask it to extract the name and age. Much simpler!
+:::
+
+```{.r code-line-numbers="4-5|8,11"}
+library(ellmer)
+
+chat <- chat(
+  "openai/gpt-5-nano",
+  system_prompt = "Extract the name and age."
+)
+
+chat$chat(age_free_text[[1]])
+#>
+
+chat$chat(age_free_text[[2]])
+#>
+```
+
+## But if you ask an LLM... {transition="fade"}
+
+::: notes
+And it works! The LLM correctly extracts names and ages. But the output is still free text - wouldn't it be nice to get proper R objects?
+:::
+
+```{.r code-line-numbers="8-12"}
+library(ellmer)
+
+chat <- chat(
+  "openai/gpt-5-nano",
+  system_prompt = "Extract the name and age."
+)
+
+chat$chat(age_free_text[[1]])
+#> Name: Alex; Age: 42
+
+chat$chat(age_free_text[[2]])
+#> Name: Jamal; Age: 27
+```
+
+## Wouldn't this be nice? {transition="fade"}
+
+::: notes
+What we really want is a proper R list with named fields. That's what structured output gives us.
+:::
+
+```{.r}
+chat$chat(age_free_text[[1]])
+#> list(
+#>   name = "Alex",
+#>   age = 42
+#> )
+```
+
+## Structured chat output {transition="fade"}
+
+::: notes
+Enter chat_structured() - this method returns structured data instead of text. But we need to tell it what structure we want.
+:::
+
+```{.r code-line-numbers="1"}
+chat$chat_structured(age_free_text[[1]])
+#> list(
+#>   name = "Alex",
+#>   age = 42
+#> )
+```
+
+## Structured chat output {transition="fade"}
+
+::: notes
+Define the structure with type_object() - specify each field and its type. Then pass it to chat_structured().
+:::
+
+```{.r code-line-numbers="1-4|6"}
+type_person <- type_object(
+  name = type_string(),
+  age = type_integer()
+)
+
+chat$chat_structured(age_free_text[[1]], type = type_person)
+#> list(
+#>   name = "Alex",
+#>   age = 42
+#> )
+```
+
+## Structured chat output {transition="fade"}
+
+::: notes
+And you get back proper R objects - a character vector for name, an integer for age. Ready to use in your analysis!
+:::
+
+```{.r code-line-numbers="7-11"}
+type_person <- type_object(
+  name = type_string(),
+  age = type_integer()
+)
+
+chat$chat_structured(age_free_text[[1]], type = type_person)
+#> $name
+#> [1] "Alex"
+#>
+#> $age
+#> [1] 42
+```
+
+## ellmer's type functions
+
+::: notes
+Here are all the type functions available in ellmer. You can also add descriptions to help the LLM understand what each field means.
+:::
+
+![](assets/ellmer-type-functions.png)
+
+::: fragment
+```{.r}
+type_person <- type_object(
+  name = type_string("The person's name"),
+  age = type_integer("The person's age in years")
+)
+```
+:::
+
+# Your Turn `06_structured-output` {.slide-your-turn}
+
+::: notes
+Now practice structured output - extract recipe data as proper R objects. This is a key skill for working with LLMs in real applications.
+:::
+
+1. `data/recipes/txt` contains a set of recipes. 
+
+1. Use `ellmer::type_*()` to extract structured data from the Cinnamon Peach Oat Waffles recipe (already read in for you).
+
+1. I've given you the expected structure, you just need to implement it.
+
+1. If you have extra time, try it with other recipes in the folder.
+
+{{< countdown 7:00 left=0 bottom="-1em" >}}

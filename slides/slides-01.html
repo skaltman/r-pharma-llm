@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<link href="../assets/logo-rinpharma.png" rel="icon" type="image/png">
+<link href="../assets/icons/logo-rinpharma.png" rel="icon" type="image/png">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -10,7 +10,9 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-1fe81d0376b2c50856e68e651e390326.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-contrib/quarto-auto-dark-mode-1.0.0/auto-dark-mode.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/tachyons-4.12.0/tachyons.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/tachyons-4.12.0/quarto-resets.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-contrib/tachyons-4.12.0/quarto-resets.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/countdown-0.5.0/countdown.js"></script>
+<link href="../site_libs/quarto-contrib/countdown-0.5.0/countdown.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.23">
 
   <meta name="author" content="R/Pharma 2025">
@@ -35,7 +37,7 @@
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-c0f2fc08fdbbfe7d3a7979f8cfda8447.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-03ef827d7d46bcd30fe2e31b9e118fc2.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -161,13 +163,26 @@ R/Pharma 2025
 <style>
 .reveal .footer {
   font-size: 0.5em !important;
-  color: white !important;
+  color: #666666 !important;
 }
 </style>
 </section>
-<section id="section" class="title-slide slide level1 middle center">
+<section id="section" class="title-slide slide level1 center">
 <h1>👋</h1>
-
+<div class="columns">
+<div class="column" style="width:60%;">
+<div style="font-size: 1.5em; font-weight: 300; margin-top: 1em;">
+<p>Sara Altman</p>
+</div>
+<p><strong>Senior Developer Advocate, AI Core</strong></p>
+<p>Posit</p>
+<div style="margin-top: 1.5em; font-size: 0.9em;">
+<p><img data-src="../assets/icons/github.svg" style="vertical-align: middle" width="24"> <a href="https://github.com/skaltman">@skaltman</a></p>
+<p><img data-src="../assets/icons/bluesky.svg" style="vertical-align: middle" width="24"> <a href="https://bsky.app/profile/sara-altman.bsky.social">@sara-altman.bsky.social</a></p>
+</div>
+</div><div class="column" style="width:40%;">
+<p><img data-src="assets/headshot-sara-crop.png" style="border-radius: 40%; max-width: 95%; display: block; margin: 1em auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"></p>
+</div></div>
 </section>
 
 <section>
@@ -177,7 +192,45 @@ R/Pharma 2025
 </section>
 <section id="skaltman.github.ior-pharma-llm" class="slide level2 center text-center">
 <h2>🏡 <span class="code">skaltman.github.io/r-pharma-llm</span></h2>
-<p>All materials live here!</p>
+<p>All slides and info lives here!</p>
+<aside class="notes">
+<p>You can follow along with the slides here also includes set up instructions for posit cloud, but i’ll give you some time to set up soon</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="workshop-format" class="slide level2">
+<h2>Workshop format</h2>
+<div style="font-size: 1.5em;">
+<p>📊 Slides</p>
+<p>💻 Demos</p>
+<p>✏️ Exercises on Posit Cloud</p>
+</div>
+<div class="fragment">
+<p>Ask questions at any point in the chat</p>
+</div>
+<aside class="notes">
+<p>we’ll have lecture components with slides demos where I’ll show demo something and we’ll discuss how it works and interactive exercises where you’ll do some coding for these, I’ve set up a posit cloud project for you with everything you’ll need including api keys</p>
+<p>if you have questions, you can put them in the chat at any time I can’t promise that I’ll see them while I’m talking, but during the exercise portions I’ll monitor it and also consolidate questions to answer when we regroup</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="schedule" class="slide level2">
 <h2>Schedule</h2>
@@ -217,32 +270,20 @@ R/Pharma 2025
 </tr>
 </tbody>
 </table>
-</section>
-<section id="asking-questions" class="slide level2 center text-center">
-<h2>Asking questions</h2>
-<!-- TODO -->
-</section></section>
-<section>
-<section id="setup" class="title-slide slide level1 middle text-center center">
-<h1>Setup</h1>
-<ol type="1">
-<li><p>Head to <a href="https://skaltman.github.io/r-pharma-llm/setup.html">skaltman.github.io/r-pharma-llm/setup.html</a></p></li>
-<li><p>Clone our workshop repo <code>posit-conf-2025/llm</code></p></li>
-<li><p>Open the project in <strong>Positron</strong></p></li>
-<li><p>Install all the packages:</p>
-<ul>
-<li>From R: <code>renv::restore()</code></li>
-</ul></li>
-</ol>
-</section>
-<section id="were-using-positron" class="slide level2">
-<h2>We’re using Positron</h2>
-<div class="text-center">
-<p><img data-src="../assets/positron-astropy.png" style="max-height: min(650px, 80vh)"></p>
-</div>
-<div class="footer">
-<p>RStudio and VS Code are great, too!</p>
-</div>
+<aside class="notes">
+<p>here’s a rough schedule of what we’re going to be covering today this is only a two hour workshop, so there’s a lot more to discover afterwards</p>
+<p>my goal is to show you what’s possible with llm apis from r and give you a good strating point so you’ll walk away understanding the basics of how to call llm apis from R, build basic chatbots, hook LLMs up to external tools, and do some system prompt designing</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="file-organization" class="slide level2">
 <h2>File organization</h2>
@@ -259,33 +300,16 @@ R/Pharma 2025
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>_demos/</code></td>
-<td style="text-align: left;">Files for stuff we demo</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>website/</code></td>
-<td style="text-align: left;">The website and slides</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>./*</code></td>
-<td style="text-align: left;">Lots of project related files you can ignore</td>
+<td style="text-align: left;">Files for demos</td>
 </tr>
 </tbody>
 </table>
-</div>
-</section>
-<section id="exercise-solutions" class="slide level2">
-<h2>Exercise Solutions</h2>
-<div class="flex flex-column justify-center-ns items-center-ns" style="min-height: 20vh">
-<p>👨‍💻 👩‍💻 <code>_exercises/01_hello-llm/01_hello-llm.R</code><br>
-<span class="fragment">&nbsp;&nbsp;&nbsp;🫣&nbsp;&nbsp;&nbsp; <code>_solutions/01_hello-llm/01_hello-llm.R</code></span></p>
 </div>
 </section></section>
 <section>
 <section id="lets-dive-in" class="title-slide slide level1 center">
 <h1>Let’s Dive In!</h1>
-<div class="fragment">
-<p>..to our first activity!</p>
-</div>
+
 </section>
 <section id="to-use-an-ai-api" class="slide level2 center">
 <h2>To use an AI API…</h2>
@@ -303,28 +327,66 @@ R/Pharma 2025
 <li class="fragment"><p>💾 Store it in <code>.Renviron</code> file<br>as <code>OPENAI_API_KEY</code>, <code>ANTHROPIC_API_KEY</code>, etc.</p></li>
 </ol>
 </div>
+<aside class="notes">
+<p>this is likely what you’ll want to do if you want to run the exercises locally after this workshop is over</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="but-well-give-you-api-keys-to-use-today" class="slide level2 center">
 <h2>But we’ll give you API keys to use today!</h2>
 <ol type="1">
-<li class="fragment"><p>Use these keys for all of our activities today</p></li>
+<li class="fragment"><p>Use these keys for all of our activities today – <em>they are already set up in Posit Cloud!</em></p></li>
 <li class="fragment"><p>Play and explore! But please be considerate :)</p></li>
 <li class="fragment"><p>We’ll turn them off at the end of the workshop</p></li>
 </ol>
+<aside class="notes">
+<p>already set up in posit cloud</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="your-turn-01_hello-llm" class="slide level2" data-background-image="assets/your-turn.png" data-background-size="30%" data-background-position="bottom right">
-<h2>Your Turn <code>01_hello-llm</code></h2>
+<section id="your-turn" class="slide level2 slide-your-turn">
+<h2>Your Turn</h2>
 <div style="--li-margin: 0.66em;">
-<ol type="1">
-<li><p>🔓 Decrypt the <code>.env.secret</code> → <code>.env</code>:</p>
-<ul>
-<li>Run <span class="b--light-red red ph2 pv1 ba br2 code">secret.R</span></li>
-</ul></li>
-<li><p>🤫 The special phrase is:<br>
-<span class="b--purple purple ph2 pv1 ba br2 code" contenteditable="true" style="font-size: 1.25em">r-pharma-llm-5</span></p></li>
-<li><p>🤖 Run the code in <span class="b">_exercises/01_hello-llm</span></p></li>
-</ol>
+<div style="font-size: 1.1em;">
+<p><strong>☁️ Set up Posit Cloud:</strong></p>
 </div>
+<ol type="1">
+<li><p>Sign up for a free Posit Cloud account: <a href="https://posit.cloud/plans" class="uri">https://posit.cloud/plans</a>.</p></li>
+<li><p>Join our workspace on Posit Cloud: <a href="https://bit.ly/llm-cloud" class="uri">https://bit.ly/llm-cloud</a>.</p></li>
+<li><p>Go to <em>Content</em>, then select the <code>r-pharma-llm</code> project.</p></li>
+</ol>
+<div style="font-size: 1.1em;">
+<p><strong>🤖 Check that everything’s working:</strong></p>
+</div>
+<ul>
+<li>Run the code in <span class="b">_exercises/01_hello-llm</span></li>
+</ul>
+</div>
+<div id="timer_59560225005a25782212c76aada85f27e9c18a2d" class="countdown" data-warn-when="0" data-update-every="1" data-play-sound="false" data-blink-colon="false" data-start-immediately="false" tabindex="0" style="top: -0.5em;right: 0;">
+  <div class="countdown-controls">
+    <button class="countdown-bump-down">−</button>
+    <button class="countdown-bump-up">+</button>
+ </div>
+ <code class="countdown-time"><span class="countdown-digits minutes">06</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+ </div>
 
 
 </section></section>
