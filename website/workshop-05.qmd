@@ -2,7 +2,7 @@
 title: Tool Calling
 description: Giving LLMs the ability to interact with the world through tools.
 description-short: Help LLMs interact with the world
-duration: 50min
+duration: 30min
 ---
 
 ## Slides

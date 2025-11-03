@@ -299,7 +299,7 @@ Chirality's twist.
 ## {transition="fade"}
 
 ::: notes
-claude: Now when we inspect the chat object, we can see all three roles - system, user, and assistant. The system prompt is there shaping the conversation.
+Now when we inspect the chat object, we can see all three roles - system, user, and assistant. The system prompt is there shaping the conversation.
 :::
 
 ::: {.smaller style="--code-font-size: 0.9em"}
@@ -351,7 +351,7 @@ Chirality's twist.
 # Demo: `clearbot` {.slide-demo style="--code-font-size: 0.66em"}
 
 ::: notes
-claude: Demo showing what's really happening behind the scenes - the full conversation history being sent with each request. This reveals that LLMs are stateless.
+Demo showing what's really happening behind the scenes - the full conversation history being sent with each request. This reveals that LLMs are stateless.
 :::
 
 👩‍💻 [_demos/03_clearbot/app.py]{.code .b .purple}
@@ -549,7 +549,7 @@ Some motivational words by Joe urging everyone to approach LLMs with curiosity a
 ## LLMs are jagged {.center}
 
 ::: notes
-claude: Don't expect smooth, predictable performance across tasks. LLMs can surprise you - excelling at some complex tasks while struggling with seemingly simple ones.
+Don't expect smooth, predictable performance across tasks. LLMs can surprise you - excelling at some complex tasks while struggling with seemingly simple ones.
 :::
 
 ![](assets/model-performance-smooth.png){style="max-width: 90%; max-height: 550px; display: block; margin-left: auto; margin-right: auto;"}
@@ -599,7 +599,7 @@ claude: Don't expect smooth, predictable performance across tasks. LLMs can surp
 # [What if I want to keep chatting back-and-forth?]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-empty.png" background-size="contain" background-position="center"}
 
 ::: notes
-claude: Transition to showing how to build interactive chat interfaces with shinychat.
+Transition to showing how to build interactive chat interfaces with shinychat.
 :::
 
 # [ellmer can do that, too!]{.bg-white .f1 .normal .relative style="top: -14px"} {background-image="assets/shinychat-input-focused.png" background-size="contain" background-position="center"}
@@ -625,7 +625,7 @@ one or the other would start to feel unnatural to use.
 # Demo: <br> `live` {.slide-demo style="--code-font-size: 0.66em"}
 
 ::: notes
-claude: This demo shows live_console() and live_browser() - easy ways to chat with an LLM interactively from R.
+This demo shows live_console() and live_browser() - easy ways to chat with an LLM interactively from R.
 :::
 
 👩‍💻 [_demos/05_live/05_live.R]{.code .b .purple}
@@ -636,7 +636,7 @@ claude: This demo shows live_console() and live_browser() - easy ways to chat wi
 ## {.center}
 
 ::: notes
-claude: shinychat and ellmer work together - ellmer handles the LLM API calls, shinychat provides the chat interface for Shiny apps.
+shinychat and ellmer work together - ellmer handles the LLM API calls, shinychat provides the chat interface for Shiny apps.
 :::
 
 ::: {.easy-columns .tc}
@@ -648,7 +648,7 @@ claude: shinychat and ellmer work together - ellmer handles the LLM API calls, s
 ## shinychat in R {style="--code-font-size: var(--shinychat-code-font-size)" auto-animate=true}
 
 ::: notes
-claude: We'll build up a shinychat app step by step. Start with a basic Shiny app structure using the shinyapp snippet.
+We'll build up a shinychat app step by step. Start with a basic Shiny app structure.
 :::
 
 ```{=html}
@@ -659,7 +659,7 @@ claude: We'll build up a shinychat app step by step. Start with a basic Shiny ap
 </style>
 ```
 
-Start with the `shinyapp` snippet
+Start with a basic shinyapp
 
 ```{.r}
 library(shiny)
@@ -679,7 +679,7 @@ shinyApp(ui, server)
 ## shinychat in R {style="--code-font-size: var(--shinychat-code-font-size)" auto-animate=true}
 
 ::: notes
-claude: Add the two key packages - shinychat for the UI and ellmer for LLM interactions.
+Add the two key packages - shinychat for the UI and ellmer for LLM interactions.
 :::
 
 Load `{shinychat}` and `{ellmer}`
@@ -704,7 +704,7 @@ shinyApp(ui, server)
 ## shinychat in R {style="--code-font-size: var(--shinychat-code-font-size)" auto-animate=true}
 
 ::: notes
-claude: Use the shinychat module pattern - chat_mod_ui in the UI and chat_mod_server in the server. The "chat" ID connects them.
+Use the shinychat module pattern - chat_mod_ui in the UI and chat_mod_server in the server. The "chat" ID connects them.
 :::
 
 Use the shinychat chat module
@@ -729,7 +729,7 @@ shinyApp(ui, server)
 ## shinychat in R {style="--code-font-size: var(--shinychat-code-font-size)" auto-animate=true}
 
 ::: notes
-claude: Finally, create the chat client and pass it to chat_mod_server. Now you have a working chatbot in your Shiny app!
+Finally, create the chat client and pass it to chat_mod_server. Now you have a working chatbot in your Shiny app!
 :::
 
 Create and hook up a chat client to use in the app
@@ -786,7 +786,7 @@ Copy and paste the app code into an R session and run it!
 # Your Turn `03_word-games` {.slide-your-turn}
 
 ::: notes
-claude: Now participants will build their own shinychat app. The exercise file has the setup - they just need to add the shinychat and ellmer code to make it work.
+Now participants will build their own shinychat app. The exercise file has the setup - they just need to add the shinychat and ellmer code to make it work.
 :::
 
 1. I've set up the basic Shiny app snippet and a system prompt.

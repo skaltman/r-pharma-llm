@@ -12,7 +12,7 @@ editor:
 ## Recall: How do LLMs work? {.center}
 
 ::: notes
-claude: Let's revisit how LLMs work. This is important context for understanding why we need tools.
+Let's revisit how LLMs work. This is important context for understanding why we need tools.
 :::
 
 ::: incremental
@@ -37,6 +37,7 @@ chat <- chat("openai/gpt-4.1-nano")
 chat$chat("Who are the keynote speakers at R/Pharma 2025?")
 ```
 
+::: fragment
 ```
 My training only includes data up until October 2023, and I do not 
 have access to real-time updates or event-specific details beyond that. 
@@ -45,15 +46,16 @@ For the most accurate and current information about the keynote
 speakers, I recommend visiting the official R/Pharma 2025 
 website or checking their latest event announcements.
 ```
+:::
 
 ::: notes
-claude: Let's try asking about things the model doesn't know. This one fails - the model's training data is old and it doesn't have real-time event information.
+Let's try asking about things the model doesn't know. This one fails - the model's training data is old and it doesn't have real-time event information.
 :::
 
 ## Let's try it
 
 ::: notes
-claude: This one also fails - the model can't access real-time weather data. No internet connection.
+This one also fails - the model can't access real-time weather data. No internet connection.
 :::
 
 ```{.r}
@@ -61,20 +63,24 @@ library(ellmer)
 
 chat <- chat("openai/gpt-4.1-nano")
 
-chat$chat("What's the weather like in Utqiagvik, Alaska?")
+chat$chat("What's the weather like in Minneapolis?")
 ```
+
+::: fragment
 
 ```
 I'm unable to provide real-time weather updates.
-For the most current weather in Utqiagvik, Alaska,
+For the most current weather in Minneapolis,
 please check a reliable weather service or app like
 Weather.com, AccuWeather, or your local weather provider.
 ```
 
+:::
+
 ## Let's try it
 
 ::: notes
-claude: But this one... the model actually gives an answer! It's wrong (the date is from its training cutoff), but it shows the model will try to answer with what it knows.
+But this one... the model actually gives an answer! It's wrong (the date is from its training cutoff), but it shows the model will try to answer with what it knows.
 :::
 
 ```{.r}
@@ -85,15 +91,19 @@ chat <- chat("openai/gpt-4.1-nano")
 chat$chat("What day is it?")
 ```
 
+::: fragment
+
 ```
 Today is October 27, 2023.
 ```
+
+:::
 
 
 ## Tools {.center}
 
 ::: notes
-claude: So how do we solve these problems? Tools! Also called functions or function calling.
+So how do we solve these problems? Tools! Also called functions or function calling.
 :::
 
 a.k.a. _functions_, _tool calling_ or _function calling_
@@ -115,7 +125,7 @@ They can also give the model new abilities to take action on behalf of the user.
 # How does tool calling work?
 
 ::: notes
-claude: Let me walk you through exactly how tool calling works step by step. This is the key pattern you need to understand.
+Let me walk you through exactly how tool calling works step by step. This is the key pattern you need to understand.
 :::
 
 ## {.center style="text-align: center" transition="fade"}
@@ -127,7 +137,7 @@ The conversation starts with a user sending a message to the chatbot.
 
 In this example, the user asks whether they can go to the pool today - which requires knowing the weather.
 
-The model doesn't have access to real-time weather data, just like we saw earlier with Utqiagvik, Alaska.
+The model doesn't have access to real-time weather data, just like we saw earlier with Minneapolis.
 :::
 
 ## {.center style="text-align: center" transition="fade"}
@@ -188,21 +198,13 @@ The LLM doesn't mind JSON though, so it reads the data and generates a response 
 ## The LLM can't run code by itself!
 
 ::: notes
-claude: This is crucial to understand - the LLM doesn't execute tools. It just asks you to run them. You're in control!
+This is crucial to understand - the LLM doesn't execute tools. It just asks you to run them. 
 :::
 
 ## {.center style="text-align: center" transition="fade"}
 
 ::: notes
-claude: The LLM returns a tool call message - it's asking you to run the function. You decide whether to run it.
-:::
-
-![](assets/tools-diagram-tool-call.excalidraw.svg)
-
-## {.center style="text-align: center" transition="fade"}
-
-::: notes
-claude: The LLM also chooses the arguments for the tool. Here it picks the location based on the conversation.
+The LLM also chooses the arguments for the tool. Here it picks the location based on the conversation.
 :::
 
 ![](assets/tools-diagram-arg-choice-01.excalidraw.svg)
@@ -210,7 +212,7 @@ claude: The LLM also chooses the arguments for the tool. Here it picks the locat
 ## {.center style="text-align: center" transition="fade"}
 
 ::: notes
-claude: It uses its knowledge to fill in the right values - using information from its training data.
+It uses its knowledge to fill in the right values - using information from its training data.
 :::
 
 ![](assets/tools-diagram-arg-choice-02.excalidraw.svg)
@@ -218,32 +220,27 @@ claude: It uses its knowledge to fill in the right values - using information fr
 ## {.center style="text-align: center" transition="fade"}
 
 ::: notes
-claude: The model can infer details like ZIP codes or coordinates from location names using its training data.
-:::
-
-![](assets/tools-diagram-arg-choice-03.excalidraw.svg)
-
-## {.center style="text-align: center" transition="fade"}
-
-::: notes
-claude: The LLM can also call multiple tools in a single response if it needs to gather different information.
+The LLM can also call multiple tools in a single response if it needs to gather different information.
 :::
 
 ![](assets/tools-diagram-args-multi.excalidraw.svg)
 
+<!--
 
 ## Human in the loop {.center}
 
 ::: notes
-claude: Let me show you a Shiny app where you manually approve each tool call. This shows the pattern clearly - you're always in control.
+Let me show you a Shiny app where you manually approve each tool call. This shows the pattern clearly - you're always in control.
 :::
 
 👩‍💻 [_demos/18_manual-tools/app.R]{.code .b .purple}
 
-## Wait... I can write code! {.center}
+--> 
+
+## Demo: weather tool {.center}
 
 ::: notes
-claude: But you're programmers! You can automate this. Let me show you how to define tools that run automatically.
+But you're programmers! You can automate this. Let me show you how to define tools that run automatically.
 :::
 
 👩‍💻 [_demos/19_tools/19_weather-tool.R]{.code .b .purple}
@@ -262,7 +259,7 @@ get_weather <- function(zip_code) {
 ## Step 2: Define the tool
 
 ::: notes
-claude: Here's the pattern for defining tools in ellmer. You provide the function, a description, and argument types.
+Here's the pattern for defining tools in ellmer. You provide the function, a description, and argument types.
 :::
 
 ```{.r code-line-numbers="|1|2|3|4-11"}
@@ -283,7 +280,7 @@ tool_get_weather <- tool(
 ## Step 2: Define the tool
 
 ::: notes
-claude: Here's the pattern for defining tools in ellmer. You provide the function, a description, and argument types.
+Here's the pattern for defining tools in ellmer. You provide the function, a description, and argument types.
 :::
 
 ```{.r}
@@ -306,7 +303,7 @@ chat$register_tool(tool_get_weather)
 # Your Turn `10_quiz-game-2` {.slide-your-turn}
 
 ::: notes
-claude: Now practice - add a tool to the quiz game that plays sounds. This reinforces the pattern we just learned.
+Now practice - add a tool to the quiz game that plays sounds. This reinforces the pattern we just learned.
 :::
 
 1. I've given you a function that plays a sound when called (`play_sound()`).
@@ -324,7 +321,7 @@ Follow up question: why send a string back to the LLM that says the sound was pl
 ## Tools in Shiny
 
 ::: notes
-claude: When using tools in Shiny apps, remember these key points - tools can interact with your app's reactive state.
+When using tools in Shiny apps, remember these key points - tools can interact with your app's reactive state.
 :::
 
 ::: incremental
@@ -338,7 +335,7 @@ claude: When using tools in Shiny apps, remember these key points - tools can in
 ## Learn more
 
 ::: notes
-claude: These are the Posit packages for working with AI. We've focused on ellmer and shinychat today, but there are others for different use cases.
+These are the Posit packages for working with AI. We've focused on ellmer and shinychat today, but there are others for different use cases.
 :::
 
 ![](assets/posit-ai-packages.png)

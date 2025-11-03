@@ -11,13 +11,14 @@ editor:
 # [Prompt engineering]{.white .dib style="text-align: center; width: 100%;"} {.no-invert-dark-mode background-image="assets/kelly-sikkema-tk9RQCq5eQo-unsplash.jpg" background-size="cover" background-position="bottom left"}
 
 ::: notes
-claude: Prompt engineering is the art of getting LLMs to do what you want. Let's start by exploring what happens when LLMs see plots.
+Prompt engineering is the art of getting LLMs to do what you want. 
 :::
 
+<!--
 # Your Turn `07_plot-image-1` {.slide-your-turn}
 
 ::: notes
-claude: First, let's see how well LLMs can interpret real data visualizations. Create a scatter plot and see what the model says.
+First, let's see how well LLMs can interpret real data visualizations. Create a scatter plot and see what the model says.
 :::
 
 1. ellmer lets you show the model your plots!
@@ -35,7 +36,7 @@ it does pretty well
 # Your Turn `08_plot-image-2` {.slide-your-turn}
 
 ::: notes
-claude: Now let's explore hallucination. Show the model random noise and see if you can get it to admit there's no pattern - this demonstrates the importance of good prompting.
+Now let's explore hallucination. Show the model random noise and see if you can get it to admit there's no pattern - this demonstrates the importance of good prompting.
 :::
 
 1. Replace the scatter plot with random noise.
@@ -49,8 +50,30 @@ claude: Now let's explore hallucination. Show the model random noise and see if 
 # [Prompt engineering]{.white .dib style="text-align: center; width: 100%;"} {.no-invert-dark-mode background-image="assets/kelly-sikkema-tk9RQCq5eQo-unsplash.jpg" background-size="cover" background-position="bottom left"}
 
 ::: notes
-claude: After those exercises, let's talk about prompt engineering best practices. When things don't work, ask yourself these three questions.
+After those exercises, let's talk about prompt engineering best practices. When things don't work, ask yourself these three questions.
 :::
+
+-->
+
+## Reminder: the `system_prompt` arg
+
+```{.r code-line-numbers="1-3|5"}
+prompt <- 
+   "Your primary goal is to accurately and thoroughly 
+   understand patterns in data."
+
+chat <- chat("anthropic", system_prompt = prompt)
+```
+
+## Reminder: the `system_prompt` arg
+
+```{.r}
+chat <- 
+   chat(
+      "anthropic", 
+      system_prompt = readr::read_file("prompt.md")
+   )
+```
 
 ## Three questions to ask yourself
 
@@ -73,7 +96,7 @@ claude: After those exercises, let's talk about prompt engineering best practice
 ## System prompt vs. user prompt
 
 ::: notes
-claude: A common question - what goes in the system prompt versus the user prompt? Here's the simple rule.
+A common question - what goes in the system prompt versus the user prompt? Here's the simple rule.
 :::
 
 Short answer: put instructions and background knowledge in the system prompt.
@@ -81,7 +104,7 @@ Short answer: put instructions and background knowledge in the system prompt.
 ## More tips {.scrollable}
 
 ::: notes
-claude: Here are more practical tips. First - use LLMs to write your prompts! Claude has a prompt generator that's excellent for this.
+Here are more practical tips. First - use LLMs to write your prompts! Claude has a prompt generator that's excellent for this.
 :::
 
 **Use LLMs to help draft or improve your prompts.**
@@ -167,7 +190,7 @@ Remember: Be obsessively thorough. Assume there are data quality issues hiding i
 ## More tips {.scrollable}
 
 ::: notes
-claude: Structure matters. Use Markdown headings and XML tags to organize your prompts. And you can use variables for dynamic content.
+Structure matters. Use Markdown headings and XML tags to organize your prompts. And you can use variables for dynamic content.
 :::
 
 - **Use Markdown headings and XML tags to give structure to your prompts.**
@@ -192,7 +215,7 @@ a graded A-F scale.
 ## More tips
 
 ::: notes
-claude: When prompts get long, move them to separate files. This makes your code cleaner and version control easier to read.
+When prompts get long, move them to separate files. This makes your code cleaner and version control easier to read.
 :::
 
 **Get large prompts out of the code and into separate files.**
@@ -201,12 +224,10 @@ claude: When prompts get long, move them to separate files. This makes your code
 
 - Easier to read diffs in version control
 
-- We will do this in one of our exercises later
-
 ## More tips
 
 ::: notes
-claude: Advanced technique - make the model think out loud. This helps it follow complex rules or constraints.
+Advanced technique - make the model think out loud. This helps it follow complex rules or constraints.
 :::
 
 **Force the model to say things out loud.**
@@ -216,7 +237,7 @@ E.g., "Use no more than three rounds of tool calls" => "Before answering, note h
 ## More tips
 
 ::: notes
-claude: Finally, all the major providers have excellent documentation on prompt engineering. These are great resources to dive deeper.
+Finally, all the major providers have excellent documentation on prompt engineering. These are great resources to dive deeper.
 :::
 
 See Anthropic's [_Prompt Engineering Overview_](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) and OpenAI's [_OpenAI Cookbook_](https://cookbook.openai.com/) are excellent, and contain lots of tips and examples.
@@ -226,7 +247,7 @@ Google's [_Prompt Design Strategies_](https://ai.google.dev/gemini-api/docs/prom
 # Your Turn `09_quiz-game-1` {.slide-your-turn}
 
 ::: notes
-claude: Now put it all together - write a system prompt for a quiz game. This is a complex task that requires clear instructions and structure.
+Now put it all together - write a system prompt for a quiz game. This is a complex task that requires clear instructions and structure.
 :::
 
 ::: {style="width: 90%;"}
