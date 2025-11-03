@@ -144,7 +144,7 @@
     "href": "slides/slides-05.html#tools-in-shiny",
     "title": "Tool Calling",
     "section": "Tools in Shiny",
-    "text": "Tools in Shiny\n\nWhen using tools in Shiny apps, remember these key points - tools can interact with your app’s reactive state.\n\n\nDefine the tool function inside the server\nYou can update reactive values in the tool function!\nYou can read reactive values, if you isolate() reads. (Be careful!)"
+    "text": "Tools in Shiny\n\nWhen using tools in Shiny apps, remember these key points - tools can interact with your app’s reactive state.\n\n\nDefine the tool function inside the server\nYou can update reactive values in the tool function!\n\n\nuseful if you want to update a table based on chat input"
   },
   {
     "objectID": "slides/slides-05.html#learn-more",
