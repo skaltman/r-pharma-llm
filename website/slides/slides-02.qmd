@@ -456,7 +456,7 @@ This is how LLMs understand the conversation. They're trained on massive amounts
 Now let's talk about how LLMs construct their responses. They don't generate whole sentences at once - they generate responses token by token, choosing the most likely next piece based on everything they've seen so far.
 :::
 
-## Tokens {.center}
+## LLMs think in tokens {.center}
 
 ::: notes
 LLMs don't think in words - they think in tokens. This is the fundamental unit they use to construct responses, one token at a time.
