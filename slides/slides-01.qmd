@@ -18,11 +18,9 @@ editor:
 
 ☁️ **Set up Posit Cloud:**
 
-1. Create a free account: <https://posit.cloud/>.
-1. Open the Posit Cloud space: <https://posit.cloud/spaces/717315/>.
-1. Click “Yes” to join the space.
-1. Click Content and select the RStudio project or go to <https://posit.cloud/spaces/717315/content/11313957>.
-1. To save a copy of the project to your workspace at any point, click “Save a permanent copy”.
+1. Sign up for a free Posit Cloud account: <https://posit.cloud/plans>. 
+2. Join our workspace on Posit Cloud: <https://bit.ly/llm-cloud>.
+3. Go to _Content_, then select the `r-pharma-llm` project. 
 
 ```{=html}
 <style>

@@ -424,7 +424,7 @@
     "href": "slides/slides-01.html#welcome-to-getting-started-with-llm-apis-in-r",
     "title": "Welcome!",
     "section": "Welcome to Getting Started with LLM APIs in R!",
-    "text": "Welcome to Getting Started with LLM APIs in R!\n Workshop repo: https://bit.ly/r-pharma-llm\n\n☁️ Set up Posit Cloud:\n\nCreate a free account: https://posit.cloud/.\nOpen the Posit Cloud space: https://posit.cloud/spaces/717315/.\nClick “Yes” to join the space.\nClick Content and select the RStudio project or go to https://posit.cloud/spaces/717315/content/11313957.\nTo save a copy of the project to your workspace at any point, click “Save a permanent copy”."
+    "text": "Welcome to Getting Started with LLM APIs in R!\n Workshop repo: https://bit.ly/r-pharma-llm\n\n☁️ Set up Posit Cloud:\n\nSign up for a free Posit Cloud account: https://posit.cloud/plans.\nJoin our workspace on Posit Cloud: https://bit.ly/llm-cloud.\nGo to Content, then select the r-pharma-llm project."
   },
   {
     "objectID": "slides/slides-01.html#skaltman.github.ior-pharma-llm",
