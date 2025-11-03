@@ -3,15 +3,20 @@
 ### R/Pharma 2025
 
 November 3, 2025
+
 01:00 - 03:00 EST
 
 Adapted from: <https://github.com/posit-conf-2025/llm>
 
 -----
 
-📘 **Workshop website:** <https://skaltman.github.io/r-pharma-llm>
+<p style="font-size: 1.2em;">
+📘 <strong>Workshop website:</strong> <a href="https://skaltman.github.io/r-pharma-llm">https://skaltman.github.io/r-pharma-llm</a>
+</p>
 
-☁️ **Posit Cloud workspace:** <https://bit.ly/llm-cloud>
+<p style="font-size: 1.2em;">
+☁️ <strong>Posit Cloud workspace:</strong> <a href="https://bit.ly/llm-cloud">https://bit.ly/llm-cloud</a>
+</p>
 
 ## Overview
 

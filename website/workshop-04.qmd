@@ -1,29 +1,27 @@
 ---
-title: Programming with LLMs
-description: A deeper dive into the things you can do with LLMs when you're programming with them that are harder to do in a chat interface.
-description-short: Advanced LLM programming techniques
-duration: 50min
+title: Prompt Engineering
+description: Getting LLMs to do what you want through effective prompting.
+description-short: Getting LLMs to do what you want
+duration: 30min
 ---
 
 ## Slides
 
 {{< revealjs "slides/slides-04.html" class="ratio ratio-16x9" >}}
 
-## Resources
+## Outline
 
-- (15m) Choosing a model
-  - Overview of major providers: OpenAI, Anthropic, Google, ollama
-  - Tradeoffs: capability, context length, speed, cost, intelligence
-  - Activity: same question, change one string to switch models, e.g. `chat("openai")`, `chat("anthropic")`.
+**LLMs and plots**
 
-- (15m) Multi-modal input (vision, PDF)
-  - Activity: images of food and ask for recipes
-  - Activity: take a PDF of a recipe, turn it into markdown
+- **Activity:** `12_plot-image-1` - Interpret a real scatter plot (3 min)
+- **Activity:** `13_plot-image-2` - Handle random noise and improve prompting (7 min)
 
-- (15m) Structured output
-  - Explain `ellmer::type_*()` or [pydantic model in chatlas](https://posit-dev.github.io/chatlas/get-started/structured-data.html)
-  - Activity: Extract rich data from the recipe PDF
-  - Note [use_attribute_docstrings](https://docs.pydantic.dev/latest/api/config/#pydantic.config.ConfigDict.use_attribute_docstrings)
+**Prompt engineering best practices**
 
-- (10m) Parallel/batch calls
-  - Activity: Extract recipe data in parallel or batch
+- Three key questions: best models? clear system prompt? examples?
+- System prompt vs user prompt
+- Tips: use LLMs to write prompts, add structure, separate files, think out loud
+
+**Apply your skills**
+
+- **Activity:** `14_quiz-game-1` - Write system prompt for quiz game (8 min)

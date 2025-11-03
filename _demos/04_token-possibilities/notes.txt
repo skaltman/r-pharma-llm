@@ -1,0 +1,86 @@
+# Token Possibilities Demo - Speaker Notes
+
+## Purpose
+Show how LLMs construct responses token by token, making probabilistic choices at each step.
+
+## How It Works
+
+The app sends a prompt to GPT-4.1-nano with special parameters (`log_probs = TRUE` and `top_logprobs = 5`). For EACH token generated, the API returns the top 5 alternative tokens the model considered and their probabilities.
+
+The response is displayed with:
+- **Color-coded confidence levels** based on how certain the model was
+- **Interactive tooltips** - click any token to see the alternatives
+- **Sequential animation** to show tokens appearing one-at-a-time
+
+## Color Coding (Confidence Levels)
+
+- **Blue** (very high): Model was very confident (probability > 90%)
+- **Purple** (high): Pretty confident
+- **Pink** (medium): Less confident
+- **Orange** (low): Low confidence
+- **Yellow** (very low): Very uncertain about this choice
+
+## Key Points to Demonstrate
+
+### 1. "LLMs build responses token by token"
+Watch the tokens appear one at a time - this is exactly how the model generates them. Not word by word, not sentence by sentence - token by token.
+
+### 2. "Color shows confidence"
+Darker/more saturated colors mean the model was more confident. Notice which tokens the model is uncertain about (yellow/orange ones). These are the interesting ones!
+
+### 3. "Click tokens to see alternatives"
+Click any token to see what else the model considered. For example, the model might have chosen 'cat' but also considered 'dog' (35%), 'bird' (10%), etc.
+
+Point out: Every single token has alternatives. The model is constantly choosing between possibilities.
+
+### 4. "Temperature affects creativity"
+Demo this with the settings panel:
+- **Low temperature (0-0.3)**: Model is more deterministic, almost always picks the most likely token (lots of blues)
+- **High temperature (0.7-1.0)**: Model explores more, sometimes picks less likely tokens (more yellows/oranges, more varied responses)
+
+Try the same prompt with different temperatures to show how temperature changes the confidence distribution.
+
+### 5. "Some tokens are more predictable than others"
+- **Function words** ("the", "a", "is") are usually high confidence - they're very predictable
+- **Creative content words** (nouns, verbs in creative writing) have more alternatives and lower confidence
+- **Starting a sentence** is often lower confidence (many possible ways to begin)
+
+### 6. "This happens behind the scenes for every LLM response"
+Whether it's ChatGPT, Claude, or the ellmer chat object we've been using - it's ALWAYS:
+- Token by token
+- Probabilistic choices
+- Considering alternatives
+
+We usually don't see this process, but it's always happening.
+
+## Key Insight
+
+**LLMs don't "know" what they're going to say ahead of time.** They're making probabilistic choices at every single token, based on everything that came before. There's no plan, no outline - just one token choice at a time.
+
+This is why:
+- They can surprise us with creative responses
+- They sometimes "change their mind" mid-sentence
+- Temperature matters so much
+- Longer responses compound uncertainty (each choice affects the next)
+
+## Demo Flow
+
+1. Show the default prompt with default settings
+2. Point out the color coding and animation
+3. Click on a few tokens to show alternatives - pick interesting ones (low confidence or surprising choices)
+4. Try adjusting temperature and re-running the same prompt
+5. Try a different prompt - maybe something more creative vs. more factual to show confidence differences
+
+## Common Questions to Anticipate
+
+**Q: "Why are some tokens split weird (like 'un|con|ventional')?"**
+A: The tokenizer breaks words into common chunks it learned during training. Common prefixes, suffixes, and word parts become tokens.
+
+**Q: "Does the model look ahead to plan the response?"**
+A: No! It's genuinely token by token. Each token is chosen based only on what came before, not what comes after.
+
+**Q: "What happens if I pick temperature = 0?"**
+A: The model becomes completely deterministic - it will always pick the highest probability token. Same prompt = same response every time.
+
+**Q: "Can I use log_probs in my own code?"**
+A: Yes! It's a parameter in the OpenAI API (and some others). Useful for understanding model behavior or building features that need confidence scores.

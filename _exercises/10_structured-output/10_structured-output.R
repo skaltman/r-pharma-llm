@@ -44,7 +44,7 @@ txt_waffles |> substring(1, 500) |> cat()
 type_recipe <- type_____(
   title = ____(),
   description = ____(),
-  ingredients = ____(
+  ingredients = type_array(
     type_object(
       name = ____(),
       quantity = ____(),

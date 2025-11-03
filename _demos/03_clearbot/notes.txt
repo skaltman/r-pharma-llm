@@ -1,0 +1,85 @@
+# Clearbot Demo - Speaker Notes
+
+## Purpose
+Show what's actually happening behind the scenes when you chat with an LLM.
+Demonstrate that LLMs are stateless and don't "remember" anything.
+
+## Key Points to Make
+
+### 1. What you're about to see
+"I'm going to show you what's really happening when you use chat$chat().
+This app, clearbot, visualizes the actual HTTP requests being sent to the API."
+
+### 2. Set up the same scenario from the exercise
+Use the system prompt from the word game:
+"You are playing a word guessing game. At each turn, guess the word and tell us what it is."
+
+First question: "In British English, guess the word for the person who lives next door."
+
+### 3. Point out the request
+"Look at the request that was sent. Notice that it includes:
+- The system prompt
+- Our user message
+That's it - that's the entire request."
+
+### 4. Ask the second question
+"What helps a car move smoothly down the road?"
+
+### 5. THIS IS THE KEY MOMENT
+"Now look at the request. It's NOT just our new question.
+It's the ENTIRE conversation so far:
+- The system prompt
+- First user message ('person next door')
+- First assistant response ('neighbour')
+- Second user message ('car smooth')
+
+The LLM doesn't remember our first question - WE are sending it the entire history!"
+
+### 6. Click "Clear Chat"
+"Now watch what happens when I clear the chat and ask the same question again."
+
+Ask: "What helps a car move smoothly down the road?"
+
+"Look at the request now - it's ONLY:
+- The system prompt
+- This one message
+
+The previous conversation is gone. And notice how the answer changed!
+Before: 'petrol' (British context from first question)
+Now: probably 'oil' or 'gasoline' (no British context)"
+
+### 7. Connect back to the exercise
+"This is what happened in your exercise when you created a new chat.
+Creating a new chat = starting with an empty history.
+The chat object in ellmer has been managing this history for you automatically."
+
+### 8. Why this matters
+"This is fundamental to understanding LLMs:
+- They have NO memory between requests
+- Every request needs the full context
+- Token limits matter because you're sending the ENTIRE conversation each time
+- The 'conversation' is an illusion created by sending history with each request
+- This is why your prompts and context management are so important"
+
+## Demo Flow
+1. Show the app interface
+2. Set system prompt
+3. Ask first question (British English, neighbour)
+4. Point out request structure
+5. Ask second question (car smooth)
+6. **EMPHASIZE** that the entire history is in the request
+7. Clear chat
+8. Ask second question again
+9. Show how the request and answer changed
+10. Wrap up with why this matters
+
+## Common Questions to Anticipate
+
+**Q: "Does the chat object store the history locally?"**
+A: Yes! The chat object in ellmer keeps track of all messages and sends them with each request. That's its job - to make it feel like a conversation.
+
+**Q: "What about really long conversations?"**
+A: Great question! This is why token limits exist. Eventually you hit the model's context window limit and need to manage what history you include.
+
+**Q: "Is this the same for all LLM providers?"**
+A: Yes! This is how the APIs work - OpenAI, Anthropic, Google - they're all stateless.

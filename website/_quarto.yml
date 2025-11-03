@@ -12,7 +12,7 @@ project:
 website:
   site-url: https://skaltman.github.io/r-pharma-llm
 
-  favicon: assets/logo-rinpharma.png
+  favicon: assets/icons/logo-rinpharma.png
 
   repo-url: https://github.com/skaltman/r-pharma-llm
   repo-subdir: website
@@ -30,7 +30,7 @@ website:
         text: Setup
     tools:
       - icon: github
-        href: https://github.com/posit-conf-2025/llm
+        href: https://github.com/skaltman/r-pharma-llm
         aria-label: Workshop materials
 
   page-navigation: true
@@ -45,9 +45,9 @@ website:
         - workshop.qmd
         - workshop-01.qmd
         - workshop-02.qmd
+        - workshop-03.qmd
         - workshop-04.qmd
         - workshop-05.qmd
-        - workshop-08.qmd
 
 format:
   html:

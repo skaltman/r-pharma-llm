@@ -13,10 +13,7 @@ prompt <- "Write a  recipe for an easy weeknight dinner my kids would like."
 chat("openai/____")$chat(prompt)
 chat("anthropic/____")$chat(prompt)
 
-# Bonus: Local models?
-# If you have local models installed, you can use them too.
-models_ollama()
-chat("ollama/____")$chat(prompt)
+
 
 # Bonus: Repeat your OpenAI and Anthropic requests using direct provider
 # functions.

@@ -53,9 +53,7 @@
 }
 
 .reveal .slide-your-turn .slide-background-content {
-  background-image: url(/slides/assets/your-turn.png);
-  background-size: 30%;
-  background-position: bottom right;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(65, 148, 152, 0.2) 100%);
 }
 
 :root {

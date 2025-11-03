@@ -1,0 +1,30 @@
+---
+title: Programming with LLMs
+description: A deeper dive into the things you can do with LLMs when you're programming with them that are harder to do in a chat interface.
+description-short: Advanced LLM programming techniques
+duration: 40min
+---
+
+## Slides
+
+{{< revealjs "slides/slides-03.html" class="ratio ratio-16x9" >}}
+
+## Outline
+
+**Choosing a model**
+
+- Model sizes: small/fast/cheap, medium/balanced, large/smart/expensive
+- Major providers: OpenAI, Anthropic, Google
+- **Activity:** `07_models` - Try different models (4 min)
+
+**Multi-modal input**
+
+- Vision: `content_image_file()` and `content_image_url()`
+- PDFs: `content_pdf_file()` and `content_pdf_url()`
+- **Activity:** `08_vision` - Show food images to LLM (5 min)
+
+**Structured output**
+
+- Using `ellmer::type_*()` to get structured data instead of text
+- Define schemas with `type_object()`, `type_string()`, `type_integer()`, etc.
+- **Activity:** `10_structured-output` - Extract structured recipe data (7 min)

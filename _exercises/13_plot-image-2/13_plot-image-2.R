@@ -29,5 +29,6 @@ chat$chat(
   content_image_plot()
 )
 
-# Step 3: Work with a partner to improve the prompt to get a better
+# Step 3: Improve the prompt to get a better
 # interpretation.
+# Remember, you can use `chat()`'s `system_prompt` argument to set a system prompt.

@@ -1,8 +1,8 @@
 ---
-title: Prompt Engineering
-description: Getting LLMs to do what you want through effective prompting.
-description-short: Getting LLMs to do what you want
-duration: 40min
+title: Tool Calling
+description: Giving LLMs the ability to interact with the world through tools.
+description-short: Help LLMs interact with the world
+duration: 50min
 ---
 
 ## Slides
@@ -11,9 +11,28 @@ duration: 40min
 
 ## Outline
 
-- (35m) Prompting engineering and hallucinations
-  - Activity: images of mpg vs weight and ask for interpretation
-  - Activity (part 1): same question, but we've replaced the image with random noise
-  - Activity (part 2): work with partner to try to get the model to give you a decent interpretation of the random noise image
-  - Prompt engineering best practices, in particular the system prompt
-  - Activity: create [the prompt for the quiz game show](https://github.com/jcheng5/llm-quickstart/blob/main/02-tools-prompt.md)
+**Why tools?**
+
+- LLMs can't access real-time data or interact with the world
+- Examples: R/Pharma speakers, weather, current date
+
+**How tool calling works**
+
+- Step-by-step walkthrough of the tool calling pattern
+- LLM requests tools, you execute them, send results back
+- **Demo:** `18_manual-tools` - Manual tool approval
+- **Demo:** `19_weather-tool` - Automated tools
+
+**Practice with tools**
+
+- **Activity:** `20_quiz-game-2` - Add sound tool to quiz game (6 min)
+
+**Tools in Shiny apps**
+
+- Define tools inside server function
+- Tools can update and read reactive values
+
+**Resources**
+
+- querychat, ggbot2, Databot, Posit AI newsletter
+

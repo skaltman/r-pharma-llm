@@ -2,7 +2,7 @@
 title: Welcome and getting started
 description: Hello and welcome to the workshop!
 description-short: Hello and welcome to the workshop!
-duration: 30min
+duration: 12min
 
 editor: { render-on-save: true }
 ---
@@ -13,8 +13,6 @@ editor: { render-on-save: true }
 
 ## Outline
 
-- Welcome, introductions, workshop expectations
-  - Activity: introduce yourself to your neighbors
+- Welcome, introductions, workshop expectations (6 min)
 
-- Set-up and verify API access
-  - Activity: Set up our API keys and make our first API calls!
+- Posit Cloud setup and verify API access (6 min)

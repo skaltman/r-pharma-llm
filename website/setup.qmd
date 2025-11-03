@@ -12,7 +12,7 @@ I've prepared a Posit Cloud workspace for workshop participants with a project f
 
 1. If you don't already have a Posit Cloud account, first [sign up for a free account](https://posit.cloud/plans). You can create an account with your email or login with Google, GitHub or Clever.
 
-2. Then, join the workspace on Posit Cloud: [{{< meta workshop.links.cloud_short.href >}}]({{< meta workshop.links.cloud_short.href >}})
+2. Then, join the workspace on Posit Cloud: [{{< meta workshop.links.cloud_short.href >}}]({{< meta workshop.links.cloud_short.href >}}).
 
 3. Once you're part of the workspace, navigate to _Content_, then select the `r-pharma-llm` project to create and launch a new project just for you. 
 
